@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>STM32操纵2.4寸液晶(ILI9325) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我做的毕设是自动指纹采集识别系统，当然现在还不能把代码放出来。不过在做的过程中用到了液晶显示，配套的例子里刚好有TFTLCD显示实验代码，但它的代码只能显示英文，为了急用，我懒得调用字库，于是自己折腾了一套方法显示中文，现把过程简单记录一下。  液晶屏上的中文显示(Sandeepin的办法)原理：利用两个16x8的显示格子拼凑一个汉字。 用到的字模软件：字模III v3.9。我转换异想家的“异”字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32操纵2.4寸液晶(ILI9325)">
+<meta property="og:url" content="http://yoursite.com/2016/04/16/stm32-ili9325/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我做的毕设是自动指纹采集识别系统，当然现在还不能把代码放出来。不过在做的过程中用到了液晶显示，配套的例子里刚好有TFTLCD显示实验代码，但它的代码只能显示英文，为了急用，我懒得调用字库，于是自己折腾了一套方法显示中文，现把过程简单记录一下。  液晶屏上的中文显示(Sandeepin的办法)原理：利用两个16x8的显示格子拼凑一个汉字。 用到的字模软件：字模III v3.9。我转换异想家的“异”字">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-ili932500.jpg">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-ili932501.png">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-ili932502.png">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-ili932503.jpg">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STM32操纵2.4寸液晶(ILI9325)">
+<meta name="twitter:description" content="我做的毕设是自动指纹采集识别系统，当然现在还不能把代码放出来。不过在做的过程中用到了液晶显示，配套的例子里刚好有TFTLCD显示实验代码，但它的代码只能显示英文，为了急用，我懒得调用字库，于是自己折腾了一套方法显示中文，现把过程简单记录一下。  液晶屏上的中文显示(Sandeepin的办法)原理：利用两个16x8的显示格子拼凑一个汉字。 用到的字模软件：字模III v3.9。我转换异想家的“异”字">
+<meta name="twitter:image" content="http://img.jfz.me/img/2016/stm32-ili932500.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-stm32-ili9325" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/16/stm32-ili9325/" class="article-date">
+  <time datetime="2016-04-16T03:50:28.000Z" itemprop="datePublished">2016-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      STM32操纵2.4寸液晶(ILI9325)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我做的毕设是自动指纹采集识别系统，当然现在还不能把代码放出来。不过在做的过程中用到了液晶显示，配套的例子里刚好有TFTLCD显示实验代码，但它的代码只能显示英文，为了急用，我懒得调用字库，于是自己折腾了一套方法显示中文，现把过程简单记录一下。 <img src="http://img.jfz.me/img/2016/stm32-ili932500.jpg" alt=""> 液晶屏上的中文显示(Sandeepin的办法)原理：<strong>利用两个16x8的显示格子拼凑一个汉字</strong>。 用到的字模软件：<strong>字模III v3.9</strong>。我转换异想家的“异”字得到如下字模： <img src="http://img.jfz.me/img/2016/stm32-ili932501.png" alt=""> 用字模III v3.9生成的是16x16横向排的字模，且镜像反转了，不配合本液晶系统，需要用到我制作的C语言算法转换：</p>
+<p>#include “stdafx.h”<br>int revse32int(int a, int len) //len是要旋转的数字位数，从右侧起<br>{<br>    int tmp = 0, i, j;<br>    for (i = 0, j = len - 1; i &lt; len; ++i, –j)<br>    {<br>        if ((a &gt;&gt; i) &amp; 1)<br>            tmp |= ((a &gt;&gt; i) &amp; 1) &lt;&lt; j;<br>    }<br>    return tmp;<br>}</p>
+<p>int main(void)<br>{<br>    //字模软件直接得到的字模<br>    int yuan[32] = { 0x00,0x00,0x3F,0xF0,0x20,0x10,0x20,0x10,0x3F,0xF0,0x20,0x04,0x20,0x04,0x1F,0xFC,<br>        0x00,0x00,0x08,0x20,0x08,0x20,0xFF,0xFE,0x08,0x20,0x10,0x20,0x20,0x20,0x40,0x20 };<br>    int i = 0,j = 0;<br>    int jishu[16] = {};//奇数编号数存数组<br>    int oushu[16] = {};//偶数编号数存数组<br>    for (i = 0; i &lt; 32; i++)<br>    {<br>        if (i % 2 == 0)<br>        {<br>            jishu[j] = yuan[i];<br>            j++;<br>        }<br>    }<br>    printf(“奇数编号数提取(字符前半边)：\r\n”);<br>    for (i = 0; i &lt; 16; i++) printf(“,0x%x”, jishu[i]);//奇数编号数提取(字符前半边)<br>    printf(“\r\n”);</p>
+<pre><code>j = 0;
+for (int i = 0; i &lt; 32; i++)
+{
+    if (i % 2 != 0) 
+    {
+        oushu\[j\] = yuan\[i\];
+        j++;
+    }
+}
+printf(&quot;\\r\\n偶数编号数提取(字符后半边)：\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, oushu\[i\]);//偶数编号数提取(字符后半边)
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n字符前半边翻转:\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, revse32int(jishu\[i\], 8));//字符前半边翻转
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n字符后半边翻转:\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, revse32int(oushu\[i\], 8));//字符后半边翻转
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n格式化显示效果:\\r\\n&quot;);
+printf(&quot;{&quot;);
+for (int i = 0; i &lt; 16; i++)
+{
+    if (i == 0) printf(&quot;0x%x&quot;, revse32int(jishu\[i\], 8));
+    else printf(&quot;,0x%x&quot;, revse32int(jishu\[i\], 8));
+
+}
+printf(&quot;},/*\\&quot;异1\\&quot;,01*/&quot;);
+printf(&quot;\\n&quot;);
+printf(&quot;{&quot;);
+for (int i = 0; i &lt; 16; i++)
+{
+    if (i == 0) printf(&quot;0x%x&quot;, revse32int(oushu\[i\], 8));
+    else printf(&quot;,0x%x&quot;, revse32int(oushu\[i\], 8));
+
+}
+printf(&quot;},/*\\&quot;异2\\&quot;,02*/&quot;);
+getchar();
+return 0;
+</code></pre><p>}</p>
+<p>效果如下： <img src="http://img.jfz.me/img/2016/stm32-ili932502.png" alt=""> 张帮我写了个Python版本，更好用，也把代码附上：</p>
+<p>#!/usr/bin/env python3<br># -<em>- coding: utf-8 -</em>-</p>
+<p>def ch(x):<br>        x = ((x&amp;0x55)&lt;&lt;1)|((x&amp;0xaa)&gt;&gt;1)<br>        x = ((x&amp;0x33)&lt;&lt;2)|((x&amp;0xcc)&gt;&gt;2)<br>        x = ((x&amp;0x0f)&lt;&lt;4)|((x&amp;0xf0)&gt;&gt;4)<br>        return x</p>
+<p>def change():<br>        nums = eval(input(‘ctrl+c退出或者继续输入:’))<br>        L1 = []<br>        L2 = []<br>        l = len(nums)<br>        i = 0<br>        j = 1<br>        k = 1<br>        for i in range(l):<br>                if i % 2 == 0:<br>                        L1.append(ch(nums[i]))<br>                if i % 2 != 0:<br>                        L2.append(ch(nums[i]))</p>
+<pre><code>le = len(L1)
+print(&apos;{&apos;,end = &apos;&apos;,file = f)
+for i in L1:
+        if j &lt;= 15:
+                print(&apos;0x%02x,&apos; % i, end = &apos;&apos;,file = f)
+        else:
+                print(&apos;0x%02x},&apos; % i, end = &apos;&apos;,file = f)
+        j = j + 1
+print(file = f)
+
+le = len(L2)
+print(&apos;{&apos;,end = &apos;&apos;,file = f)
+for i in L2:
+        if k &lt;= 15:
+                print(&apos;0x%02x,&apos; % i, end = &apos;&apos;,file = f)
+        else:
+                print(&apos;0x%02x},&apos; % i, end = &apos;&apos;,file = f)
+        k = k + 1
+print(file = f)
+
+print(&apos;\\n&apos;,file = f)
+</code></pre><p>n = int(input(‘要输入多少中文字符:’))<br>f = open(“./output.txt”, ‘a+’)<br>for i in range(1,n+1):<br>        print(‘第%d个字:\n’ % i,file = f)<br>        change()<br>        print(‘已输出第%d个字’ % i)</p>
+<p>之后将转换后的字模添加到font.h中(图中的例子不是“异”，而是我的名字，举一反三)：</p>
+<p>const unsigned char CH_1616[100][16]={<br>{0x10,0x10,0xff,0x10,0x0,0x10,0x92,0x54,0x14,0x10,0xd8,0x94,0x12,0x11,0x10,0x10},/<em>“蒋1”,00</em>/<br>{0x4,0x4,0x7f,0x4,0x1,0x1f,0x8,0x5,0xa,0x9,0x7f,0x8,0x9,0x9,0x8,0xc},/<em>“蒋2”,01</em>/<br>{0x40,0x80,0x80,0xff,0x20,0x20,0x20,0xe0,0x20,0x20,0x20,0x10,0x10,0x8,0x4,0x2},/<em>“方1”,02</em>/<br>{0x0,0x0,0x0,0x7f,0x0,0x0,0x0,0xf,0x8,0x8,0x8,0x8,0x8,0x8,0x5,0x2},/<em>“方2”,03</em>/<br>{0x0,0xfe,0x80,0x80,0x80,0x80,0x88,0x88,0x88,0x88,0x88,0x88,0x88,0x88,0xff,0x0},/<em>“正1”,04</em>/<br>{0x0,0x3f,0x0,0x0,0x0,0x0,0x0,0x1f,0x0,0x0,0x0,0x0,0x0,0x0,0x7f,0x0},/<em>“正2”,05</em>/<br>}; </p>
+<p>在text.c中加入：</p>
+<p>void LCD_ShowChar_CH(u16 x,u16 y,u16 num,u16 Color)<br>{  </p>
+<pre><code>u16 temp;
+u8 mode=0;
+u8 size=16;
+u8 j,t;
+u8 count;
+u16 x0=x;   
+if(x&gt;MAX\_CHAR\_POSX||y&gt;MAX\_CHAR\_POSY)return;       
+//设置窗口
+if(mode==0) //正常显示
+{
+    for(j=0;j&lt;size;j++)
+    {
+            temp=CH_1616\[num\]\[j\];   
+            count=8;
+        for(t=0;t&lt;count;t++)
+        {                 
+        if(temp&amp;0x01)
+            {
+            LCD_DrawPoint(x,y,Color);   
+            }
+            else 
+            {
+            LCD\_DrawPoint(x,y,BACK\_COLOR);  
+            }
+            temp&gt;&gt;=1; 
+            x++;
+        }
+        x=x0;
+        y++;
+    }   
+} 
+</code></pre><p>}</p>
+<p>void LCD_ShowString_CH(u16 x,u16 y,u16 chnum,u16 Color)<br>{<br>    if(chnum==1)//选择菜单(录入、清空)<br>    {<br>        LCD_ShowChar_CH(0+x,0+y,6,Color);LCD_ShowChar_CH(8+x,0+y,7,Color);<br>        LCD_ShowChar_CH(16+x,0+y,8,Color); LCD_ShowChar_CH(24+x,0+y,9,Color);<br>        LCD_ShowChar_CH(32+x,0+y,10,Color);LCD_ShowChar_CH(40+x,0+y,11,Color);<br>        LCD_ShowChar_CH(48+x,0+y,12,Color);LCD_ShowChar_CH(56+x,0+y,13,Color);<br>        LCD_ShowString(64+x,0+y,”(“,Color);<br>        LCD_ShowChar_CH(72+x,0+y,14,Color);LCD_ShowChar_CH(80+x,0+y,15,Color);<br>        LCD_ShowChar_CH(88+x,0+y,16,Color);LCD_ShowChar_CH(96+x,0+y,17,Color);<br>        LCD_ShowChar_CH(104+x,0+y,18,Color);LCD_ShowChar_CH(112+x,0+y,19,Color);<br>        LCD_ShowChar_CH(120+x,0+y,20,Color);LCD_ShowChar_CH(128+x,0+y,21,Color);<br>        LCD_ShowChar_CH(136+x,0+y,22,Color);LCD_ShowChar_CH(144+x,0+y,23,Color);<br>        LCD_ShowString(152+x,0+y,”)”,Color);<br>    }<br>    if(chnum==2)//指纹识别模式<br>    {<br>        LCD_ShowChar_CH(0+x,0+y,24,Color);LCD_ShowChar_CH(8+x,0+y,25,Color);<br>        LCD_ShowChar_CH(16+x,0+y,26,Color); LCD_ShowChar_CH(24+x,0+y,27,Color);<br>        LCD_ShowChar_CH(32+x,0+y,28,Color);LCD_ShowChar_CH(40+x,0+y,29,Color);<br>        LCD_ShowChar_CH(48+x,0+y,30,Color);LCD_ShowChar_CH(56+x,0+y,31,Color);<br>        LCD_ShowChar_CH(64+x,0+y,32,Color);LCD_ShowChar_CH(72+x,0+y,33,Color);<br>        LCD_ShowChar_CH(80+x,0+y,34,Color);LCD_ShowChar_CH(88+x,0+y,35,Color);<br>    }<br>}</p>
+<p>以后就可以在主函数中随处调用了：</p>
+<p>LCD_ShowString_CH(40,10,2,BLUE);//x、y轴指定显示位置，字库中对应显示文字，颜色</p>
+<p>附上一张我做的指纹识别系统泄漏图： <img src="http://img.jfz.me/img/2016/stm32-ili932503.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/16/stm32-ili9325/" data-id="cjhdn25jf0047sobtc16nl3b8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/25/stm32-dht11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          STM32操纵DHT11湿度传感器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/09/stm32-study-example/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">STM32学习笔记：基础例子</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

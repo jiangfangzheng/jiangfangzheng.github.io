@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>完美实现STM32单总线挂多个DS18B20 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="完美实现STM32单总线挂多个DS18B20">
+<meta property="og:url" content="http://yoursite.com/2016/12/14/stm32-ds18b20s/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20161214135921014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FuZGVlcGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="完美实现STM32单总线挂多个DS18B20">
+<meta name="twitter:description" content="一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161214135921014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FuZGVlcGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-stm32-ds18b20s" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/stm32-ds18b20s/" class="article-date">
+  <time datetime="2016-12-14T12:24:31.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      完美实现STM32单总线挂多个DS18B20
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20.c文件代码：</p>
+<p>#include “DS18B20.h”  </p>
+<p>#include “Delay.h”  </p>
+<p>#include “stdio.h” // printf用  </p>
+<p>#define DS18B20_GPIO_NUM                 GPIO_Pin_5  </p>
+<p>#define DS18B20_GPIO_X                  GPIOC  </p>
+<p>#define RCC_APB2Periph_DS18B20_GPIO_X   RCC_APB2Periph_GPIOC  </p>
+<p>#define DS18B20_DQ_OUT_Low          GPIO_ResetBits(DS18B20_GPIO_X,DS18B20_GPIO_NUM)   </p>
+<p>#define DS18B20_DQ_OUT_High         GPIO_SetBits(DS18B20_GPIO_X,DS18B20_GPIO_NUM)   </p>
+<p>#define DS18B20_DQ_IN               GPIO_ReadInputDataBit(DS18B20_GPIO_X,DS18B20_GPIO_NUM)   </p>
+<p>#define MaxSensorNum 8<br>unsigned char DS18B20_ID[MaxSensorNum][8];  // 存检测到的传感器DS18B20_ID的数组,前面的维数代表单根线传感器数量上限<br>unsigned char DS18B20_SensorNum;            // 检测到的传感器数量(从1开始，例如显示1代表1个，8代表8个)  </p>
+<p>// 配置DS18B20用到的I/O口<br>void DS18B20_GPIO_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_DS18B20_GPIO_X, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = DS18B20_GPIO_NUM;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DS18B20_GPIO_X, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(DS18B20_GPIO_X, DS18B20_GPIO_NUM);<br>}  </p>
+<p>// 引脚输入<br>void DS18B20_Mode_IPU(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DS18B20_GPIO_NUM;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;<br>    GPIO_Init(DS18B20_GPIO_X, &amp;GPIO_InitStructure);<br>}  </p>
+<p>// 引脚输出<br>void DS18B20_Mode_Out(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DS18B20_GPIO_NUM;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DS18B20_GPIO_X, &amp;GPIO_InitStructure);  </p>
+<p>}  </p>
+<p>// 复位，主机给从机发送复位脉冲<br>void DS18B20_Rst(void)<br>{<br>    DS18B20_Mode_Out();<br>    DS18B20_DQ_OUT_Low;     // 产生至少480us的低电平复位信号<br>    Delay_us(480);<br>    DS18B20_DQ_OUT_High;    // 在产生复位信号后，需将总线拉高<br>    Delay_us(15);<br>}  </p>
+<p>// 检测从机给主机返回的应答脉冲。从机接收到主机的复位信号后，会在15~60us后给主机发一个应答脉冲<br>u8 DS18B20_Answer_Check(void)<br>{<br>    u8 delay = 0;<br>    DS18B20_Mode_IPU(); // 主机设置为上拉输入<br>    // 等待应答脉冲（一个60~240us的低电平信号 ）的到来<br>    // 如果100us内，没有应答脉冲，退出函数，注意：从机接收到主机的复位信号后，会在15~60us后给主机发一个存在脉冲<br>    while (DS18B20_DQ_IN&amp;&amp;delay &lt; 100)<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    // 经过100us后，如果没有应答脉冲，退出函数<br>    if (delay &gt;= 100)//Hu200<br>        return 1;<br>    else<br>        delay = 0;<br>    // 有应答脉冲，且存在时间不超过240us<br>    while (!DS18B20_DQ_IN&amp;&amp;delay &lt; 240)<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    if (delay &gt;= 240)<br>        return 1;<br>    return 0;<br>}  </p>
+<p>// 从DS18B20读取1个位<br>u8 DS18B20_Read_Bit(void)<br>{<br>    u8 data;<br>    DS18B20_Mode_Out();<br>    DS18B20_DQ_OUT_Low; // 读时间的起始：必须由主机产生 &gt;1us &lt;15us 的低电平信号<br>    Delay_us(2);<br>    DS18B20_DQ_OUT_High;<br>    Delay_us(12);<br>    DS18B20_Mode_IPU();// 设置成输入，释放总线，由外部上拉电阻将总线拉高<br>    if (DS18B20_DQ_IN)<br>        data = 1;<br>    else<br>        data = 0;<br>    Delay_us(50);<br>    return data;<br>}  </p>
+<p>// 从DS18B20读取2个位<br>u8 DS18B20_Read_2Bit(void)//读二位 子程序<br>{<br>    u8 i;<br>    u8 dat = 0;<br>    for (i = 2; i &gt; 0; i–)<br>    {<br>        dat = dat &lt;&lt; 1;<br>        DS18B20_Mode_Out();<br>        DS18B20_DQ_OUT_Low;<br>        Delay_us(2);<br>        DS18B20_DQ_OUT_High;<br>        DS18B20_Mode_IPU();<br>        Delay_us(12);<br>        if (DS18B20_DQ_IN)  dat |= 0x01;<br>        Delay_us(50);<br>    }<br>    return dat;<br>}  </p>
+<p>// 从DS18B20读取1个字节<br>u8 DS18B20_Read_Byte(void)  // read one byte<br>{<br>    u8 i, j, dat;<br>    dat = 0;<br>    for (i = 0; i &lt; 8; i++)<br>    {<br>        j = DS18B20_Read_Bit();<br>        dat = (dat) | (j &lt;&lt; i);<br>    }<br>    return dat;<br>}  </p>
+<p>// 写1位到DS18B20<br>void DS18B20_Write_Bit(u8 dat)<br>{<br>    DS18B20_Mode_Out();<br>    if (dat)<br>    {<br>        DS18B20_DQ_OUT_Low;// Write 1<br>        Delay_us(2);<br>        DS18B20_DQ_OUT_High;<br>        Delay_us(60);<br>    }<br>    else<br>    {<br>        DS18B20_DQ_OUT_Low;// Write 0<br>        Delay_us(60);<br>        DS18B20_DQ_OUT_High;<br>        Delay_us(2);<br>    }<br>}  </p>
+<p>// 写1字节到DS18B20<br>void DS18B20_Write_Byte(u8 dat)<br>{<br>    u8 j;<br>    u8 testb;<br>    DS18B20_Mode_Out();<br>    for (j = 1; j &lt;= 8; j++)<br>    {<br>        testb = dat &amp; 0x01;<br>        dat = dat &gt;&gt; 1;<br>        if (testb)<br>        {<br>            DS18B20_DQ_OUT_Low;// 写1<br>            Delay_us(10);<br>            DS18B20_DQ_OUT_High;<br>            Delay_us(50);<br>        }<br>        else<br>        {<br>            DS18B20_DQ_OUT_Low;// 写0<br>            Delay_us(60);<br>            DS18B20_DQ_OUT_High;// 释放总线<br>            Delay_us(2);<br>        }<br>    }<br>}  </p>
+<p>//初始化DS18B20的IO口，同时检测DS的存在<br>u8 DS18B20_Init(void)<br>{<br>    DS18B20_GPIO_Config();<br>    DS18B20_Rst();<br>    return DS18B20_Answer_Check();<br>}  </p>
+<p>// 从ds18b20得到温度值，精度：0.1C，返回温度值（-550~1250），Temperature1返回浮点实际温度<br>float DS18B20_Get_Temp(u8 i)<br>{<br>    //u8 flag;<br>    u8 j;//匹配的字节<br>    u8 TL, TH;<br>    short Temperature;<br>    float Temperature1;<br>    DS18B20_Rst();<br>    DS18B20_Answer_Check();<br>    DS18B20_Write_Byte(0xcc);// skip rom<br>    DS18B20_Write_Byte(0x44);// convert<br>    DS18B20_Rst();<br>    DS18B20_Answer_Check();  </p>
+<pre><code>// DS18B20\_Write\_Byte(0xcc);// skip rom  
+//匹配ID，i为形参  
+DS18B20\_Write\_Byte(0x55);  
+for (j = 0; j &lt; 8; j++)  
+{  
+    DS18B20\_Write\_Byte(DS18B20_ID\[i\]\[j\]);  
+}  
+
+DS18B20\_Write\_Byte(0xbe);// convert  
+TL = DS18B20\_Read\_Byte(); // LSB     
+TH = DS18B20\_Read\_Byte(); // MSB    
+if (TH &amp; 0xfc)  
+{  
+    //flag=1;  
+    Temperature = (TH &lt;&lt; 8) | TL;  
+    Temperature1 = (~Temperature) + 1;  
+    Temperature1 *= 0.0625;  
+}  
+else  
+{  
+    //flag=0;  
+    Temperature1 = ((TH &lt;&lt; 8) | TL)*0.0625;  
+}  
+return Temperature1;  
+</code></pre><p>}  </p>
+<p>// 自动搜索ROM<br>void DS18B20_Search_Rom(void)<br>{<br>    u8 k, l, chongtuwei, m, n, num;<br>    u8 zhan[5];<br>    u8 ss[64];<br>    u8 tempp;<br>    l = 0;<br>    num = 0;<br>    do<br>    {<br>        DS18B20_Rst(); //注意：复位的延时不够<br>        Delay_us(480); //480、720<br>        DS18B20_Write_Byte(0xf0);<br>        for (m = 0; m &lt; 8; m++)<br>        {<br>            u8 s = 0;<br>            for (n = 0; n &lt; 8; n++)<br>            {<br>                k = DS18B20_Read_2Bit();//读两位数据  </p>
+<pre><code>            k = k &amp; 0x03;  
+            s &gt;&gt;= 1;  
+            if (k == 0x01)//01读到的数据为0 写0 此位为0的器件响应  
+            {  
+                DS18B20\_Write\_Bit(0);  
+                ss\[(m * 8 + n)\] = 0;  
+            }  
+            else if (k == 0x02)//读到的数据为1 写1 此位为1的器件响应  
+            {  
+                s = s | 0x80;  
+                DS18B20\_Write\_Bit(1);  
+                ss\[(m * 8 + n)\] = 1;  
+            }  
+            else if (k == 0x00)//读到的数据为00 有冲突位 判断冲突位  
+            {  
+                //如果冲突位大于栈顶写0 小于栈顶写以前数据 等于栈顶写1  
+                chongtuwei = m * 8 + n + 1;  
+                if (chongtuwei &gt; zhan\[l\])  
+                {  
+                    DS18B20\_Write\_Bit(0);  
+                    ss\[(m * 8 + n)\] = 0;  
+                    zhan\[++l\] = chongtuwei;  
+                }  
+                else if (chongtuwei &lt; zhan\[l\])  
+                {  
+                    s = s | ((ss\[(m * 8 + n)\] &amp; 0x01) &lt;&lt; 7);  
+                    DS18B20\_Write\_Bit(ss\[(m * 8 + n)\]);  
+                }  
+                else if (chongtuwei == zhan\[l\])  
+                {  
+                    s = s | 0x80;  
+                    DS18B20\_Write\_Bit(1);  
+                    ss\[(m * 8 + n)\] = 1;  
+                    l = l - 1;  
+                }  
+            }  
+            else  
+            {  
+                //没有搜索到  
+            }  
+        }  
+        tempp = s;  
+        DS18B20_ID\[num\]\[m\] = tempp; // 保存搜索到的ID  
+    }  
+    num = num + 1;// 保存搜索到的个数  
+} while (zhan\[l\] != 0 &amp;&amp; (num &lt; MaxSensorNum));  
+DS18B20_SensorNum = num;  
+//printf(&quot;DS18B20\_SensorNum=%d\\r\\n&quot;,DS18B20\_SensorNum);  
+</code></pre><p>}  </p>
+<p>DS18B20.h文件代码：</p>
+<p>#ifndef __DS18B20_H  </p>
+<p>#define __DS18B20_H   </p>
+<p>#include “stm32f10x.h”  </p>
+<p>u8 DS18B20_Init(void);<br>u8 DS18B20_Read_Byte(void);<br>u8 DS18B20_Read_Bit(void);<br>u8 DS18B20_Answer_Check(void);<br>void  DS18B20_GPIO_Config(void);<br>void  DS18B20_Mode_IPU(void);<br>void  DS18B20_Mode_Out(void);<br>void  DS18B20_Rst(void);<br>void  DS18B20_Search_Rom(void);<br>void  DS18B20_Write_Byte(u8 dat);<br>float DS18B20_Get_Temp(u8 i);  </p>
+<p>#endif  </p>
+<p>main.c文件代码：</p>
+<p>#include “stm32f10x.h”  </p>
+<p>#include “stdio.h”  </p>
+<p>#include “string.h”//strlen、memset用到  </p>
+<p>#include “USART.h”  </p>
+<p>#include “Delay.h”  </p>
+<p>#include “DS18B20.h”  </p>
+<p>extern unsigned char DS18B20_ID[8][8];//检测到的传感器ID存数组<br>extern unsigned char DS18B20_SensorNum;  </p>
+<p>int main(void)<br>{<br>    u8 num=0;<br>    USART1_init(9600);<br>    while(DS18B20_Init())//初始化DS18B20,兼检测18B20<br>    {<br>        printf(“DS18B20 Check Failed!\r\n”);<br>    }<br>    printf(“DS18B20 Ready!\r\n”);<br>    while(1)<br>    {<br>        DS18B20_Search_Rom();<br>        printf(“DS18B20_SensorNum:%d\r\n”,DS18B20_SensorNum);<br>      for(num=0;num&lt;DS18B20_SensorNum;num++)<br>        {<br>            printf(“ID:%02x%02x%02x%02x%02x%02x%02x%02x TM:%.2f\r\n”,DS18B20_ID[num][0],DS18B20_ID[num][1],DS18B20_ID[num][2],DS18B20_ID[num][3],DS18B20_ID[num][4],DS18B20_ID[num][5],DS18B20_ID[num][6],DS18B20_ID[num][7],DS18B20_Get_Temp(num));<br>        }<br>        printf(“\r\n”);<br>        Delay_s(2);<br>    }<br>}</p>
+<p>运行结果如图： <img src="http://img.blog.csdn.net/20161214135921014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FuZGVlcGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""> 帮严博士出本科题的时候，出了一个DS18B20的分布式温度检测系统，要求肯定不仅仅是这篇文章的简略例子了。不仅单总线，一块单片机还要挂多总线，实现更多传感器数据采集，最好还配上上位机，反正把自己能想到的东西都加进来了，把一个简单的DS18B20包装得高大上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/14/stm32-ds18b20s/" data-id="cjhdn25kj005csobtl1hyic64" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/16/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Qt常用UI控件读取、写入方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/01/c-string-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言字符串处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

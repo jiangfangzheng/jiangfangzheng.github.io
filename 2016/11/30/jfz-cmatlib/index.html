@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>异想家纯C语言矩阵运算库 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Sandeepin最近做的项目中需要在嵌入式芯片里跑一些算法，而这些单片机性能不上不下，它能跑些简单的程序，但又还没到上Linux系统的地步。所以只好用C语言写一些在高级语言里一个函数就解决的算法了，由于算法需要运用矩阵运算，自己就先用纯C语言写了个简单的矩阵运算库。 代码只实现了矩阵最基本的运算，包括矩阵的加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵等运算。此外增加了一些实用函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异想家纯C语言矩阵运算库">
+<meta property="og:url" content="http://yoursite.com/2016/11/30/jfz-cmatlib/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Sandeepin最近做的项目中需要在嵌入式芯片里跑一些算法，而这些单片机性能不上不下，它能跑些简单的程序，但又还没到上Linux系统的地步。所以只好用C语言写一些在高级语言里一个函数就解决的算法了，由于算法需要运用矩阵运算，自己就先用纯C语言写了个简单的矩阵运算库。 代码只实现了矩阵最基本的运算，包括矩阵的加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵等运算。此外增加了一些实用函数">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异想家纯C语言矩阵运算库">
+<meta name="twitter:description" content="Sandeepin最近做的项目中需要在嵌入式芯片里跑一些算法，而这些单片机性能不上不下，它能跑些简单的程序，但又还没到上Linux系统的地步。所以只好用C语言写一些在高级语言里一个函数就解决的算法了，由于算法需要运用矩阵运算，自己就先用纯C语言写了个简单的矩阵运算库。 代码只实现了矩阵最基本的运算，包括矩阵的加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵等运算。此外增加了一些实用函数">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jfz-cmatlib" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/jfz-cmatlib/" class="article-date">
+  <time datetime="2016-11-30T11:06:56.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      异想家纯C语言矩阵运算库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sandeepin最近做的项目中需要在嵌入式芯片里跑一些算法，而这些单片机性能不上不下，它能跑些简单的程序，但又还没到上Linux系统的地步。所以只好用C语言写一些在高级语言里一个函数就解决的算法了，由于算法需要运用矩阵运算，自己就先用纯C语言写了个简单的矩阵运算库。 代码只实现了矩阵最基本的运算，包括矩阵的加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵等运算。此外增加了一些实用函数，如显示矩阵、从csv文件读取保存矩阵等函数。具体的例子在主函数中体现，其中还用自己这个矩阵运算库做了一个简单的应用，利用公式β=(X’X)^(-1)X’Y来进行多元线性回归系数计算，大家可以参考参考，欢迎批评。 JfzMatLib.c文件代码：</p>
+<p>#include “JfzMatLib.h”  </p>
+<p>int main(int argc, char*<em> argv)<br>{<br>    //矩阵的基本运算：加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵<br>    //初始实验矩阵<br>    double A[] = { -3, 2, -5, -1, 0, -2, 3, -4, 1 };<br>    double B[] = { 1, 4, 7, 3, 0, 5, -1, 9, 11 };<br>    double C[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };<br>    //计算结果矩阵<br>    double \</em>Add = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Sub = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Mul = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>kMat = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>CT = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>AInv = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Adj = (double*)malloc(sizeof(double) <em> 9);<br>    //显示矩阵A、B、C<br>    printf(“A：\n”); MatShow(A, 3, 3);<br>    printf(“B：\n”); MatShow(B, 3, 3);<br>    printf(“C：\n”); MatShow(C, 3, 3);<br>    //矩阵相加<br>    printf(“A+B：\n”);<br>    Add = MatAdd(A, B, 3, 3); MatShow(Add, 3, 3);<br>    //矩阵相减<br>    printf(“A-B：\n”);<br>    Sub = MatSub(A, B, 3, 3); MatShow(Sub, 3, 3);<br>    //矩阵相乘<br>    printf(“A</em>B：\n”);<br>    Mul = MatMul(A, 3, 3, B, 3, 3); MatShow(Mul, 3, 3);<br>    //矩阵数乘<br>    printf(“2*C：\n”);<br>    kMat = MatMulk(C, 3, 3, 2); MatShow(kMat, 3, 3);<br>    //矩阵转置<br>    printf(“C的转置：\n”);<br>    CT = MatT(C, 3, 3); MatShow(CT, 3, 3);<br>    //矩阵行列式值<br>    printf(“B的行列式值：\n”);<br>    printf(“%16lf\n”, MatDet(B, 3));<br>    printf(“C的行列式值：\n”);<br>    printf(“%16lf\n”, MatDet(C, 3));<br>    //矩阵的逆<br>    printf(“A的逆：\n”);<br>    AInv = MatInv(A, 3, 3); MatShow(AInv, 3, 3);<br>    printf(“C的逆：\n”);<br>    MatInv(C, 3, 3);<br>    //矩阵代数余子式<br>    printf(“C的(0,0)元素的代数余子式：\n”);<br>    printf(“%16lf\n”, MatACof(C, 3, 0, 0));<br>    //矩阵伴随矩阵<br>    printf(“A的伴随矩阵：\n”);<br>    Adj = MatAdj(A, 3, 3); MatShow(Adj, 3, 3);  </p>
+<pre><code>//蒋方正矩阵库应用：多元线性回归  
+//多元线性回归公式：β=(X&apos;X)^(-1)X&apos;Y  
+double X\[15\]\[5\] = {  
+    1, 316, 1536, 874, 981,//第一列要补1  
+    1, 385, 1771, 777, 1386,  
+    1, 299, 1565, 678, 1672,  
+    1, 326, 1970, 785, 1864,  
+    1, 441, 1890, 785, 2143,  
+    1, 460, 2050, 709, 2176,  
+    1, 470, 1873, 673, 1769,  
+    1, 504, 1955, 793, 2207,  
+    1, 348, 2016, 968, 2251,  
+    1, 400, 2199, 944, 2390,  
+    1, 496, 1328, 749, 2287,  
+    1, 497, 1920, 952, 2388,  
+    1, 533, 1400, 1452, 2093,  
+    1, 506, 1612, 1587, 2083,  
+    1, 458, 1613, 1485, 2390  
+};  
+double Y\[15\]\[1\] = {  
+    3894,  
+    4628,  
+    4569,  
+    5340,  
+    5449,  
+    5599,  
+    5010,  
+    5694,  
+    5792,  
+    6126,  
+    5025,  
+    5924,  
+    5657,  
+    6019,  
+    6141  
+};  
+//多元线性回归公式：β=(X&apos;X)^(-1)X&apos;Y  
+double \*XT = (double\*)malloc(sizeof(double) * 5 * 15);  
+double \*XTX = (double\*)malloc(sizeof(double) * 5 * 5);  
+double \*InvXTX = (double\*)malloc(sizeof(double) * 5 * 5);  
+double \*InvXTXXT = (double\*)malloc(sizeof(double) * 5 * 15);  
+double \*InvXTXXTY = (double\*)malloc(sizeof(double) * 5 * 1);  
+XT = MatT((double*)X, 15, 5);  
+XTX = MatMul(XT, 5, 15, (double*)X, 15, 5);  
+InvXTX = MatInv(XTX, 5, 5);  
+InvXTXXT = MatMul(InvXTX, 5, 5, XT, 5, 15);  
+InvXTXXTY = MatMul(InvXTXXT, 5, 15, (double*)Y, 15, 1);  
+printf(&quot;多元线性回归β系数：\\n&quot;);  
+MatShow(InvXTXXTY, 5, 1);  
+
+//保存矩阵到csv  
+MatWrite(&quot;XTX.csv&quot;, XTX, 5, 5);  
+MatWrite(&quot;InvXTXXTY.csv&quot;, InvXTXXTY, 5, 1);  
+MatWrite(&quot;Fuck.csv&quot;, A, 3, 3);  
+MatWrite(&quot;Fuck2.csv&quot;, A, 9, 1);  
+
+//从csv读取矩阵  
+double \*Fuck = (double\*)malloc(sizeof(double) * 3 * 3);  
+Fuck = MatRead(&quot;Fuck.csv&quot;);  
+MatShow(Fuck, 3, 3);  
+
+double \*Fuck2 = (double\*)malloc(sizeof(double) * 9 * 1);  
+Fuck2 = MatRead(&quot;Fuck2.csv&quot;);  
+MatShow(Fuck2, 9, 1);  
+
+double \*InvXTXXTYread = (double\*)malloc(sizeof(double) * 5 * 1);  
+InvXTXXTYread = MatRead(&quot;InvXTXXTY.csv&quot;);  
+MatShow(InvXTXXTYread, 5, 1);  
+
+double \*XTXread = (double\*)malloc(sizeof(double) * 5 * 5);  
+XTXread = MatRead(&quot;XTX.csv&quot;);  
+MatShow(XTXread, 5, 5);  
+system(&quot;pause&quot;);  
+</code></pre><p>}</p>
+<p>JfzMatLib.h头文件代码：</p>
+<p>#include &lt;stdio.h&gt;  </p>
+<p>#include &lt;stdlib.h&gt;  </p>
+<p>#include &lt;string.h&gt;  </p>
+<p>void    MatShow(double<em> Mat, int row, int col);<br>double</em> MatAdd(double<em> A, double</em> B, int row, int col);<br>double<em> MatSub(double</em> A, double<em> B, int row, int col);<br>double</em> MatMul(double<em> A, int Arow, int Acol, double</em> B, int Brow, int Bcol);<br>double<em> MatMulk(double </em>A, int row, int col, double k);<br>double<em> MatT(double</em> A, int row, int col);<br>double  MatDet(double <em>A, int row);<br>double</em> MatInv(double <em>A, int row, int col);<br>double  MatACof(double </em>A, int row, int m, int n);<br>double<em> MatAdj(double </em>A, int row, int col);<br>double *MatRead(char *csvFileName, int row, int col);<br>void MatWrite(char *A, int row, int col);  </p>
+<p>// (det用)功能：求逆序对的个数<br>int inver_order(int list[], int n)<br>{<br>    int ret = 0;<br>    for (int i = 1; i &lt; n; i++)<br>        for (int j = 0; j &lt; i; j++)<br>            if (list[j] &gt; list[i])<br>                ret++;<br>    return ret;<br>}  </p>
+<p>// (det用)功能：符号函数，正数返回1，负数返回-1<br>int sgn(int order)<br>{<br>    return order % 2 ? -1 : 1;<br>}  </p>
+<p>// (det用)功能：交换两整数a、b的值<br>void swap(int *a, int *b)<br>{<br>    int m;<br>    m = <em>a;<br>    \</em>a = *b;<br>    *b = m;<br>}  </p>
+<p>// 功能：求矩阵行列式的核心函数<br>double det(double <em>p, int n, int k, int list[], double sum)<br>{<br>    if (k &gt;= n)<br>    {<br>        int order = inver_order(list, n);<br>        double item = (double)sgn(order);<br>        for (int i = 0; i &lt; n; i++)<br>        {<br>            //item </em>= p[i][list[i]];<br>            item <em>= </em>(p + i * n + list[i]);<br>        }<br>        return sum + item;<br>    }<br>    else<br>    {<br>        for (int i = k; i &lt; n; i++)<br>        {<br>            swap(&amp;list[k], &amp;list[i]);<br>            sum = det(p, n, k + 1, list, sum);<br>            swap(&amp;list[k], &amp;list[i]);<br>        }<br>    }<br>    return sum;<br>}  </p>
+<p>// 功能：矩阵显示<br>// 形参：(输入)矩阵首地址指针Mat，矩阵行数row和列数col。<br>// 返回：无<br>void MatShow(double<em> Mat, int row, int col)<br>{<br>    for (int i = 0; i &lt; row</em>col; i++)<br>    {<br>        printf(“%16lf “, Mat[i]);<br>        if (0 == (i + 1) % col) printf(“\n”);<br>    }<br>}  </p>
+<p>// 功能：矩阵相加<br>// 形参：(输入)矩阵A首地址指针A，矩阵B首地址指针B，矩阵A(也是矩阵B)行数row和列数col<br>// 返回：A+B<br>double<em> MatAdd(double</em> A, double<em> B, int row, int col)<br>{<br>    double \</em>Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[col*i + j] = A[col*i + j] + B[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵相减<br>// 形参：(输入)矩阵A，矩阵B，矩阵A(也是矩阵B)行数row和列数col<br>// 返回：A-B<br>double<em> MatSub(double</em> A, double<em> B, int row, int col)<br>{<br>    double \</em>Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[col*i + j] = A[col*i + j] - B[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵相乘<br>// 形参：(输入)矩阵A，矩阵A行数row和列数col，矩阵B，矩阵B行数row和列数col<br>// 返回：A<em>B<br>double</em> MatMul(double<em> A, int Arow, int Acol, double</em> B, int Brow, int Bcol)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> Arow </em> Bcol);<br>    if (Acol != Brow)<br>    {<br>        printf(“        Shit!矩阵不可乘!\n”);<br>        return NULL;<br>    }<br>    if (Acol == Brow)<br>    {<br>    int i, j, k;<br>    for (i = 0; i &lt; Arow; i++)<br>        for (j = 0; j &lt; Bcol; j++)<br>        {<br>            Out[Bcol<em>i + j] = 0;<br>            for (k = 0; k &lt; Acol; k++)<br>                Out[Bcol\</em>i + j] = Out[Bcol*i + j] + A[Acol*i + k] * B[Bcol*k + j];<br>        }<br>    return Out;<br>    }<br>}  </p>
+<p>// 功能：矩阵数乘(实数k乘以矩阵A)<br>// 形参：(输入)矩阵A首地址指针，矩阵行数row和列数col，实数k<br>// 返回：kA<br>double<em> MatMulk(double </em>A, int row, int col, double k)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row <em> col; i++)<br>    {<br>        \</em>Out = *A <em> k;<br>        Out++;<br>        A++;<br>    }<br>    Out = Out - row </em> col;<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵转置<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的转置<br>double<em> MatT(double</em> A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[row*j + i] = A[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：求行列式值<br>// 形参：(输入)矩阵A首地址指针A，行数row<br>// 返回：A的行列式值<br>double MatDet(double <em>A, int row)<br>{<br>    int \</em>list = (int*)malloc(sizeof(int) * row);<br>    for (int i = 0; i &lt; row; i++)<br>        list[i] = i;<br>    double Out = det(A, row, 0, list, 0.0);<br>    free(list);<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵的逆<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的逆<br>double *MatInv(double *A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    double det = MatDet(A, row); //求行列式<br>    if (det == 0)<br>    {<br>        printf(“        Fuck!矩阵不可逆!\n”);<br>        return NULL;<br>    }<br>    if (det != 0)<br>    {<br>        Out = MatAdj(A, row, col); //求伴随矩阵<br>        int len = row <em> row;<br>        for (int i = 0; i &lt; len; i++)  
+            </em>(Out + i) /= det;<br>        return Out;<br>    }<br>}  </p>
+<p>// 功能：求代数余子式<br>// 形参：(输入)矩阵A首地址指针A，矩阵行数row, 元素a的下标m，n(从0开始)，<br>// 返回：NxN 矩阵中元素A(mn)的代数余子式<br>double MatACof(double <em>A, int row, int m, int n)<br>{<br>    int len = (row - 1) </em> (row - 1);<br>    double *cofactor = (double*)malloc(sizeof(double) * len);  </p>
+<pre><code>int count = 0;  
+int raw_len = row * row;  
+for (int i = 0; i &lt; raw_len; i++)  
+    if (i / row != m &amp;&amp; i % row != n)  
+        *(cofactor + count++) = *(A + i);  
+double ret = MatDet(cofactor, row - 1);  
+if ((m + n) % 2)  
+    ret = -ret;  
+free(cofactor);  
+return ret;  
+</code></pre><p>}  </p>
+<p>// 功能：求伴随矩阵<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的伴随矩阵<br>double *MatAdj(double *A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    int len = row <em> row;<br>    int count = 0;<br>    for (int i = 0; i &lt; len; i++)<br>    {  
+        </em>(Out + count++) = MatACof(A, row, i % row, i / row);<br>    }<br>    return Out;<br>}  </p>
+<p>// 读取文件行数<br>int FileReadRow(const char <em>filename)<br>{<br>    FILE </em>f = fopen(filename, “r”);<br>    int i = 0;<br>    char str[4096];<br>    while (NULL != fgets(str, 4096, f))<br>        ++i;<br>    printf(“数组行数：%d\n”, i);<br>    return i;<br>}  </p>
+<p>// 读取文件每行数据数(逗号数+1)<br>int FileReadCol(const char <em>filename)<br>{<br>    FILE </em>f = fopen(filename, “r”);<br>    int i = 0;<br>    char str[4096];<br>    fgets(str, 4096, f);<br>    for (int j = 0; j &lt; strlen(str); j++)<br>    {<br>        if (‘,’ == str[j]) i++;<br>    }<br>    i++;// 数据数=逗号数+1<br>    printf(“数组列数：%d\n”, i);<br>    return i;<br>}  </p>
+<p>// 逗号间隔数据提取<br>void GetCommaData(char str_In[4096], double double_Out[1024])<br>{<br>    int str_In_len = strlen(str_In);<br>    //printf(“str_In_len:%d\n”, str_In_len);<br>    char str_Data_temp[128];<br>    int j = 0;<br>    int double_Out_num = 0;<br>    for (int i = 0; i &lt; str_In_len; i++)<br>    {<br>        //不是逗号，则是数据，存入临时数组中<br>        if (‘,’ != str_In[i]) str_Data_temp[j++] = str_In[i];<br>        //是逗号或\n(最后一个数据)，则数据转换为double，保存到输出数组<br>        if (‘,’ == str_In[i] || ‘\n’ == str_In[i]) { str_Data_temp[j] = ‘\0’; j = 0; /*printf(“str_Data_temp:%s\n”, str_Data_temp); */double_Out[double_Out_num++] = atof(str_Data_temp); memset(str_Data_temp, 0, sizeof(str_Data_temp)); }<br>    }<br>}  </p>
+<p>// 功能：从csv文件读矩阵，保存到指针中<br>// 形参：(输入)csv文件名，预计行数row和列数col<br>// 返回：矩阵指针A<br>double *MatRead(char *csvFileName)<br>{<br>    int row = FileReadRow(csvFileName);<br>    int col = FileReadCol(csvFileName);<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    FILE <em>f = fopen(csvFileName, “r”);<br>    char buffer[4096];<br>    while (fgets(buffer, sizeof(buffer), f))<br>    {<br>        //printf(“buffer[%s]\n”,buffer);<br>        double double_Out[128] = { 0 };<br>        GetCommaData(buffer, double_Out);<br>        for (int i = 0; i &lt; col; i++)<br>        {<br>            //printf(“double_Out:%lf\n”, double_Out[i]);  
+            </em>Out = double_Out[i];<br>            Out++;<br>        }  </p>
+<pre><code>}  
+Out = Out - row * col;//指针移回数据开头  
+fclose(f);  
+return Out;  
+</code></pre><p>}  </p>
+<p>// 功能：将矩阵A存入csv文件中<br>// 形参：(输入)保存的csv文件名，矩阵A首地址指针A，行数row和列数col<br>// 返回：无<br>void MatWrite(const char *csvFileName, double *A, int row, int col)<br>{<br>    FILE <em>DateFile;<br>    double </em>Ap = A;<br>    DateFile = fopen(csvFileName, “w”);//追加的方式保存生成的时间戳<br>    for (int i = 0; i &lt; row<em>col; i++)<br>    {<br>        if ((i+1) % col == 0) fprintf(DateFile, “%lf\n”, </em>Ap);//保存到文件，到列数换行<br>        else fprintf(DateFile, “%lf,”, *Ap);//加逗号<br>        Ap++;<br>    }<br>    fclose(DateFile);<br>}</p>
+<p>运行结果如图：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/30/jfz-cmatlib/" data-id="cjhdn25kh0058sobtr96cl0ad" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/01/c-string-code/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言字符串处理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/01/macmini-win7-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2014年末Mac mini装Win7的方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

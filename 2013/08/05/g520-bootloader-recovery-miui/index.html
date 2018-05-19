@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>华为G520联通版手机刷机教程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="电信ADSL的4M宽带到期了，而它的光纤又没接入我的小区，故我选择了有光纤接入的联通，但联通又没有纯宽带提供，非得绑定这样那样的套餐。没办法，我绑定我以前的手机号，选了10M宽带，预存900买了这款华为G520手机。G520原配的Emotion UI没有我用惯的MIUI顺手，所以寻思着怎样刷MIUI到G520上。 华为的手机是锁了Bootloader的，不过华为好在提供了在线解锁，方便我们折腾。">
+<meta name="keywords" content="教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为G520联通版手机刷机教程">
+<meta property="og:url" content="http://yoursite.com/2013/08/05/g520-bootloader-recovery-miui/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="电信ADSL的4M宽带到期了，而它的光纤又没接入我的小区，故我选择了有光纤接入的联通，但联通又没有纯宽带提供，非得绑定这样那样的套餐。没办法，我绑定我以前的手机号，选了10M宽带，预存900买了这款华为G520手机。G520原配的Emotion UI没有我用惯的MIUI顺手，所以寻思着怎样刷MIUI到G520上。 华为的手机是锁了Bootloader的，不过华为好在提供了在线解锁，方便我们折腾。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom01.png">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom02.png">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom03.png">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom04.png">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom05.jpg">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom06.jpg">
+<meta property="og:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom07.jpg">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="华为G520联通版手机刷机教程">
+<meta name="twitter:description" content="电信ADSL的4M宽带到期了，而它的光纤又没接入我的小区，故我选择了有光纤接入的联通，但联通又没有纯宽带提供，非得绑定这样那样的套餐。没办法，我绑定我以前的手机号，选了10M宽带，预存900买了这款华为G520手机。G520原配的Emotion UI没有我用惯的MIUI顺手，所以寻思着怎样刷MIUI到G520上。 华为的手机是锁了Bootloader的，不过华为好在提供了在线解锁，方便我们折腾。">
+<meta name="twitter:image" content="http://img.yxsy.org/BlogImages/2013/G520unicom01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-g520-bootloader-recovery-miui" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/08/05/g520-bootloader-recovery-miui/" class="article-date">
+  <time datetime="2013-08-05T13:00:59.000Z" itemprop="datePublished">2013-08-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      华为G520联通版手机刷机教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>电信ADSL的4M宽带到期了，而它的光纤又没接入我的小区，故我选择了有光纤接入的联通，但联通又没有纯宽带提供，非得绑定这样那样的套餐。没办法，我绑定我以前的手机号，选了10M宽带，预存900买了这款华为G520手机。G520原配的Emotion UI没有我用惯的MIUI顺手，所以寻思着怎样刷MIUI到G520上。</p>
+<p>华为的手机是锁了Bootloader的，不过华为好在提供了在线解锁，方便我们折腾。</p>
+<p><strong>一、官网解锁</strong></p>
+<p>先到官网解锁Bootloader：<strong><a href="http://www.huaweidevice.com/cn/servicePolicy.do?method=toApplyUnlock" target="_blank" rel="noopener">解锁申请</a></strong></p>
+<p>注意机型选择U8950D，看清楚8950D有两种机型，一种是C开头的，一种是U开头的，选择U开头的。</p>
+<p><strong>最新消息：现在华为解锁有G520-0000的型号了，直接选G520-0000就行啦。——2013-8-6</strong></p>
+<p><img src="http://img.yxsy.org/BlogImages/2013/G520unicom01.png" alt=""></p>
+<p>填好信息后等邮件吧： <img src="http://img.yxsy.org/BlogImages/2013/G520unicom02.png" alt=""></p>
+<p>得到解锁密码后可根据官方解锁步骤解锁：<a href="http://www.huaweidevice.com/cn/servicePolicy.do?method=getUnlockStep" target="_blank" rel="noopener"><strong>官方解锁教程</strong></a></p>
+<p>不过我推荐使用<a href="thunder://QUFodHRwczovL2RsLmRyb3Bib3h1c2VyY29udGVudC5jb20vdS8yMjQ0NzMvYmxvZy+7qs6qveLL+Nb6ytZ2MS4wLjAuMC5yYXJaWg==" target="_blank" rel="noopener"><strong>华为解锁助手</strong></a>，方便好用，一步到位。 <img src="http://img.yxsy.org/BlogImages/2013/G520unicom03.png" alt=""></p>
+<p>手机驱动什么的肯定要先安好了，这里不赘述。</p>
+<p><strong>二、刷Recovery</strong></p>
+<p>1、下载安智网提供的第三方CWM Recovery：</p>
+<p>[Downlink href=”thunder://QUFodHRwczovL2RsLmRyb3Bib3h1c2VyY29udGVudC5jb20vdS8yMjQ0NzMvYmxvZy/LonJlY292ZXJ5uaS+3y5yYXJaWg==”]第三方CWM Recovery[/Downlink]</p>
+<p>2、下载adb工具，解压里面的3个文件放在电脑的C:WINDOWSSYSTEM32里：</p>
+<p>[Downlink href=”thunder://QUFodHRwczovL2RsLmRyb3Bib3h1c2VyY29udGVudC5jb20vdS8yMjQ0NzMvYmxvZy9hZGK5pL7fLnJhclpa”]adb工具[/Downlink]</p>
+<p>3、然后手机关机，扣电池20秒再放上，按“音量下”键和“电源键”20秒，卡在第一屏时用数据线连接电脑。</p>
+<p>4、解压附件，一定要解压附件，然后运行“点击刷入recovery”。选择1，按提示继续，随后手机会重启。 <img src="http://img.yxsy.org/BlogImages/2013/G520unicom04.png" alt=""></p>
+<p>5、手机关机，扣电池20秒再放上，按“音量上”键和“电源键”20秒，进入Recovery，是中文的说明成功了，不是再刷！ <img src="http://img.yxsy.org/BlogImages/2013/G520unicom05.jpg" alt=""></p>
+<p><strong>三、刷MIUI系统</strong></p>
+<p>我使用的是ROM是邱大的华为G520联通版 MIUI V5 3.8.4 正式版 <a href="http://bbs.anzhi.com/thread-8097913-1-1.html" target="_blank" rel="noopener"><strong>下载地址</strong></a></p>
+<p>虽然邱大说暂无Bug，经我测试，还是有各种问题的，推荐大家常关注论坛动态，邱大会跟进版本不断更新。</p>
+<p>当你看我的这篇文章时可能以上ROM已过时，但刷机原理是不变的，就当我用这个ROM来举例了。</p>
+<p>1、下载刷机包，复制到SD卡根目录。</p>
+<p>2、手机进入Recovery 状态：关机扣电池20秒后再放上，按“+”和“电源键”进入。</p>
+<p>3、选择“清除数据”和“清除缓存”。</p>
+<p>4、选择“从SD卡选择刷机包”，然后选择“从SD卡选择ZIP文件”，再点选你刚刚复制到SD卡的刷机包。</p>
+<p>5、安装完成后，重启手机。 <img src="http://img.yxsy.org/BlogImages/2013/G520unicom06.jpg" alt=""></p>
+<p>6、第一次刷机加载比较慢，请耐心等待。</p>
+<p><strong>四、刷机后的设置</strong></p>
+<p>1、刷上之后在“开发者选项”里面的3个“动画缩放”设置为0.5，反应就快了。</p>
+<p>2、默认壁纸不对，设置一下壁纸。</p>
+<p>3、MIUI自带ROOT，开机后请在桌面“系统与安全”中的“授权管理”中开启ROOT权限。</p>
+<p>这是我刷好后的样子，还凑合，MIUI基本功能都有，就是关机菜单没了，需借助软件实现。 <img src="http://img.yxsy.org/BlogImages/2013/G520unicom07.jpg" alt=""></p>
+<p><strong>参考文献：</strong><a href="http://bbs.anzhi.com/thread-8097913-1-1.html" target="_blank" rel="noopener">这里</a>、<a href="http://bbs.anzhi.com/thread-7735154-1-1.html" target="_blank" rel="noopener">这里</a>、<a href="http://bbs.anzhi.com/thread-7014277-1-1.html" target="_blank" rel="noopener">这里</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/08/05/g520-bootloader-recovery-miui/" data-id="cjhdn25hl0017sobt9jrshmh9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/11/16/fushujisuanqi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          复数计算器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/22/sougou-qianqian-skin/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我喜欢的搜狗主题、千千静听皮肤收藏</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

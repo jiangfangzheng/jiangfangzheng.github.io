@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2014年末Mac mini装Win7的方法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近和同学玩心灵终结，然而Win10对此游戏兼容性太差，又黑屏又不能切出，所以想试试Win7下跑这款游戏，顺便也想了解集显带零几年的游戏的性能。  可惜装Win7并不顺利。由于Mac mini都为USB3.0接口，Win7不带驱动，进入安装界面后鼠标键盘无效，进入不下去了。不过知道了进行不下去的原因，自然也就有了解决方法，这几天我探究的能成功装机的方法如下：  1、BootCamp最正常装机Boo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2014年末Mac mini装Win7的方法">
+<meta property="og:url" content="http://yoursite.com/2016/07/01/macmini-win7-install/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近和同学玩心灵终结，然而Win10对此游戏兼容性太差，又黑屏又不能切出，所以想试试Win7下跑这款游戏，顺便也想了解集显带零几年的游戏的性能。  可惜装Win7并不顺利。由于Mac mini都为USB3.0接口，Win7不带驱动，进入安装界面后鼠标键盘无效，进入不下去了。不过知道了进行不下去的原因，自然也就有了解决方法，这几天我探究的能成功装机的方法如下：  1、BootCamp最正常装机Boo">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2014年末Mac mini装Win7的方法">
+<meta name="twitter:description" content="最近和同学玩心灵终结，然而Win10对此游戏兼容性太差，又黑屏又不能切出，所以想试试Win7下跑这款游戏，顺便也想了解集显带零几年的游戏的性能。  可惜装Win7并不顺利。由于Mac mini都为USB3.0接口，Win7不带驱动，进入安装界面后鼠标键盘无效，进入不下去了。不过知道了进行不下去的原因，自然也就有了解决方法，这几天我探究的能成功装机的方法如下：  1、BootCamp最正常装机Boo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-macmini-win7-install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/01/macmini-win7-install/" class="article-date">
+  <time datetime="2016-07-01T03:56:52.000Z" itemprop="datePublished">2016-07-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2014年末Mac mini装Win7的方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近和同学玩心灵终结，然而Win10对此游戏兼容性太差，又黑屏又不能切出，所以想试试Win7下跑这款游戏，顺便也想了解集显带零几年的游戏的性能。</p>
+<blockquote>
+<p>可惜装Win7并不顺利。由于Mac mini都为USB3.0接口，Win7不带驱动，进入安装界面后鼠标键盘无效，进入不下去了。不过知道了进行不下去的原因，自然也就有了解决方法，这几天我探究的能成功装机的方法如下：</p>
+</blockquote>
+<h2 id="1、BootCamp最正常装机"><a href="#1、BootCamp最正常装机" class="headerlink" title="1、BootCamp最正常装机"></a>1、BootCamp最正常装机</h2><p>BootCamp里做镜像，利用BootCamp自己的分区重启功能进入装系统界面。这样做重启的时候苹果会自动加载USB3.0驱动，然后装机过程一切正常。</p>
+<h2 id="2、使用蓝牙鼠标键盘"><a href="#2、使用蓝牙鼠标键盘" class="headerlink" title="2、使用蓝牙鼠标键盘"></a>2、使用蓝牙鼠标键盘</h2><p>蓝牙驱动Win7自带，而且蓝牙配对后就硬件关联了，就算重装系统，配对了的硬件还能连上。用这种方法装Win7，就规避了USB3.0驱动的问题。</p>
+<h2 id="3、Win7镜像注入USB3-0驱动"><a href="#3、Win7镜像注入USB3-0驱动" class="headerlink" title="3、Win7镜像注入USB3.0驱动"></a>3、Win7镜像注入USB3.0驱动</h2><p>我在网上找了一份脚本，按照它的步骤走就能傻瓜化为Win7注入USB3.0驱动，不过脚本运行不支持Win10，找一个Win7或Win8的系统按视频教程写入U盘就完成了，亲测制作好的镜像安装时能操作键盘鼠标。</p>
+<h2 id="4、直接镜像恢复方法"><a href="#4、直接镜像恢复方法" class="headerlink" title="4、直接镜像恢复方法"></a>4、直接镜像恢复方法</h2><p>优点是最傻瓜最便捷，但是看教程操作还需花点时间学习，大家可到看看以下几篇文章和论坛，自己折腾吧！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/01/macmini-win7-install/" data-id="cjhdn25i1001zsobtstueavsh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/30/jfz-cmatlib/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          异想家纯C语言矩阵运算库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/18/win10x64-usb-to-ttl-pl2303/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Win10x64电脑安装USB转TTL驱动(PL2303)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-jfz-cmatlib" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/jfz-cmatlib/" class="article-date">
+  <time datetime="2016-11-30T11:06:56.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/30/jfz-cmatlib/">异想家纯C语言矩阵运算库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sandeepin最近做的项目中需要在嵌入式芯片里跑一些算法，而这些单片机性能不上不下，它能跑些简单的程序，但又还没到上Linux系统的地步。所以只好用C语言写一些在高级语言里一个函数就解决的算法了，由于算法需要运用矩阵运算，自己就先用纯C语言写了个简单的矩阵运算库。 代码只实现了矩阵最基本的运算，包括矩阵的加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵等运算。此外增加了一些实用函数，如显示矩阵、从csv文件读取保存矩阵等函数。具体的例子在主函数中体现，其中还用自己这个矩阵运算库做了一个简单的应用，利用公式β=(X’X)^(-1)X’Y来进行多元线性回归系数计算，大家可以参考参考，欢迎批评。 JfzMatLib.c文件代码：</p>
+<p>#include “JfzMatLib.h”  </p>
+<p>int main(int argc, char*<em> argv)<br>{<br>    //矩阵的基本运算：加、减、乘、数乘、转置、行列式、逆矩阵、代数余子式、伴随矩阵<br>    //初始实验矩阵<br>    double A[] = { -3, 2, -5, -1, 0, -2, 3, -4, 1 };<br>    double B[] = { 1, 4, 7, 3, 0, 5, -1, 9, 11 };<br>    double C[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };<br>    //计算结果矩阵<br>    double \</em>Add = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Sub = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Mul = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>kMat = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>CT = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>AInv = (double*)malloc(sizeof(double) <em> 9);<br>    double \</em>Adj = (double*)malloc(sizeof(double) <em> 9);<br>    //显示矩阵A、B、C<br>    printf(“A：\n”); MatShow(A, 3, 3);<br>    printf(“B：\n”); MatShow(B, 3, 3);<br>    printf(“C：\n”); MatShow(C, 3, 3);<br>    //矩阵相加<br>    printf(“A+B：\n”);<br>    Add = MatAdd(A, B, 3, 3); MatShow(Add, 3, 3);<br>    //矩阵相减<br>    printf(“A-B：\n”);<br>    Sub = MatSub(A, B, 3, 3); MatShow(Sub, 3, 3);<br>    //矩阵相乘<br>    printf(“A</em>B：\n”);<br>    Mul = MatMul(A, 3, 3, B, 3, 3); MatShow(Mul, 3, 3);<br>    //矩阵数乘<br>    printf(“2*C：\n”);<br>    kMat = MatMulk(C, 3, 3, 2); MatShow(kMat, 3, 3);<br>    //矩阵转置<br>    printf(“C的转置：\n”);<br>    CT = MatT(C, 3, 3); MatShow(CT, 3, 3);<br>    //矩阵行列式值<br>    printf(“B的行列式值：\n”);<br>    printf(“%16lf\n”, MatDet(B, 3));<br>    printf(“C的行列式值：\n”);<br>    printf(“%16lf\n”, MatDet(C, 3));<br>    //矩阵的逆<br>    printf(“A的逆：\n”);<br>    AInv = MatInv(A, 3, 3); MatShow(AInv, 3, 3);<br>    printf(“C的逆：\n”);<br>    MatInv(C, 3, 3);<br>    //矩阵代数余子式<br>    printf(“C的(0,0)元素的代数余子式：\n”);<br>    printf(“%16lf\n”, MatACof(C, 3, 0, 0));<br>    //矩阵伴随矩阵<br>    printf(“A的伴随矩阵：\n”);<br>    Adj = MatAdj(A, 3, 3); MatShow(Adj, 3, 3);  </p>
+<pre><code>//蒋方正矩阵库应用：多元线性回归  
+//多元线性回归公式：β=(X&apos;X)^(-1)X&apos;Y  
+double X\[15\]\[5\] = {  
+    1, 316, 1536, 874, 981,//第一列要补1  
+    1, 385, 1771, 777, 1386,  
+    1, 299, 1565, 678, 1672,  
+    1, 326, 1970, 785, 1864,  
+    1, 441, 1890, 785, 2143,  
+    1, 460, 2050, 709, 2176,  
+    1, 470, 1873, 673, 1769,  
+    1, 504, 1955, 793, 2207,  
+    1, 348, 2016, 968, 2251,  
+    1, 400, 2199, 944, 2390,  
+    1, 496, 1328, 749, 2287,  
+    1, 497, 1920, 952, 2388,  
+    1, 533, 1400, 1452, 2093,  
+    1, 506, 1612, 1587, 2083,  
+    1, 458, 1613, 1485, 2390  
+};  
+double Y\[15\]\[1\] = {  
+    3894,  
+    4628,  
+    4569,  
+    5340,  
+    5449,  
+    5599,  
+    5010,  
+    5694,  
+    5792,  
+    6126,  
+    5025,  
+    5924,  
+    5657,  
+    6019,  
+    6141  
+};  
+//多元线性回归公式：β=(X&apos;X)^(-1)X&apos;Y  
+double \*XT = (double\*)malloc(sizeof(double) * 5 * 15);  
+double \*XTX = (double\*)malloc(sizeof(double) * 5 * 5);  
+double \*InvXTX = (double\*)malloc(sizeof(double) * 5 * 5);  
+double \*InvXTXXT = (double\*)malloc(sizeof(double) * 5 * 15);  
+double \*InvXTXXTY = (double\*)malloc(sizeof(double) * 5 * 1);  
+XT = MatT((double*)X, 15, 5);  
+XTX = MatMul(XT, 5, 15, (double*)X, 15, 5);  
+InvXTX = MatInv(XTX, 5, 5);  
+InvXTXXT = MatMul(InvXTX, 5, 5, XT, 5, 15);  
+InvXTXXTY = MatMul(InvXTXXT, 5, 15, (double*)Y, 15, 1);  
+printf(&quot;多元线性回归β系数：\\n&quot;);  
+MatShow(InvXTXXTY, 5, 1);  
+
+//保存矩阵到csv  
+MatWrite(&quot;XTX.csv&quot;, XTX, 5, 5);  
+MatWrite(&quot;InvXTXXTY.csv&quot;, InvXTXXTY, 5, 1);  
+MatWrite(&quot;Fuck.csv&quot;, A, 3, 3);  
+MatWrite(&quot;Fuck2.csv&quot;, A, 9, 1);  
+
+//从csv读取矩阵  
+double \*Fuck = (double\*)malloc(sizeof(double) * 3 * 3);  
+Fuck = MatRead(&quot;Fuck.csv&quot;);  
+MatShow(Fuck, 3, 3);  
+
+double \*Fuck2 = (double\*)malloc(sizeof(double) * 9 * 1);  
+Fuck2 = MatRead(&quot;Fuck2.csv&quot;);  
+MatShow(Fuck2, 9, 1);  
+
+double \*InvXTXXTYread = (double\*)malloc(sizeof(double) * 5 * 1);  
+InvXTXXTYread = MatRead(&quot;InvXTXXTY.csv&quot;);  
+MatShow(InvXTXXTYread, 5, 1);  
+
+double \*XTXread = (double\*)malloc(sizeof(double) * 5 * 5);  
+XTXread = MatRead(&quot;XTX.csv&quot;);  
+MatShow(XTXread, 5, 5);  
+system(&quot;pause&quot;);  
+</code></pre><p>}</p>
+<p>JfzMatLib.h头文件代码：</p>
+<p>#include &lt;stdio.h&gt;  </p>
+<p>#include &lt;stdlib.h&gt;  </p>
+<p>#include &lt;string.h&gt;  </p>
+<p>void    MatShow(double<em> Mat, int row, int col);<br>double</em> MatAdd(double<em> A, double</em> B, int row, int col);<br>double<em> MatSub(double</em> A, double<em> B, int row, int col);<br>double</em> MatMul(double<em> A, int Arow, int Acol, double</em> B, int Brow, int Bcol);<br>double<em> MatMulk(double </em>A, int row, int col, double k);<br>double<em> MatT(double</em> A, int row, int col);<br>double  MatDet(double <em>A, int row);<br>double</em> MatInv(double <em>A, int row, int col);<br>double  MatACof(double </em>A, int row, int m, int n);<br>double<em> MatAdj(double </em>A, int row, int col);<br>double *MatRead(char *csvFileName, int row, int col);<br>void MatWrite(char *A, int row, int col);  </p>
+<p>// (det用)功能：求逆序对的个数<br>int inver_order(int list[], int n)<br>{<br>    int ret = 0;<br>    for (int i = 1; i &lt; n; i++)<br>        for (int j = 0; j &lt; i; j++)<br>            if (list[j] &gt; list[i])<br>                ret++;<br>    return ret;<br>}  </p>
+<p>// (det用)功能：符号函数，正数返回1，负数返回-1<br>int sgn(int order)<br>{<br>    return order % 2 ? -1 : 1;<br>}  </p>
+<p>// (det用)功能：交换两整数a、b的值<br>void swap(int *a, int *b)<br>{<br>    int m;<br>    m = <em>a;<br>    \</em>a = *b;<br>    *b = m;<br>}  </p>
+<p>// 功能：求矩阵行列式的核心函数<br>double det(double <em>p, int n, int k, int list[], double sum)<br>{<br>    if (k &gt;= n)<br>    {<br>        int order = inver_order(list, n);<br>        double item = (double)sgn(order);<br>        for (int i = 0; i &lt; n; i++)<br>        {<br>            //item </em>= p[i][list[i]];<br>            item <em>= </em>(p + i * n + list[i]);<br>        }<br>        return sum + item;<br>    }<br>    else<br>    {<br>        for (int i = k; i &lt; n; i++)<br>        {<br>            swap(&amp;list[k], &amp;list[i]);<br>            sum = det(p, n, k + 1, list, sum);<br>            swap(&amp;list[k], &amp;list[i]);<br>        }<br>    }<br>    return sum;<br>}  </p>
+<p>// 功能：矩阵显示<br>// 形参：(输入)矩阵首地址指针Mat，矩阵行数row和列数col。<br>// 返回：无<br>void MatShow(double<em> Mat, int row, int col)<br>{<br>    for (int i = 0; i &lt; row</em>col; i++)<br>    {<br>        printf(“%16lf “, Mat[i]);<br>        if (0 == (i + 1) % col) printf(“\n”);<br>    }<br>}  </p>
+<p>// 功能：矩阵相加<br>// 形参：(输入)矩阵A首地址指针A，矩阵B首地址指针B，矩阵A(也是矩阵B)行数row和列数col<br>// 返回：A+B<br>double<em> MatAdd(double</em> A, double<em> B, int row, int col)<br>{<br>    double \</em>Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[col*i + j] = A[col*i + j] + B[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵相减<br>// 形参：(输入)矩阵A，矩阵B，矩阵A(也是矩阵B)行数row和列数col<br>// 返回：A-B<br>double<em> MatSub(double</em> A, double<em> B, int row, int col)<br>{<br>    double \</em>Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[col*i + j] = A[col*i + j] - B[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵相乘<br>// 形参：(输入)矩阵A，矩阵A行数row和列数col，矩阵B，矩阵B行数row和列数col<br>// 返回：A<em>B<br>double</em> MatMul(double<em> A, int Arow, int Acol, double</em> B, int Brow, int Bcol)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> Arow </em> Bcol);<br>    if (Acol != Brow)<br>    {<br>        printf(“        Shit!矩阵不可乘!\n”);<br>        return NULL;<br>    }<br>    if (Acol == Brow)<br>    {<br>    int i, j, k;<br>    for (i = 0; i &lt; Arow; i++)<br>        for (j = 0; j &lt; Bcol; j++)<br>        {<br>            Out[Bcol<em>i + j] = 0;<br>            for (k = 0; k &lt; Acol; k++)<br>                Out[Bcol\</em>i + j] = Out[Bcol*i + j] + A[Acol*i + k] * B[Bcol*k + j];<br>        }<br>    return Out;<br>    }<br>}  </p>
+<p>// 功能：矩阵数乘(实数k乘以矩阵A)<br>// 形参：(输入)矩阵A首地址指针，矩阵行数row和列数col，实数k<br>// 返回：kA<br>double<em> MatMulk(double </em>A, int row, int col, double k)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row <em> col; i++)<br>    {<br>        \</em>Out = *A <em> k;<br>        Out++;<br>        A++;<br>    }<br>    Out = Out - row </em> col;<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵转置<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的转置<br>double<em> MatT(double</em> A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    for (int i = 0; i &lt; row; i++)<br>        for (int j = 0; j &lt; col; j++)<br>            Out[row*j + i] = A[col*i + j];<br>    return Out;<br>}  </p>
+<p>// 功能：求行列式值<br>// 形参：(输入)矩阵A首地址指针A，行数row<br>// 返回：A的行列式值<br>double MatDet(double <em>A, int row)<br>{<br>    int \</em>list = (int*)malloc(sizeof(int) * row);<br>    for (int i = 0; i &lt; row; i++)<br>        list[i] = i;<br>    double Out = det(A, row, 0, list, 0.0);<br>    free(list);<br>    return Out;<br>}  </p>
+<p>// 功能：矩阵的逆<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的逆<br>double *MatInv(double *A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    double det = MatDet(A, row); //求行列式<br>    if (det == 0)<br>    {<br>        printf(“        Fuck!矩阵不可逆!\n”);<br>        return NULL;<br>    }<br>    if (det != 0)<br>    {<br>        Out = MatAdj(A, row, col); //求伴随矩阵<br>        int len = row <em> row;<br>        for (int i = 0; i &lt; len; i++)  
+            </em>(Out + i) /= det;<br>        return Out;<br>    }<br>}  </p>
+<p>// 功能：求代数余子式<br>// 形参：(输入)矩阵A首地址指针A，矩阵行数row, 元素a的下标m，n(从0开始)，<br>// 返回：NxN 矩阵中元素A(mn)的代数余子式<br>double MatACof(double <em>A, int row, int m, int n)<br>{<br>    int len = (row - 1) </em> (row - 1);<br>    double *cofactor = (double*)malloc(sizeof(double) * len);  </p>
+<pre><code>int count = 0;  
+int raw_len = row * row;  
+for (int i = 0; i &lt; raw_len; i++)  
+    if (i / row != m &amp;&amp; i % row != n)  
+        *(cofactor + count++) = *(A + i);  
+double ret = MatDet(cofactor, row - 1);  
+if ((m + n) % 2)  
+    ret = -ret;  
+free(cofactor);  
+return ret;  
+</code></pre><p>}  </p>
+<p>// 功能：求伴随矩阵<br>// 形参：(输入)矩阵A首地址指针A，行数row和列数col<br>// 返回：A的伴随矩阵<br>double *MatAdj(double *A, int row, int col)<br>{<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    int len = row <em> row;<br>    int count = 0;<br>    for (int i = 0; i &lt; len; i++)<br>    {  
+        </em>(Out + count++) = MatACof(A, row, i % row, i / row);<br>    }<br>    return Out;<br>}  </p>
+<p>// 读取文件行数<br>int FileReadRow(const char <em>filename)<br>{<br>    FILE </em>f = fopen(filename, “r”);<br>    int i = 0;<br>    char str[4096];<br>    while (NULL != fgets(str, 4096, f))<br>        ++i;<br>    printf(“数组行数：%d\n”, i);<br>    return i;<br>}  </p>
+<p>// 读取文件每行数据数(逗号数+1)<br>int FileReadCol(const char <em>filename)<br>{<br>    FILE </em>f = fopen(filename, “r”);<br>    int i = 0;<br>    char str[4096];<br>    fgets(str, 4096, f);<br>    for (int j = 0; j &lt; strlen(str); j++)<br>    {<br>        if (‘,’ == str[j]) i++;<br>    }<br>    i++;// 数据数=逗号数+1<br>    printf(“数组列数：%d\n”, i);<br>    return i;<br>}  </p>
+<p>// 逗号间隔数据提取<br>void GetCommaData(char str_In[4096], double double_Out[1024])<br>{<br>    int str_In_len = strlen(str_In);<br>    //printf(“str_In_len:%d\n”, str_In_len);<br>    char str_Data_temp[128];<br>    int j = 0;<br>    int double_Out_num = 0;<br>    for (int i = 0; i &lt; str_In_len; i++)<br>    {<br>        //不是逗号，则是数据，存入临时数组中<br>        if (‘,’ != str_In[i]) str_Data_temp[j++] = str_In[i];<br>        //是逗号或\n(最后一个数据)，则数据转换为double，保存到输出数组<br>        if (‘,’ == str_In[i] || ‘\n’ == str_In[i]) { str_Data_temp[j] = ‘\0’; j = 0; /*printf(“str_Data_temp:%s\n”, str_Data_temp); */double_Out[double_Out_num++] = atof(str_Data_temp); memset(str_Data_temp, 0, sizeof(str_Data_temp)); }<br>    }<br>}  </p>
+<p>// 功能：从csv文件读矩阵，保存到指针中<br>// 形参：(输入)csv文件名，预计行数row和列数col<br>// 返回：矩阵指针A<br>double *MatRead(char *csvFileName)<br>{<br>    int row = FileReadRow(csvFileName);<br>    int col = FileReadCol(csvFileName);<br>    double *Out = (double*)malloc(sizeof(double) <em> row </em> col);<br>    FILE <em>f = fopen(csvFileName, “r”);<br>    char buffer[4096];<br>    while (fgets(buffer, sizeof(buffer), f))<br>    {<br>        //printf(“buffer[%s]\n”,buffer);<br>        double double_Out[128] = { 0 };<br>        GetCommaData(buffer, double_Out);<br>        for (int i = 0; i &lt; col; i++)<br>        {<br>            //printf(“double_Out:%lf\n”, double_Out[i]);  
+            </em>Out = double_Out[i];<br>            Out++;<br>        }  </p>
+<pre><code>}  
+Out = Out - row * col;//指针移回数据开头  
+fclose(f);  
+return Out;  
+</code></pre><p>}  </p>
+<p>// 功能：将矩阵A存入csv文件中<br>// 形参：(输入)保存的csv文件名，矩阵A首地址指针A，行数row和列数col<br>// 返回：无<br>void MatWrite(const char *csvFileName, double *A, int row, int col)<br>{<br>    FILE <em>DateFile;<br>    double </em>Ap = A;<br>    DateFile = fopen(csvFileName, “w”);//追加的方式保存生成的时间戳<br>    for (int i = 0; i &lt; row<em>col; i++)<br>    {<br>        if ((i+1) % col == 0) fprintf(DateFile, “%lf\n”, </em>Ap);//保存到文件，到列数换行<br>        else fprintf(DateFile, “%lf,”, *Ap);//加逗号<br>        Ap++;<br>    }<br>    fclose(DateFile);<br>}</p>
+<p>运行结果如图：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/30/jfz-cmatlib/" data-id="cjhdn25kh0058sobtr96cl0ad" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-macmini-win7-install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/01/macmini-win7-install/" class="article-date">
+  <time datetime="2016-07-01T03:56:52.000Z" itemprop="datePublished">2016-07-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/01/macmini-win7-install/">2014年末Mac mini装Win7的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近和同学玩心灵终结，然而Win10对此游戏兼容性太差，又黑屏又不能切出，所以想试试Win7下跑这款游戏，顺便也想了解集显带零几年的游戏的性能。</p>
+<blockquote>
+<p>可惜装Win7并不顺利。由于Mac mini都为USB3.0接口，Win7不带驱动，进入安装界面后鼠标键盘无效，进入不下去了。不过知道了进行不下去的原因，自然也就有了解决方法，这几天我探究的能成功装机的方法如下：</p>
+</blockquote>
+<h2 id="1、BootCamp最正常装机"><a href="#1、BootCamp最正常装机" class="headerlink" title="1、BootCamp最正常装机"></a>1、BootCamp最正常装机</h2><p>BootCamp里做镜像，利用BootCamp自己的分区重启功能进入装系统界面。这样做重启的时候苹果会自动加载USB3.0驱动，然后装机过程一切正常。</p>
+<h2 id="2、使用蓝牙鼠标键盘"><a href="#2、使用蓝牙鼠标键盘" class="headerlink" title="2、使用蓝牙鼠标键盘"></a>2、使用蓝牙鼠标键盘</h2><p>蓝牙驱动Win7自带，而且蓝牙配对后就硬件关联了，就算重装系统，配对了的硬件还能连上。用这种方法装Win7，就规避了USB3.0驱动的问题。</p>
+<h2 id="3、Win7镜像注入USB3-0驱动"><a href="#3、Win7镜像注入USB3-0驱动" class="headerlink" title="3、Win7镜像注入USB3.0驱动"></a>3、Win7镜像注入USB3.0驱动</h2><p>我在网上找了一份脚本，按照它的步骤走就能傻瓜化为Win7注入USB3.0驱动，不过脚本运行不支持Win10，找一个Win7或Win8的系统按视频教程写入U盘就完成了，亲测制作好的镜像安装时能操作键盘鼠标。</p>
+<h2 id="4、直接镜像恢复方法"><a href="#4、直接镜像恢复方法" class="headerlink" title="4、直接镜像恢复方法"></a>4、直接镜像恢复方法</h2><p>优点是最傻瓜最便捷，但是看教程操作还需花点时间学习，大家可到看看以下几篇文章和论坛，自己折腾吧！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/01/macmini-win7-install/" data-id="cjhdn25i1001zsobtstueavsh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-win10x64-usb-to-ttl-pl2303" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/18/win10x64-usb-to-ttl-pl2303/" class="article-date">
+  <time datetime="2016-05-18T03:54:57.000Z" itemprop="datePublished">2016-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/18/win10x64-usb-to-ttl-pl2303/">Win10x64电脑安装USB转TTL驱动(PL2303)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先使用<strong>这个</strong>驱动文件进行安装，如果安装好后正常，那就OK了。若安装完以后此时还是感叹号，则打开设备管理器，右键点更新驱动，按照下述步骤设置，亲测没问题。 <img src="http://img.jfz.me/img/2016/win10x64-usb-to-ttl-pl230301.png" alt=""> <img src="http://img.jfz.me/img/2016/win10x64-usb-to-ttl-pl230302.png" alt=""> <img src="http://img.jfz.me/img/2016/win10x64-usb-to-ttl-pl230303.png" alt=""> <img src="http://img.jfz.me/img/2016/win10x64-usb-to-ttl-pl230304.png" alt=""> 网上搜索到另一种解决方法，我在自己另一台电脑上遇到了，没截图，大家也可试试：选高版本(3.6.78)装完以后依然是感叹号，可以从计算机的设备驱动列表选取，选3.3.5.112版本的然后就OK了。 另外提一下，Win7串口驱动一般装HL-340，点<strong>这里</strong>下载。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/18/win10x64-usb-to-ttl-pl2303/" data-id="cjhdn25kn005jsobtx5eqjnek" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-stm32-led-flash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/09/stm32-led-flash/" class="article-date">
+  <time datetime="2016-05-09T03:56:04.000Z" itemprop="datePublished">2016-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/09/stm32-led-flash/">STM32控制4种灯质闪烁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上次做的STM32项目中要求实现4种灯的闪烁效果，并能控制闪烁模式的切换。实现4种灯的闪烁效果并不难，用很精确的延时函数配合高低电平控制就能实现了。控制端使用引脚输入控制，类似3-8译码器，三个输入即可控制8种闪烁效果。 4种灯质闪烁闪烁的规则如下图： <img src="http://img.jfz.me/img/2016/stm32-led-flash.png" alt=""> 简单说就是要设定灯关闭、常亮、快闪、慢闪、亮灭时间不同闪和混合效果闪。难点在于控制。如果在一个函数中设定一个周期的灯闪烁循环，那么如果周期长的话，切换模式后也得等到周期执行完了才能进入下一种闪烁模式，于是自己写了一个以闪烁中最小周期为循环节的循环显示效果，这样发出控制命令后，能及时切换到其它模式。虽然也会延时最小变化周期，但是应该够用了，更精确的写法可以试试中断。本代码的优点就在于在于简洁易懂，无需其它配置。 代码中设定的输入控制信号为：PC1、PC2、PC3，输出的灯接PE5。定义的几种闪烁效果为：</p>
+<blockquote>
+<p>丹顿光：亮3秒，灭1秒<br>等明暗光：亮、灭各2秒<br>连续快闪光：亮、灭各0.5秒<br>联甚块闪光：亮0.5秒，灭0.5秒，循环6次；亮2秒，灭2秒</p>
+</blockquote>
+<p>PC1、PC2、PC3设定与对应模式：000灭、010常亮、100丹顿光Oc、101等明暗光Iso、110连续快闪光QFlash、111联甚快闪光VQLFI 代码如下：</p>
+<p>#include “stm32f10x.h”</p>
+<p>#define Delay_ms(msec) Delay_us(msec*1000)  //延时毫秒级</p>
+<p>#define PC1 GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_1)   //读PC1</p>
+<p>#define PC2 GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)   //读PC2</p>
+<p>#define PC3 GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_3)   //读PC3</p>
+<p>void LED_GPIO_Config(void) //配置LED用到的I/O口<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);<br>    GPIO_ResetBits(GPIOE, GPIO_Pin_5);<br>}</p>
+<p>   void Input_GPIO_Config(void)//输入I/O口配置<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);//<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3; //<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //IPU;上拉、IPD下拉<br>    GPIO_Init(GPIOC, &amp;GPIO_InitStructure);<br>}</p>
+<p>void Delay_us(u32 ntimes)<br>{<br>    u32 flag;<br>    SysTick-&gt;LOAD=9*ntimes;<br>    SysTick-&gt;VAL=0;<br>    SysTick-&gt;CTRL=0x00000001;<br>    do<br>    {<br>        flag=SysTick-&gt;CTRL;<br>    }<br>    while(flag&amp;0x01&amp;&amp;!(flag&amp;(1&lt;&lt;16)));<br>    SysTick-&gt;CTRL=0;<br>}</p>
+<p>//丹顿光：亮3秒，灭1秒<br>//等明暗光：亮、灭各2秒<br>//连续快闪光：亮、灭各0.5秒<br>//联甚块闪光：亮0.5秒，灭0.5秒，循环6次；亮2秒，灭2秒<br>//PC1 PC2 PC3<br>// 0   0   0  灭<br>// 0   1   0  常亮<br>// 1   0   0  丹顿光Oc<br>// 1   0   1  等明暗光Iso<br>// 1   1   0  连续快闪光QFlash<br>// 1   1   1  联甚快闪光VQLFI<br>//灯接的是PE5<br>void LED_FLASH_Simple(u8 l,u8 m,u8 s) //灯闪烁，l为亮的时间，m为灭的时间。s为亮灭模式切换<br>{<br>    u8 i;<br>    if(s==1)<br>    {<br>        GPIO_SetBits(GPIOE , GPIO_Pin_5);<br>        for(i=0;i&lt;l;i++) Delay_ms(500);<br>    }<br>    if(s==0)<br>    {<br>        GPIO_ResetBits(GPIOE,GPIO_Pin_5);<br>        for(i=0;i&lt;m;i++) Delay_ms(500);<br>    }<br>}</p>
+<p>u8 s=1,j=0;<br>int main(void)<br>{<br>    LED_GPIO_Config();<br>    Input_GPIO_Config();<br>    while(1)<br>    {<br>      if(PC3==0 &amp;&amp; PC1==0 )<br>      {<br>      GPIO_ResetBits(GPIOE,GPIO_Pin_5);<br>      j=0;<br>      }</p>
+<pre><code>  if(PC3==0 &amp;&amp; PC1==1 )
+  {
+  GPIO\_SetBits(GPIOE , GPIO\_Pin_5);
+  j=0;
+  }
+
+  if(PC3==1)
+  {
+  if(PC1==0 &amp;&amp; PC2==0)  
+  {
+      j=0;
+      LED\_FLASH\_Simple(6,2,s);
+      if(s==1) s=0;
+      else s=1;
+  }
+  if(PC1==0 &amp;&amp; PC2==1)  
+  {
+      j=0;
+      LED\_FLASH\_Simple(4,4,s);
+      if(s==1) s=0;
+      else s=1;
+  }
+  if(PC1==1 &amp;&amp; PC2==0)  
+  {
+      j=0;
+      LED\_FLASH\_Simple(1,1,s);
+      if(s==1) s=0;
+      else s=1;
+  }
+  if(PC1==1 &amp;&amp; PC2==1)  
+  {
+      if(j&lt;12)
+      {
+          LED\_FLASH\_Simple(1,1,s);
+           if(s==1) s=0;
+           else s=1;
+          j++;
+      }
+      if(j==12) 
+      {
+          LED\_FLASH\_Simple(4,4,s);
+          if(s==1) s=0;
+          else s=1;
+          j++;
+      }
+      if(j==13) 
+      {
+          LED\_FLASH\_Simple(4,4,s);
+          if(s==1) s=0;
+          else s=1;
+          j=0;
+      }
+  }
+  } 
+
+}
+</code></pre><p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/09/stm32-led-flash/" data-id="cjhdn25jh004asobti3t1zpkz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-notepad-tdm-gcc-cpp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/07/notepad-tdm-gcc-cpp/" class="article-date">
+  <time datetime="2016-05-07T03:53:53.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/07/notepad-tdm-gcc-cpp/">NotePad++配合TDM-GCC搭建C++开发环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、安装TDM-GCC编译器"><a href="#1、安装TDM-GCC编译器" class="headerlink" title="1、安装TDM-GCC编译器"></a>1、安装TDM-GCC编译器</h2><p>TDM-GCC官网为：<a href="http://tdm-gcc.tdragon.net" target="_blank" rel="noopener">http://tdm-gcc.tdragon.net</a> 安装软件，安装完会自动配置环境变量(可能需要重启后生效)，cmd中输入<strong>g++ –version</strong>看看是否安装好。</p>
+<h2 id="2、打开Notepad-，编写一段C-代码并保存"><a href="#2、打开Notepad-，编写一段C-代码并保存" class="headerlink" title="2、打开Notepad++，编写一段C++代码并保存"></a>2、打开Notepad++，编写一段C++代码并保存</h2><p>例如：</p>
+<p>#include<iostream><br>using namespace std;</iostream></p>
+<p>int main(void)<br>{<br>    cout&lt;&lt;”Sandeepin异想家！”&lt;&lt;endl;<br>    return 0;<br>}</p>
+<h2 id="3、编写编译指令"><a href="#3、编写编译指令" class="headerlink" title="3、编写编译指令"></a>3、编写编译指令</h2><p>菜单栏-&gt;运行-&gt;运行，弹出框中输入：</p>
+<p>cmd /k g++ -o $(NAME_PART).exe “$(FULL_CURRENT_PATH)” &amp; PAUSE &amp; EXIT</p>
+<p>选择快捷键(我选择Alt+G)后保存为：<strong>G++编译</strong>。注意快捷键不要有重复，在点击弹出框的运行，关闭Notepad++，再打开Notepad++；</p>
+<h2 id="4、编写运行指令"><a href="#4、编写运行指令" class="headerlink" title="4、编写运行指令"></a>4、编写运行指令</h2><p>菜单栏-&gt;运行-&gt;运行，弹出框中输入：</p>
+<p>cmd /k “$(NAME_PART)” &amp; PAUSE &amp; EXIT</p>
+<p>选择快捷键(我选择Alt+R)后保存为：<strong>G++运行</strong>。再点运行程序就会执行了。</p>
+<h2 id="5、开始体验吧！"><a href="#5、开始体验吧！" class="headerlink" title="5、开始体验吧！"></a>5、开始体验吧！</h2><p>以后写好cpp文件后，点击“G++编译”，如果有错可看到提示，没错则显示“请按任意键继续. . .”。 关闭，再点击“G++运行”，即可看到运行结果：</p>
+<p><img src="http://img.jfz.me/img/2016/notepad-tdm-gcc-cpp01.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/07/notepad-tdm-gcc-cpp/" data-id="cjhdn25ik002ysobt1fkk1a0s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pcb-study-altium-designer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/01/pcb-study-altium-designer/" class="article-date">
+  <time datetime="2016-05-01T03:52:46.000Z" itemprop="datePublished">2016-05-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/01/pcb-study-altium-designer/">PCB设计学习笔记：Altium Designer入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本PCB学习笔记是我听金沙滩工作室“PCB设计基础指南”总结而成的，主要介绍了Altium Designer的基本使用方法。本文不是视频版的文字复述，也不是在线教程，只记录了视频中基本设计方法和一些小技巧，供以后参考。Altium Designer这类软件的学习光看光记是不够的，必须亲自动手操作，只有多做多练，遇到问题多上网查，在实践挫折中才能成长！ 先来一句装逼的话：“画PCB，不是一门技术，而是艺术！” <img src="http://img.jfz.me/img/2016/pcb-study-altium-designer01.png" alt=""></p>
+<h2 id="PCB的种类"><a href="#PCB的种类" class="headerlink" title="PCB的种类"></a>PCB的种类</h2><p>单面板（只在一个面走线） 双面板（在两个面都走线） 多层板（4、6、8、10……）（出两个面外还有内层） 柔性PCB（触摸屏等的连接）</p>
+<h2 id="PCB的制作步骤"><a href="#PCB的制作步骤" class="headerlink" title="PCB的制作步骤"></a>PCB的制作步骤</h2><p><strong>绘制电路原理图——绘制PCB图——(为了保密导出为制板文件Gerber等)——将PCB图交由加工厂制作——焊接器件并调试验证</strong></p>
+<h2 id="绘制PCB的工具软件"><a href="#绘制PCB的工具软件" class="headerlink" title="绘制PCB的工具软件"></a>绘制PCB的工具软件</h2><p>Altium公司产品：Protel、Altium Designer (中低端) MentorGraphics公司产品：PADS、MentorWG Cadence公司产品：OrCAD、Allegro SPB (高端)</p>
+<h2 id="Altium-Designer-PCB设计步骤"><a href="#Altium-Designer-PCB设计步骤" class="headerlink" title="Altium Designer PCB设计步骤"></a>Altium Designer PCB设计步骤</h2><p><strong>绘制电路原理图(需要原理图器件库的支持)——将原理图导入到PCB中(需要PCB器件库的支持)——PCB布局布线——PCB电气规则检查DRC</strong></p>
+<blockquote>
+<p>设置中文方法：DXP-&gt;Preferences-&gt;System-&gt;General-&gt;Localization-&gt;Use Localized resources (不推荐中文，习惯英文好，术语翻译不准确)</p>
+</blockquote>
+<p>1、新建PCB工程 File-&gt;New-&gt;Project-&gt;PCB Project-&gt; <em>.PrjPCB(Protel99: </em>.ddb) 2、添加所需文件到工程中Projec-&gt;Add New to Project-&gt;…(或Projec-&gt;Add Existing to Project-&gt;…) 文件类型主要有： 原理图 <em>.SchDoc、原理图库 </em>.SchLib PCB图 <em>.PcbDoc、PCB图库 </em>.PcbLib (Protel99中文件后缀: <em>.sch、</em>.pcb、*.lib) 3、保存工程和文件</p>
+<h2 id="Altium-Designer-实例演示"><a href="#Altium-Designer-实例演示" class="headerlink" title="Altium Designer 实例演示"></a>Altium Designer 实例演示</h2><p>设计目标：STC89C52最小系统板 大致评估所需资源：主芯片、电阻、电容、晶振、排针、按键、LED 进行的事：创建器件的原理图库、绘制电路原理图、创建器件的PCB库、绘制PCB图、DRC检查</p>
+<blockquote>
+<p>快捷键：pageup pagedown 放大缩小</p>
+</blockquote>
+<h2 id="1、画SCH元件库"><a href="#1、画SCH元件库" class="headerlink" title="1、画SCH元件库"></a>1、画SCH元件库</h2><h3 id="画STC89C52，封装：PDIP-40，第一个P代表塑料。"><a href="#画STC89C52，封装：PDIP-40，第一个P代表塑料。" class="headerlink" title="画STC89C52，封装：PDIP-40，第一个P代表塑料。"></a>画STC89C52，封装：PDIP-40，第一个P代表塑料。</h3><blockquote>
+<p>快捷键：Tab键 调出属性对话框。 快捷键：空格键 元件旋转 快捷键：X、Y键 镜像旋转</p>
+</blockquote>
+<p>一个元件有名字和编号。 上划线输入：P\S\E\N ,显示效果如下： 【图】 元件默认编号Default Designator： 芯片：U? (加?可实现最后软件进行自动编号)</p>
+<h3 id="画电阻RES、画电容CAP"><a href="#画电阻RES、画电容CAP" class="headerlink" title="画电阻RES、画电容CAP"></a>画电阻RES、画电容CAP</h3><p>用线画，设置线移动粗细：Tools-&gt;Document Options-&gt;Snap捕捉设置为2。</p>
+<h3 id="画晶振CRYSTAL"><a href="#画晶振CRYSTAL" class="headerlink" title="画晶振CRYSTAL"></a>画晶振CRYSTAL</h3><p>可以直接在做了的的文件中Copy到自己的工程中。</p>
+<h3 id="画排针孔CON8-4、按键KEY、灯LED"><a href="#画排针孔CON8-4、按键KEY、灯LED" class="headerlink" title="画排针孔CON8/4、按键KEY、灯LED"></a>画排针孔CON8/4、按键KEY、灯LED</h3><p>排针孔封装SIP(单列直插)。</p>
+<h2 id="2、画SCH原理图"><a href="#2、画SCH原理图" class="headerlink" title="2、画SCH原理图"></a>2、画SCH原理图</h2><p>放元件点【图】图标。 用网络节点可逻辑连两点。 可用“手动节点”连三根线交点。十字交叉点默认不连，强制连用“手动节点Manual Junction”。 设置纸张大小：Design-&gt;Document Options 默认往左下角缩，元件最好摆在左下角。 【图】 技巧：Tools-&gt;Annotate Schematic 自动给元件编号</p>
+<h2 id="3、画PCB库"><a href="#3、画PCB库" class="headerlink" title="3、画PCB库"></a>3、画PCB库</h2><blockquote>
+<p>快捷键：Ctrl+End 快速回到原点(或View-&gt;Fit Document)。</p>
+</blockquote>
+<h3 id="定孔"><a href="#定孔" class="headerlink" title="定孔"></a>定孔</h3><p>英制为整数单位，0.1英寸=100 mil Place Pad焊盘可以改Hole Size(孔径)=30 mil 每隔100坐标放一个，怕放不准，可以改：Tools-&gt;Library Option-&gt;Snap Grid为100</p>
+<h3 id="定轮廓、加弧线角"><a href="#定轮廓、加弧线角" class="headerlink" title="定轮廓、加弧线角"></a>定轮廓、加弧线角</h3><p>轮廓定在Top Overlay(顶层的丝印层)，这层用来标注器件形状，写一些字，画框画在这一层。</p>
+<blockquote>
+<p>快捷键：Ctrl+M 量尺寸(或Reports-&gt;Measure Distance)</p>
+</blockquote>
+<h3 id="添加一个新封装"><a href="#添加一个新封装" class="headerlink" title="添加一个新封装"></a>添加一个新封装</h3><p>注意：改动了库后要右键更新到Sch原理图(Update Schematic Sheets)。 注意：不小心关闭了左栏(PCB library、Projects、Navigator等)，点View-&gt;Desktop Layouts-&gt;Default可还原。 常见的0805中08表示0.08英寸，05表示0.05英寸，代表长和宽。 贴片元件Layer：Top Layer 晶振PCB库，金属外壳，丝印层铺满。 一些总结：</p>
+<blockquote>
+<p>0805 电容、电阻 DIP40 40个引脚的芯片 SIP4 4针排针孔 XTAL-2 晶振 KET-6x6 按键 0805LD LED(有方向)</p>
+</blockquote>
+<h2 id="4、画PCB图"><a href="#4、画PCB图" class="headerlink" title="4、画PCB图"></a>4、画PCB图</h2><p>由原理图导入PCB图：Design-&gt;Import Changes From xxx.PrjPCB，注意要把没用的“Add Component Classes”、“Add Rooms”去掉再导入。 导入后元件都在黑框外，点元件，出来属性，把Hide去掉，可显示10K、0.1uF之类信息。</p>
+<blockquote>
+<p>批量改字体大小：Edit-&gt;Find Similar Object-&gt;选图中要改的文字。 其中String Type填Same ，Text Width填Same ，接下来的对话框里Text Width改为5，Text Hight改为30，Stroke Font改为Sans Serif，若Hide改为False全不隐藏。</p>
+</blockquote>
+<p>技巧：点住元件按空格键可旋转，方便布线。 找元件方法：在原理图中找，找到后点Tools-&gt;Cross Probe-&gt;选择要找的元件-&gt;会一闪闪到PCB位置(点右下角Clear后，才可拖动) 文字注释放置技巧：U1、U2之类标注放在外面，芯片名字(1K、0.1uF)放在里面，可不让人看到。</p>
+<h3 id="布线布局思路"><a href="#布线布局思路" class="headerlink" title="布线布局思路"></a>布线布局思路</h3><p>一般先布局再布线，随机应变，常要修修补补，基本上同时都要做。 画线点【图】，注意设置线的宽度。 去耦电容与VCC放得近些。电源线一般设20 mil。地线一般用大面积覆铜。 Place Via放置过孔：用于连线钻孔往下走，Hole Size：20 Diameter：40 注意要设置网络节点，忘了的话会连不上，成为一个孤立元件。</p>
+<blockquote>
+<p>快捷键：S-&gt;Net-&gt;选中一个5V的VCC，则所有5V的VCC都标出。</p>
+</blockquote>
+<h3 id="画轮廓"><a href="#画轮廓" class="headerlink" title="画轮廓"></a>画轮廓</h3><p>机械层确定板子外形(也有厂家接受Keep-Out Layer)。画线点【图】图标。</p>
+<h3 id="覆铜"><a href="#覆铜" class="headerlink" title="覆铜"></a>覆铜</h3><p>在Top Layer顶层、Bottom Layer底层覆铜，覆之前要切换到选定的层。注意设置覆铜选GND。</p>
+<h3 id="调整黑框大小"><a href="#调整黑框大小" class="headerlink" title="调整黑框大小"></a>调整黑框大小</h3><p>最好和板子一样大。Design-&gt;Board Shape-&gt;Redefine Board Shared 调节原点：Edit-&gt;Origin-&gt;Set</p>
+<h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>Tools-&gt;Design Rule Checke-&gt;Batch只勾选Clearance、Width、Short-Circuit、Un-Routed Net、Hole Size足够检查出一般错误了。 Hole Size最大最小设定：Design-&gt;Rules-&gt;Width-&gt;Min/Max Width 设置为10、20。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/01/pcb-study-altium-designer/" data-id="cjhdn25ih002rsobto3c3ct8z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-stm32-dht11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/25/stm32-dht11/" class="article-date">
+  <time datetime="2016-04-25T03:51:49.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/stm32-dht11/">STM32操纵DHT11湿度传感器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上的例子不是说不能用，而是各种坑爹引用，搞得想移植都要改半天。现贴出一份经过Sandeepin精心整理的、清晰明了的代码供大家直观学习。 其实DHT11传感器不仅可测湿度，温度也能测，所以代码中包括了两种数据。 <img src="http://img.jfz.me/img/2016/stm32-dht11.jpg" alt=""> 不多废话，直接上代码：</p>
+<p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”</p>
+<p>#define HIGH  1</p>
+<p>#define LOW   0</p>
+<p>#define DHT11_CLK     RCC_APB2Periph_GPIOC</p>
+<p>#define DHT11_PIN     GPIO_Pin_2</p>
+<p>#define DHT11_PORT    GPIOC</p>
+<p>#define DHT11_DATA_IN()   GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2) //读取引脚的电平<br>//带参宏，可以像内联函数一样使用,输出高电平或低电平</p>
+<p>#define DHT11_DATA_OUT(a)  if (a)  \<br>                    GPIO_SetBits(GPIOC,GPIO_Pin_2);\<br>                    else        \<br>                    GPIO_ResetBits(GPIOC,GPIO_Pin_2)</p>
+<p>u32 TimingDelay;</p>
+<p>typedef struct<br>{<br>    uint8_t  humi_int;  //湿度的整数部分<br>    uint8_t  humi_deci; //湿度的小数部分<br>    uint8_t  temp_int;  //温度的整数部分<br>    uint8_t  temp_deci; //温度的小数部分<br>    uint8_t  check_sum; //校验和<br>}DHT11_Data_TypeDef;</p>
+<p>void Delay_us(u32 ntimes)<br>{<br>    u32 flag;<br>    SysTick-&gt;LOAD=9*ntimes; //时间加载<br>    SysTick-&gt;VAL=0; //清空计数器<br>    SysTick-&gt;CTRL=0x00000001; //bit2清空,选择外部时钟HCLK/8, bit0位清空,开启倒计时<br>    do<br>    {<br>        flag=SysTick-&gt;CTRL;<br>    }<br>    while(flag&amp;0x01&amp;&amp;!(flag&amp;(1&lt;&lt;16)));//等待时间到达<br>    SysTick-&gt;CTRL=0;//关闭计数器<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    USART_InitStructure.USART_BaudRate = bound;<br>    USART_InitStructure.USART_WordLength = USART_WordLength_8b;<br>    USART_InitStructure.USART_StopBits = USART_StopBits_1;<br>    USART_InitStructure.USART_Parity = USART_Parity_No;<br>    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;<br>    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;<br>    USART_Init(USART1, &amp;USART_InitStructure);<br>    USART_Cmd(USART1, ENABLE);<br>}</p>
+<p>void DHT11_GPIO_Config(void)//DHT11的GPIO配置<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(DHT11_CLK, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>    GPIO_ResetBits(DHT11_PORT, GPIO_Pin_2);<br>}</p>
+<p>static void DHT11_Mode_IPU(void)//使DHT11-DATA引脚变为上拉输入模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>}</p>
+<p>static void DHT11_Mode_Out_PP(void)//使DHT11-DATA引脚变为推挽输出模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>}</p>
+<p>static uint8_t Read_Byte(void)//从DHT11读取一个字节，MSB先行<br>{<br>    uint8_t i, temp=0;<br>    for(i=0;i&lt;8;i++)<br>    {<br>        while(DHT11_DATA_IN()==Bit_RESET);//每bit以50us低电平标置开始，轮询直到从机发出 的50us 低电平 结束<br>        //DHT11 以26~28us的高电平表示“0”，以70us高电平表示“1”，<br>        //通过检测 x us后的电平即可区别这两个状 ，x 即下面的延时<br>        Delay_us(40); //延时x us 这个延时需要大于数据0持续的时间即可<br>        if(DHT11_DATA_IN()==Bit_SET)// x us后仍为高电平表示数据“1”<br>        {<br>            while(DHT11_DATA_IN()==Bit_SET);//等待数据1的高电平结束<br>            temp|=(uint8_t)(0x01&lt;&lt;(7-i));  //把第7-i位置1，MSB先行<br>        }<br>        else     // x us后为低电平表示数据“0”<br>        {<br>            temp&amp;=(uint8_t)~(0x01&lt;&lt;(7-i)); //把第7-i位置0，MSB先行<br>        }<br>    }<br>    return temp;<br>}</p>
+<p>uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data)//一次完整的数据传输为40bit，高位先出,8bit 湿度整数 + 8bit 湿度小数 + 8bit 温度整数 + 8bit 温度小数 + 8bit 校验和<br>{<br>    DHT11_Mode_Out_PP();</p>
+<pre><code>DHT11\_DATA\_OUT(LOW);//主机拉低
+Delay_us(18000);//延时18ms
+DHT11\_DATA\_OUT(HIGH); //总线拉高 主机延时30us
+Delay_us(30);   //延时30us
+DHT11\_Mode\_IPU();//主机设为输入 判断从机响应信号
+if(DHT11\_DATA\_IN()==Bit_RESET)//判断从机是否有低电平响应信号 如不响应则跳出，响应则向下运行
+{
+    while(DHT11\_DATA\_IN()==Bit_RESET);//轮询直到从机发出 的80us 低电平响应信号结束
+    while(DHT11\_DATA\_IN()==Bit_SET);//轮询直到从机发出的 80us 高电平 标置信号结束
+    DHT11\_Data-&gt;humi\_int= Read_Byte();//开始接收数据
+    DHT11\_Data-&gt;humi\_deci= Read_Byte();
+    DHT11\_Data-&gt;temp\_int= Read_Byte();
+    DHT11\_Data-&gt;temp\_deci= Read_Byte();
+    DHT11\_Data-&gt;check\_sum= Read_Byte();
+    DHT11\_Mode\_Out_PP();//读取结束，引脚改为输出模式
+    DHT11\_DATA\_OUT(HIGH);//主机拉高
+    //检查读取的数据是否正确
+    if(DHT11\_Data-&gt;check\_sum == DHT11\_Data-&gt;humi\_int + DHT11\_Data-&gt;humi\_deci + DHT11\_Data-&gt;temp\_int+ DHT11\_Data-&gt;temp\_deci)
+        return SUCCESS;
+    else
+        return ERROR;
+}
+else
+{
+    return ERROR;
+}   
+</code></pre><p>}</p>
+<p>DHT11_Data_TypeDef DHT11_Data;<br>int main(void)<br>{<br>    USART1_Config(9600);<br>    DHT11_GPIO_Config();<br>    while(1){//调用Read_DHT11读取温湿度，若成功则输出该信息<br>        if( Read_DHT11(&amp;DHT11_Data)==SUCCESS)<br>        {<br>            printf(“Relative Humidity: %d.%d  Temperature: %d.%d \r\n”,\<br>                DHT11_Data.humi_int,DHT11_Data.humi_deci,DHT11_Data.temp_int,DHT11_Data.temp_deci);<br>            Delay_us(500000);<br>        }<br>        else<br>        {<br>            printf(“Read DHT11 ERROR! \r\n”);<br>            Delay_us(500000);<br>        }<br>    }<br>}</p>
+<p>实现效果：在PC2接湿度传感器，通过串口1打印出湿度值、温度值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/25/stm32-dht11/" data-id="cjhdn25ja003zsobttc9kfr2r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-stm32-ili9325" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/16/stm32-ili9325/" class="article-date">
+  <time datetime="2016-04-16T03:50:28.000Z" itemprop="datePublished">2016-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/16/stm32-ili9325/">STM32操纵2.4寸液晶(ILI9325)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我做的毕设是自动指纹采集识别系统，当然现在还不能把代码放出来。不过在做的过程中用到了液晶显示，配套的例子里刚好有TFTLCD显示实验代码，但它的代码只能显示英文，为了急用，我懒得调用字库，于是自己折腾了一套方法显示中文，现把过程简单记录一下。 <img src="http://img.jfz.me/img/2016/stm32-ili932500.jpg" alt=""> 液晶屏上的中文显示(Sandeepin的办法)原理：<strong>利用两个16x8的显示格子拼凑一个汉字</strong>。 用到的字模软件：<strong>字模III v3.9</strong>。我转换异想家的“异”字得到如下字模： <img src="http://img.jfz.me/img/2016/stm32-ili932501.png" alt=""> 用字模III v3.9生成的是16x16横向排的字模，且镜像反转了，不配合本液晶系统，需要用到我制作的C语言算法转换：</p>
+<p>#include “stdafx.h”<br>int revse32int(int a, int len) //len是要旋转的数字位数，从右侧起<br>{<br>    int tmp = 0, i, j;<br>    for (i = 0, j = len - 1; i &lt; len; ++i, –j)<br>    {<br>        if ((a &gt;&gt; i) &amp; 1)<br>            tmp |= ((a &gt;&gt; i) &amp; 1) &lt;&lt; j;<br>    }<br>    return tmp;<br>}</p>
+<p>int main(void)<br>{<br>    //字模软件直接得到的字模<br>    int yuan[32] = { 0x00,0x00,0x3F,0xF0,0x20,0x10,0x20,0x10,0x3F,0xF0,0x20,0x04,0x20,0x04,0x1F,0xFC,<br>        0x00,0x00,0x08,0x20,0x08,0x20,0xFF,0xFE,0x08,0x20,0x10,0x20,0x20,0x20,0x40,0x20 };<br>    int i = 0,j = 0;<br>    int jishu[16] = {};//奇数编号数存数组<br>    int oushu[16] = {};//偶数编号数存数组<br>    for (i = 0; i &lt; 32; i++)<br>    {<br>        if (i % 2 == 0)<br>        {<br>            jishu[j] = yuan[i];<br>            j++;<br>        }<br>    }<br>    printf(“奇数编号数提取(字符前半边)：\r\n”);<br>    for (i = 0; i &lt; 16; i++) printf(“,0x%x”, jishu[i]);//奇数编号数提取(字符前半边)<br>    printf(“\r\n”);</p>
+<pre><code>j = 0;
+for (int i = 0; i &lt; 32; i++)
+{
+    if (i % 2 != 0) 
+    {
+        oushu\[j\] = yuan\[i\];
+        j++;
+    }
+}
+printf(&quot;\\r\\n偶数编号数提取(字符后半边)：\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, oushu\[i\]);//偶数编号数提取(字符后半边)
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n字符前半边翻转:\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, revse32int(jishu\[i\], 8));//字符前半边翻转
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n字符后半边翻转:\\r\\n&quot;);
+for (int i = 0; i &lt; 16; i++) printf(&quot;,0x%x&quot;, revse32int(oushu\[i\], 8));//字符后半边翻转
+printf(&quot;\\r\\n&quot;);
+
+printf(&quot;\\r\\n格式化显示效果:\\r\\n&quot;);
+printf(&quot;{&quot;);
+for (int i = 0; i &lt; 16; i++)
+{
+    if (i == 0) printf(&quot;0x%x&quot;, revse32int(jishu\[i\], 8));
+    else printf(&quot;,0x%x&quot;, revse32int(jishu\[i\], 8));
+
+}
+printf(&quot;},/*\\&quot;异1\\&quot;,01*/&quot;);
+printf(&quot;\\n&quot;);
+printf(&quot;{&quot;);
+for (int i = 0; i &lt; 16; i++)
+{
+    if (i == 0) printf(&quot;0x%x&quot;, revse32int(oushu\[i\], 8));
+    else printf(&quot;,0x%x&quot;, revse32int(oushu\[i\], 8));
+
+}
+printf(&quot;},/*\\&quot;异2\\&quot;,02*/&quot;);
+getchar();
+return 0;
+</code></pre><p>}</p>
+<p>效果如下： <img src="http://img.jfz.me/img/2016/stm32-ili932502.png" alt=""> 张帮我写了个Python版本，更好用，也把代码附上：</p>
+<p>#!/usr/bin/env python3<br># -<em>- coding: utf-8 -</em>-</p>
+<p>def ch(x):<br>        x = ((x&amp;0x55)&lt;&lt;1)|((x&amp;0xaa)&gt;&gt;1)<br>        x = ((x&amp;0x33)&lt;&lt;2)|((x&amp;0xcc)&gt;&gt;2)<br>        x = ((x&amp;0x0f)&lt;&lt;4)|((x&amp;0xf0)&gt;&gt;4)<br>        return x</p>
+<p>def change():<br>        nums = eval(input(‘ctrl+c退出或者继续输入:’))<br>        L1 = []<br>        L2 = []<br>        l = len(nums)<br>        i = 0<br>        j = 1<br>        k = 1<br>        for i in range(l):<br>                if i % 2 == 0:<br>                        L1.append(ch(nums[i]))<br>                if i % 2 != 0:<br>                        L2.append(ch(nums[i]))</p>
+<pre><code>le = len(L1)
+print(&apos;{&apos;,end = &apos;&apos;,file = f)
+for i in L1:
+        if j &lt;= 15:
+                print(&apos;0x%02x,&apos; % i, end = &apos;&apos;,file = f)
+        else:
+                print(&apos;0x%02x},&apos; % i, end = &apos;&apos;,file = f)
+        j = j + 1
+print(file = f)
+
+le = len(L2)
+print(&apos;{&apos;,end = &apos;&apos;,file = f)
+for i in L2:
+        if k &lt;= 15:
+                print(&apos;0x%02x,&apos; % i, end = &apos;&apos;,file = f)
+        else:
+                print(&apos;0x%02x},&apos; % i, end = &apos;&apos;,file = f)
+        k = k + 1
+print(file = f)
+
+print(&apos;\\n&apos;,file = f)
+</code></pre><p>n = int(input(‘要输入多少中文字符:’))<br>f = open(“./output.txt”, ‘a+’)<br>for i in range(1,n+1):<br>        print(‘第%d个字:\n’ % i,file = f)<br>        change()<br>        print(‘已输出第%d个字’ % i)</p>
+<p>之后将转换后的字模添加到font.h中(图中的例子不是“异”，而是我的名字，举一反三)：</p>
+<p>const unsigned char CH_1616[100][16]={<br>{0x10,0x10,0xff,0x10,0x0,0x10,0x92,0x54,0x14,0x10,0xd8,0x94,0x12,0x11,0x10,0x10},/<em>“蒋1”,00</em>/<br>{0x4,0x4,0x7f,0x4,0x1,0x1f,0x8,0x5,0xa,0x9,0x7f,0x8,0x9,0x9,0x8,0xc},/<em>“蒋2”,01</em>/<br>{0x40,0x80,0x80,0xff,0x20,0x20,0x20,0xe0,0x20,0x20,0x20,0x10,0x10,0x8,0x4,0x2},/<em>“方1”,02</em>/<br>{0x0,0x0,0x0,0x7f,0x0,0x0,0x0,0xf,0x8,0x8,0x8,0x8,0x8,0x8,0x5,0x2},/<em>“方2”,03</em>/<br>{0x0,0xfe,0x80,0x80,0x80,0x80,0x88,0x88,0x88,0x88,0x88,0x88,0x88,0x88,0xff,0x0},/<em>“正1”,04</em>/<br>{0x0,0x3f,0x0,0x0,0x0,0x0,0x0,0x1f,0x0,0x0,0x0,0x0,0x0,0x0,0x7f,0x0},/<em>“正2”,05</em>/<br>}; </p>
+<p>在text.c中加入：</p>
+<p>void LCD_ShowChar_CH(u16 x,u16 y,u16 num,u16 Color)<br>{  </p>
+<pre><code>u16 temp;
+u8 mode=0;
+u8 size=16;
+u8 j,t;
+u8 count;
+u16 x0=x;   
+if(x&gt;MAX\_CHAR\_POSX||y&gt;MAX\_CHAR\_POSY)return;       
+//设置窗口
+if(mode==0) //正常显示
+{
+    for(j=0;j&lt;size;j++)
+    {
+            temp=CH_1616\[num\]\[j\];   
+            count=8;
+        for(t=0;t&lt;count;t++)
+        {                 
+        if(temp&amp;0x01)
+            {
+            LCD_DrawPoint(x,y,Color);   
+            }
+            else 
+            {
+            LCD\_DrawPoint(x,y,BACK\_COLOR);  
+            }
+            temp&gt;&gt;=1; 
+            x++;
+        }
+        x=x0;
+        y++;
+    }   
+} 
+</code></pre><p>}</p>
+<p>void LCD_ShowString_CH(u16 x,u16 y,u16 chnum,u16 Color)<br>{<br>    if(chnum==1)//选择菜单(录入、清空)<br>    {<br>        LCD_ShowChar_CH(0+x,0+y,6,Color);LCD_ShowChar_CH(8+x,0+y,7,Color);<br>        LCD_ShowChar_CH(16+x,0+y,8,Color); LCD_ShowChar_CH(24+x,0+y,9,Color);<br>        LCD_ShowChar_CH(32+x,0+y,10,Color);LCD_ShowChar_CH(40+x,0+y,11,Color);<br>        LCD_ShowChar_CH(48+x,0+y,12,Color);LCD_ShowChar_CH(56+x,0+y,13,Color);<br>        LCD_ShowString(64+x,0+y,”(“,Color);<br>        LCD_ShowChar_CH(72+x,0+y,14,Color);LCD_ShowChar_CH(80+x,0+y,15,Color);<br>        LCD_ShowChar_CH(88+x,0+y,16,Color);LCD_ShowChar_CH(96+x,0+y,17,Color);<br>        LCD_ShowChar_CH(104+x,0+y,18,Color);LCD_ShowChar_CH(112+x,0+y,19,Color);<br>        LCD_ShowChar_CH(120+x,0+y,20,Color);LCD_ShowChar_CH(128+x,0+y,21,Color);<br>        LCD_ShowChar_CH(136+x,0+y,22,Color);LCD_ShowChar_CH(144+x,0+y,23,Color);<br>        LCD_ShowString(152+x,0+y,”)”,Color);<br>    }<br>    if(chnum==2)//指纹识别模式<br>    {<br>        LCD_ShowChar_CH(0+x,0+y,24,Color);LCD_ShowChar_CH(8+x,0+y,25,Color);<br>        LCD_ShowChar_CH(16+x,0+y,26,Color); LCD_ShowChar_CH(24+x,0+y,27,Color);<br>        LCD_ShowChar_CH(32+x,0+y,28,Color);LCD_ShowChar_CH(40+x,0+y,29,Color);<br>        LCD_ShowChar_CH(48+x,0+y,30,Color);LCD_ShowChar_CH(56+x,0+y,31,Color);<br>        LCD_ShowChar_CH(64+x,0+y,32,Color);LCD_ShowChar_CH(72+x,0+y,33,Color);<br>        LCD_ShowChar_CH(80+x,0+y,34,Color);LCD_ShowChar_CH(88+x,0+y,35,Color);<br>    }<br>}</p>
+<p>以后就可以在主函数中随处调用了：</p>
+<p>LCD_ShowString_CH(40,10,2,BLUE);//x、y轴指定显示位置，字库中对应显示文字，颜色</p>
+<p>附上一张我做的指纹识别系统泄漏图： <img src="http://img.jfz.me/img/2016/stm32-ili932503.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/16/stm32-ili9325/" data-id="cjhdn25jf0047sobtc16nl3b8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-stm32-study-example" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/stm32-study-example/" class="article-date">
+  <time datetime="2016-04-09T03:33:33.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/stm32-study-example/">STM32学习笔记：基础例子</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本例子代码参考了STM32库开发实战指南中的代码，由于使用的板子是尚学STM32F103ZET6，为了配合板上已有资源，也参考了其配套代码。为了便于书写文本，我尽量将代码都写到了一个文件中，这种方式是不推荐的，在做具体工程时最好代码分类管理，使工程逻辑清晰。 现在对板上一些资源说明：板上有两个LED灯，引脚为PE5、PE6，均为ResetBits时点亮。有三个按钮，依次为黄色复位，红色PE4(按下接GND)、红色PA0(按下接3.3V，WAKE UP按钮)。ISP口为靠近电源开关的USB，也是USART1口。USART2口为PA3(Rx)、PA2(Tx)。IPD为高电平中断(按键一边接高电平)，IPU为低电平中断。 <img src="http://img.jfz.me/img/2016/stm32-study-example01.jpg" alt=""> 接下来例举基本操作：</p>
+<h2 id="用GPIO点亮灯-GPIO输出"><a href="#用GPIO点亮灯-GPIO输出" class="headerlink" title="用GPIO点亮灯(GPIO输出)"></a>用GPIO点亮灯(GPIO输出)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的I/O口<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>int main(void)<br>{<br>    GPIO_Config();<br>    while(1)<br>    {<br>    GPIO_SetBits(GPIOE , GPIO_Pin_5); //PE5输出高电平<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6); //PE6输出低电平<br>    Delay(1000000);//1,000,000 六个零以上才有明显闪烁<br>    GPIO_SetBits(GPIOE , GPIO_Pin_6); //PE6输出高电平<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_5); //PE5输出低电平<br>    Delay(1000000);<br>    }<br>}</p>
+<p>实现效果：PE6、PE5两盏灯闪烁。</p>
+<h2 id="按键输入-GPIO输入"><a href="#按键输入-GPIO输入" class="headerlink" title="按键输入(GPIO输入)"></a>按键输入(GPIO输入)</h2><p>#include “stm32f10x.h”</p>
+<p>#define KEY1 GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)   //读PE4(GND)</p>
+<p>#define KEY2 GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)   //读PA0(VCC)</p>
+<p>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的PE5、PE6<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>void Key_GPIO_Config(void)//按键配置，这里用PE4、PE5输入<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);//开启GPIOE的时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4; //设置引脚PE4<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //上拉输入模式(按键按下接GND用这个)<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);</p>
+<pre><code>RCC\_APB2PeriphClockCmd(RCC\_APB2Periph_GPIOA,ENABLE);
+GPIO\_InitStructure.GPIO\_Pin  = GPIO\_Pin\_0;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPD; //下拉输入模式(按键按下接VCC用这个)
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+</code></pre><p>}</p>
+<p>unsigned char KEY1_Scan(void)<br>{<br>    static char key_up0=0;//按键按松开标志<br>    if(KEY1==0)<br>    {<br>    Delay(10000);//延时去抖动<br>        if(KEY1==0)<br>        {<br>            key_up0=1;<br>        }</p>
+<pre><code>}
+if(KEY1==1&amp;&amp;key_up0==1)
+{
+key_up0=0;
+return 1;
+}
+return 0;
+</code></pre><p>}</p>
+<p>unsigned char KEY2_Scan(void)<br>{<br>    static char key_up2=0;//按键按松开标志<br>    if(KEY2==1)<br>    {<br>    Delay(10000);//延时去抖动<br>        if(KEY2==1)<br>        {<br>            key_up2=1;<br>        }<br>    }<br>    if(KEY2==0&amp;&amp;key_up2==1)<br>    {<br>        key_up2=0;<br>        return 1;<br>    }<br>    return 0;<br>}</p>
+<p>unsigned char KEY_Scan(void)<br>{<br>    unsigned char key_code;<br>    if(KEY1_Scan()==1) key_code=1;<br>    else if(KEY2_Scan()==1) key_code=2;<br>    else key_code=0;<br>    return key_code;<br>}</p>
+<p>int main(void)<br>{<br>    int value=0;<br>    GPIO_Config();<br>    Key_GPIO_Config();//配置按键<br>    while(1)<br>    {<br>        value=KEY_Scan();//获取按键值<br>        if(value==1)<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//LED灯PE5反转<br>        else if(value==2)<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//LED灯PE6反转<br>    }<br>}</p>
+<p>实现效果：PE4按下控制PE5灯反转，PA0按下控制PE6灯反转(亮、灭)。</p>
+<h2 id="按键中断-EXTI外部中断操作"><a href="#按键中断-EXTI外部中断操作" class="headerlink" title="按键中断(EXTI外部中断操作)"></a>按键中断(EXTI外部中断操作)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的PE5、PE6<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>static void NVIC_Configuration(void)//NVIC(中断控制器)初始化配置，这里配PE4、PA0<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//把NVIC中断优先级分组设为第1组<br>    NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;//PE4对应EXTI线为EXTI4，填EXTI4_IRQn。(EXTI5~EXTI9使用同一中断向量，则填EXTI9_5_IRQn)<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;//抢占优先级2<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;//响应优先级1<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;<br>    NVIC_Init(&amp;NVIC_InitStructure);//向寄存器写入参数</p>
+<pre><code>NVIC\_InitStructure.NVIC\_IRQChannel = EXTI0\_IRQn;//PA0对应EXTI线为EXTI0，填EXTI0\_IRQn
+NVIC\_InitStructure.NVIC\_IRQChannelPreemptionPriority = 2;//抢占优先级2
+NVIC\_InitStructure.NVIC\_IRQChannelSubPriority = 2;//响应优先级2
+NVIC\_InitStructure.NVIC\_IRQChannelCmd = ENABLE;//IRQ(中断请求)通道使能
+NVIC\_Init(&amp;NVIC\_InitStructure);//向寄存器写入参数
+</code></pre><p>}</p>
+<p>void EXTI_Config(void)//配置PE4、PA0为线中断口，并设置中断优先级<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    EXTI_InitTypeDef EXTI_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO,ENABLE);//配置中断线(PA0)时钟和第二功能AFIO时钟，AFIO指GPIO口的复用功能<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE | RCC_APB2Periph_AFIO,ENABLE);//配置中断线(PE4)时钟和第二功能AFIO时钟</p>
+<pre><code>NVIC_Configuration();//配置NVIC中断控制器
+
+//以下配PE4
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_4; //选定要配置为EXTI线的gpio口和设置其工作模式
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPU;//上拉输入
+GPIO\_Init(GPIOE, &amp;GPIO\_InitStructure);
+//以下配PA0
+GPIO\_InitStructure.GPIO\_Pin  = GPIO\_Pin\_0;//选PA0
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPD;//下拉输入
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配PE4中断线、初始化配置
+GPIO\_EXTILineConfig(GPIO\_PortSourceGPIOE, GPIO_PinSource4); //EXTI中断线(PE5)工作模式配置
+EXTI\_InitStructure.EXTI\_Line = EXTI_Line4;
+EXTI\_InitStructure.EXTI\_Mode = EXTI\_Mode\_Interrupt;
+EXTI\_InitStructure.EXTI\_Trigger = EXTI\_Trigger\_Falling; //下降沿中断
+EXTI\_InitStructure.EXTI\_LineCmd = ENABLE;
+EXTI\_Init(&amp;EXTI\_InitStructure);
+//以下配PA0中断线、初始化配置
+GPIO\_EXTILineConfig(GPIO\_PortSourceGPIOA, GPIO_PinSource0); //EXTI中断线(PA0)工作模式配置
+EXTI\_InitStructure.EXTI\_Line = EXTI_Line0;
+EXTI\_InitStructure.EXTI\_Mode = EXTI\_Mode\_Interrupt;
+EXTI\_InitStructure.EXTI\_Trigger = EXTI\_Trigger\_Rising; //上升沿中断
+EXTI\_InitStructure.EXTI\_LineCmd = ENABLE;
+EXTI\_Init(&amp;EXTI\_InitStructure);
+</code></pre><p>}</p>
+<p>int main(void)<br>{<br>    GPIO_Config();//LED(PE5、PE6)配置<br>    EXTI_Config(); //外部中断EXTI配置，这里是选PE4、PA0<br>    while(1)//等待中断<br>    {<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为EXTI0_IRQHandler(void)和EXTI4_IRQHandler(void)函数：</p>
+<p>void EXTI0_IRQHandler(void)<br>{<br>    Delay(10000);//延时消抖<br>    if(EXTI_GetITStatus(EXTI_Line0) != RESET)//检查指定的EXTI0线路触发请求发生与否<br>    {<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//控制LED的PE6翻转<br>    }<br>    EXTI_ClearITPendingBit(EXTI_Line0);//清除EXTI0线路挂起位<br>}</p>
+<p>void EXTI4_IRQHandler(void)<br>{<br>    Delay(10000);//延时消抖<br>    if(EXTI_GetITStatus(EXTI_Line4) != RESET)//确保是否产生了EXTI4 Line中断<br>    {<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//控制LED的PE5翻转<br>    }<br>    EXTI_ClearITPendingBit(EXTI_Line4);//清除中断标志位<br>}</p>
+<p>实现效果：PE4按下触发中断，控制PE5灯反转；PA0按下触发中断，控制PE6灯反转(亮、灭)。</p>
+<h2 id="串口打印-用USART1"><a href="#串口打印-用USART1" class="headerlink" title="串口打印(用USART1)"></a>串口打印(用USART1)</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);//配置串口1时钟</p>
+<pre><code>//以下串口GPIO端口配置
+//以下配置串口1的Tx(PA9)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_9;//PA9为Tx
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_AF_PP;//复用推挽输出
+GPIO\_InitStructure.GPIO\_Speed = GPIO\_Speed\_50MHz;
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的Rx(PA10)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_10;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IN_FLOATING;//浮空输入模式，Rx不需配Speed
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的模式mode
+USART\_InitStructure.USART\_BaudRate = bound;//USART1的波特率
+USART\_InitStructure.USART\_WordLength = USART\_WordLength\_8b;//串口传输的字长
+USART\_InitStructure.USART\_StopBits = USART\_StopBits\_1;//停止位1位
+USART\_InitStructure.USART\_Parity = USART\_Parity\_No;//不设置奇偶校验位
+USART\_InitStructure.USART\_HardwareFlowControl = USART\_HardwareFlowControl\_None;//不用硬件流控制
+USART\_InitStructure.USART\_Mode = USART\_Mode\_Rx | USART\_Mode\_Tx;//双线全双工。Rx、Tx都开启
+USART\_Init(USART1, &amp;USART\_InitStructure);//向寄存器写入配置
+USART_Cmd(USART1, ENABLE); //使能串口1
+</code></pre><p>}</p>
+<p>int main(void)<br>{<br>    int a=0;<br>    USART1_Config(115200);<br>    while(1)<br>    {<br>    printf(“\r\n Sandeepin poi %d \r\n”,a);<br>    a++;<br>    Delay(2000000);<br>    Delay(2000000);<br>    }<br>}</p>
+<p>实现效果：可在串口调试助手中看到Sandeepin poi 0、Sandeepin poi 1……等信息。</p>
+<h2 id="串口中断-用USART1"><a href="#串口中断-用USART1" class="headerlink" title="串口中断(用USART1)"></a>串口中断(用USART1)</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);//配置串口1时钟</p>
+<pre><code>//以下串口GPIO端口配置
+//以下配置串口1的Tx(PA9)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_9;//PA9为Tx
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_AF_PP;//复用推挽输出
+GPIO\_InitStructure.GPIO\_Speed = GPIO\_Speed\_50MHz;
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的Rx(PA10)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_10;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IN_FLOATING;//浮空输入模式，Rx不需配Speed
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的模式mode
+USART\_InitStructure.USART\_BaudRate = bound;//USART1的波特率
+USART\_InitStructure.USART\_WordLength = USART\_WordLength\_8b;//串口传输的字长
+USART\_InitStructure.USART\_StopBits = USART\_StopBits\_1;//停止位1位
+USART\_InitStructure.USART\_Parity = USART\_Parity\_No;//不设置奇偶校验位
+USART\_InitStructure.USART\_HardwareFlowControl = USART\_HardwareFlowControl\_None;//不用硬件流控制
+USART\_InitStructure.USART\_Mode = USART\_Mode\_Rx | USART\_Mode\_Tx;//双线全双工。Rx、Tx都开启
+USART\_Init(USART1, &amp;USART\_InitStructure);//向寄存器写入配置
+USART_Cmd(USART1, ENABLE); //使能串口1
+
+USART\_ITConfig(USART1, USART\_IT_RXNE, ENABLE);//开启中断
+</code></pre><p>}</p>
+<p>void NVIC_Configuration(void)//NVIC(中断控制器)初始化配置，这里配USART1<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);//把NVIC中断优先级分组设为第0组<br>    //以下使能串口1中断<br>    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//抢占优先级1<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;//响应优先级0<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;//IRQ(中断请求)通道使能<br>    NVIC_Init(&amp;NVIC_InitStructure);//根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器USART1<br>}</p>
+<p>int main(void)<br>{<br>    USART1_Config(115200);<br>    NVIC_Configuration();<br>    while(1)<br>    {<br>        Delay(2000000);<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为USART1_IRQHandler(void)函数：</p>
+<p>USART1_IRQHandler(void)<br>{<br>    unsigned char code;<br>    if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)<br>    {<br>        code=USART_ReceiveData(USART1);<br>        printf(“%c”,code);//将接受到的数据直接返回打印<br>    }<br>}</p>
+<p>实现效果：在串口调试助手中输入一系列字符，STM32接收到后直接将收到字符原样打印出来。</p>
+<h2 id="定时器-用TIM3"><a href="#定时器-用TIM3" class="headerlink" title="定时器(用TIM3)"></a>定时器(用TIM3)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void LED_GPIO_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_5;//PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);//PE5初始输出高<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);//PE6初始输出低<br>}</p>
+<p>void TIME_NVIC_Configuration(void)//TIM3中断优先级配置<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置NVIC中断分组2<br>    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3中断<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;//抢占优先级0<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;//响应优先级3<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能<br>    NVIC_Init(&amp;NVIC_InitStructure);//初始化外设<br>}</p>
+<p>void TIME_Configuration(void)<br>{<br>    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;<br>    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //定时器TIM3时钟使能<br>    TIM_TimeBaseStructure.TIM_Period = 5000; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值，计数到5000为500ms<br>    TIM_TimeBaseStructure.TIM_Prescaler =(7200-1);//设置用来作为TIMx时钟频率除数的预分频值<br>    TIM_TimeBaseStructure.TIM_ClockDivision = 0; //设置时钟分割:TDTS = Tck_tim<br>    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //TIM向上计数模式<br>    TIM_TimeBaseInit(TIM3, &amp;TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位<br>    TIM_ITConfig(TIM3,TIM_IT_Update|TIM_IT_Trigger,ENABLE);//使能、失能指定的TIM中断<br>    TIM_Cmd(TIM3, ENABLE);//使能TIMx外设<br>}</p>
+<p>int main(void)<br>{<br>    LED_GPIO_Config();//开LED的GPIO<br>    TIME_NVIC_Configuration();//TIM3定时器中断配置<br>    TIME_Configuration();//TIM3定时器配置<br>    while(1)<br>    {<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为TIM3_IRQHandler(void)函数：</p>
+<p>void TIM3_IRQHandler(void)<br>{<br>    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) //检查指定的TIM中断发生与否<br>    {<br>        TIM_ClearITPendingBit(TIM3, TIM_IT_Update ); //清除TIMx的中断待处理位<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//控制LED灯PE5翻转<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//控制LED灯PE6翻转<br>    }<br>}</p>
+<p>实现效果：每隔500ms后LED灯PE5、PE6翻转</p>
+<h2 id="SysTick-系统滴答定时器"><a href="#SysTick-系统滴答定时器" class="headerlink" title="SysTick(系统滴答定时器)"></a>SysTick(系统滴答定时器)</h2><p>#include “stm32f10x.h”<br>u32 TimingDelay;</p>
+<p>void LED_GPIO_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_5;//PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);//PE5初始输出高<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);//PE6初始输出低<br>}</p>
+<p>void NVIC_Configuration(void)<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断组为2<br>    NVIC_InitStructure.NVIC_IRQChannel = SysTick_IRQn;//中断线<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; //抢占优先级为2<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;//响应优先级为0<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //允许SysTick_IRQn中断<br>    NVIC_Init(&amp;NVIC_InitStructure);<br>}</p>
+<p>void SysTick_Init(void)<br>{<br>    /* SystemFrequency / 1000    1ms中断一次<br>     * SystemFrequency / 100000  10us中断一次，分析：ticks=SystemFrequency / 100000=720，T=ticks/f，f=72000000，T=720/72=10us<br>     * SystemFrequency / 1000000 1us中断一次<em>/<br>    while(SysTick_Config( SystemCoreClock / 1000));//Systick 配置延时n</em>ms。输入的参数为两个中断之间的脉冲数。<br>}</p>
+<p>void Delay(u32 nTime)//用Systick延时<br>{<br>    TimingDelay = nTime;<br>    while(TimingDelay != 0);<br>}</p>
+<p>int main(void)<br>{<br>    SysTick_Init();<br>    LED_GPIO_Config();<br>    NVIC_Configuration();//中断配置<br>    while(1)<br>    {<br>    GPIO_SetBits(GPIOE,GPIO_Pin_6);<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_5);<br>    Delay(200);//Systick 配置延时200<em>ms<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);<br>    Delay(200);//Systick 配置延时200</em>ms<br>    }<br>}</p>
+<p>在stm32f10x_it.c中找SysTick_Handler(void)函数，填入如下内容：</p>
+<p>extern u32 TimingDelay;<br>void SysTick_Handler(void)<br>{<br>    if (TimingDelay != 0x00)<br>    {<br>    TimingDelay–;<br>    }<br>}</p>
+<p>实现效果：每隔200ms后LED灯PE5、PE6翻转。</p>
+<h2 id="TFTLCD显示-2-4寸液晶ILI9325"><a href="#TFTLCD显示-2-4寸液晶ILI9325" class="headerlink" title="TFTLCD显示(2.4寸液晶ILI9325)"></a>TFTLCD显示(2.4寸液晶ILI9325)</h2><p>此部分代码复杂，参见我的另一篇文章<a href="http://img.jfz.me/stm32-ili9325.html" target="_blank" rel="noopener">《STM32操纵2.4寸液晶(ILI9325)》</a>。</p>
+<h2 id="调用DS18B20温度传感器"><a href="#调用DS18B20温度传感器" class="headerlink" title="调用DS18B20温度传感器"></a>调用DS18B20温度传感器</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”</p>
+<p>//DS18B20-DATA引脚为PC2</p>
+<p>#define DS18B20_DQ_OUT_Low GPIO_ResetBits(GPIOC,GPIO_Pin_2)  //数据端口PC2</p>
+<p>#define DS18B20_DQ_OUT_High GPIO_SetBits(GPIOC,GPIO_Pin_2)  //数据端口PC2</p>
+<p>#define DS18B20_DQ_IN GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)   //数据端口PC2</p>
+<p>void USART1_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    USART_InitStructure.USART_BaudRate = 9600;<br>    USART_InitStructure.USART_WordLength = USART_WordLength_8b;<br>    USART_InitStructure.USART_StopBits = USART_StopBits_1;<br>    USART_InitStructure.USART_Parity = USART_Parity_No ;<br>    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;<br>    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;<br>    USART_Init(USART1, &amp;USART_InitStructure);<br>    USART_Cmd(USART1, ENABLE);<br>}</p>
+<p>int fputc(int ch, FILE *f)<br>{<br>    USART_SendData(USART1, (unsigned char) ch);<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void Delay_us(u32 ntimes)<br>{<br>    u32 flag;<br>    SysTick-&gt;LOAD=9*ntimes; //时间加载<br>    SysTick-&gt;VAL=0;        //清空计数器<br>    SysTick-&gt;CTRL=0x00000001; //bit2清空,选择外部时钟HCLK/8, bit0位清空,开启倒计时<br>    do<br>    {<br>        flag=SysTick-&gt;CTRL;<br>    }<br>    while(flag&amp;0x01&amp;&amp;!(flag&amp;(1&lt;&lt;16)));//等待时间到达<br>    SysTick-&gt;CTRL=0;//关闭计数器<br>}</p>
+<p>void DS18B20_GPIO_Config(void)//DS18B20的GPIO配置<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC, ENABLE );//使能PORTA口时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2; //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//复用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOC,GPIO_Pin_2);<br>}</p>
+<p>void DS18B20_Mode_IPU(void)//使DS18B20-DATA引脚变为输入模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;    //GPIO<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;  //复用推挽输出<br>    GPIO_Init(GPIOC, &amp;GPIO_InitStructure);</p>
+<p>}</p>
+<p>void DS18B20_Mode_Out(void)//使DS18B20-DATA引脚变为输出模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;    //GPIO<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;  //复用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOC, &amp;GPIO_InitStructure);</p>
+<p>}</p>
+<p>void DS18B20_Rst(void)//主机给从机发送复位脉冲<br>{<br>    DS18B20_Mode_Out(); //IO设置为推挽输出<br>    DS18B20_DQ_OUT_Low; //产生至少480us的低电平复位信号<br>    Delay_us(480);<br>    DS18B20_DQ_OUT_High; //在产生复位信号后，需将总线拉高<br>    Delay_us(15);<br>}</p>
+<p>u8 DS18B20_Answer_Check(void) //检测从机给主机返回的应答脉冲，从机接收到主机的复位信号后，会在15~60us后给主机发一个应答脉冲。0：成功1：失败<br>{<br>    u8 delay=0;<br>    DS18B20_Mode_IPU(); // 主机设置为上拉输入<br>    //等待应答脉冲（一个60~240us的低电平信号 ）的到来<br>    //如果100us内，没有应答脉冲，退出函数，注意：从机接收到主机的复位信号后，会在15~60us后给主机发一个存在脉冲<br>    while (DS18B20_DQ_IN&amp;&amp;delay&lt;100)<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    if(delay&gt;=100)//经过100us后，如果没有应答脉冲，退出函数<br>        return 1;<br>    else<br>        delay=0;<br>    while (!DS18B20_DQ_IN&amp;&amp;delay&lt;240)//有应答脉冲，且存在时间不超过240us<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    if(delay&gt;=240)<br>        return 1;<br>    return 0;<br>}</p>
+<p>u8 DS18B20_Read_Bit(void) //从DS18B20读取一个位 返回值：1/0<br>{<br>    u8 data;<br>    DS18B20_Mode_Out();<br>    DS18B20_DQ_OUT_Low; //读时间的起始：必须由主机产生 &gt;1us &lt;15us 的低电平信号<br>    Delay_us(2);<br>    DS18B20_DQ_OUT_High;<br>    Delay_us(12);<br>    DS18B20_Mode_IPU();//设置成输入，释放总线，由外部上拉电阻将总线拉高<br>    if(DS18B20_DQ_IN)<br>        data=1;<br>    else<br>        data=0;<br>    Delay_us(50);<br>    return data;<br>}</p>
+<p>u8 DS18B20_Read_Byte(void)//从DS18B20读取一个字节 返回值：读到的数据<br>{<br>    u8 i,j,dat;<br>    dat=0;<br>    for(i=0; i&lt;8; i++)<br>    {<br>        j = DS18B20_Read_Bit();<br>        dat = (dat) | (j&lt;&lt;i);<br>    }<br>    return dat;<br>}</p>
+<p>void DS18B20_Write_Byte(u8 dat)//写一个字节到DS18B20<br>{<br>    u8 j;<br>    u8 testb;<br>    DS18B20_Mode_Out();//SET PA0 OUTPUT;<br>    for (j=1;j&lt;=8;j++)<br>    {<br>        testb=dat&0x01;<br>        dat=dat&gt;&gt;1;<br>        if (testb)<br>        {<br>            DS18B20_DQ_OUT_Low;// Write 1<br>            Delay_us(10);<br>            DS18B20_DQ_OUT_High;<br>            Delay_us(50);<br>        }<br>        else<br>        {<br>            DS18B20_DQ_OUT_Low;// Write 0<br>            Delay_us(60);<br>            DS18B20_DQ_OUT_High;   ///释放总线<br>            Delay_us(2);<br>        }<br>    }<br>}</p>
+<p>u8 DS18B20_Init(void)//初始化DS18B20的IO口 DQ 同时检测DS的存在 返回1:不存在 返回0:存在<br>{<br>    DS18B20_GPIO_Config();<br>    DS18B20_Rst();<br>    return DS18B20_Answer_Check();<br>}</p>
+<p>short DS18B20_Get_Temp(void)//从ds18b20得到温度值 精度：0.1C 返回值：温度值 （-550~1250）<br>{</p>
+<pre><code>u8 flag;
+u8 TL,TH;
+short Temperature;
+float Temperature1;
+DS18B20_Rst();
+DS18B20\_Answer\_Check();
+DS18B20\_Write\_Byte(0xcc);// skip rom
+DS18B20\_Write\_Byte(0x44);// ds1820 start convert
+DS18B20_Rst();
+DS18B20\_Answer\_Check();
+DS18B20\_Write\_Byte(0xcc);// skip rom
+DS18B20\_Write\_Byte(0xbe);// convert
+TL=DS18B20\_Read\_Byte(); // LSB
+TH=DS18B20\_Read\_Byte(); // MSB
+if( TH&amp;0xfc)
+{
+    flag=1;
+    Temperature=(TH&lt;&lt;8)|TL;
+    Temperature1=(~ Temperature)+1;
+    Temperature1*=0.0625;
+}
+else
+{
+    flag=0;
+    Temperature1=((TH&lt;&lt;8)|TL)*0.0625;
+}
+return Temperature1;
+</code></pre><p>} </p>
+<p>int main(void)<br>{<br>    USART1_Config();<br>    while(DS18B20_Init())//初始化兼检测DS18B20<br>    {<br>        printf(“DS18B20 Link ERROR \r\n!”);<br>        Delay_us(500000);<br>    }<br>    printf(“DS18B20 Link OK \r\n!”);<br>    while(1)<br>    {<br>        printf(“Temperature: %.2f \r\n”,DS18B20_Get_Temp());<br>        Delay_us(500000);<br>    }<br>}</p>
+<p>实现效果：在PC2接温度传感器，通过串口1打印出温度值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/stm32-study-example/" data-id="cjhdn25ln006lsobtw0o50usa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-stm32-study-mdk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/08/stm32-study-mdk/" class="article-date">
+  <time datetime="2016-04-08T03:30:15.000Z" itemprop="datePublished">2016-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/08/stm32-study-mdk/">STM32学习笔记：简介及MDK入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是Sandeepin学习《STM32库开发实战指南》所做的笔记，主要方便自己以后上手STM32方便，因此很多东西点到为止，如果想正式学STM32，还是推荐直接买书看，看本笔记难免有知识漏洞。本文适合临时上手用STM32的新手，或者对STM32想做大致了解的朋友。部分资料参考了《STM32自学笔记》及网上诸多文章，这里不一一列举了。顺便说说，我用的板子是STM32F103ZET6，因此文中提到的文件配置及以后笔记中的例程均在此平台下跑通。 <img src="http://img.jfz.me/img/2016/stm32-study-mdk01.jpg" alt=""></p>
+<h2 id="STM32基础"><a href="#STM32基础" class="headerlink" title="STM32基础"></a>STM32基础</h2><p>编程语言：C、C++、Java 嵌入式平台：ARM、MIPS、DSP 协议：USB、TCP/IP、SPI、I2C 操作系统：实时μC/OS、非实时Linux STM32：Cortex-M3内核，有外设ADC、串口UART、定时器TIM等。 CMSIS标准(Cortex Microcontroller Software Interface Standard)，实际是新建了一个软件抽象层。 STM32库编程：Libraries文件夹下是驱动库的源代码及启动文件。</p>
+<h3 id="主要文件简介"><a href="#主要文件简介" class="headerlink" title="主要文件简介"></a>主要文件简介</h3><ol>
+<li><p>core_cm3.c文件：作用是为采用Cortex-M3核设计SoC的芯片商设计的芯片外设提供一个进入CM3内核的接口。</p>
+</li>
+<li><p>system_stm32f10x.c文件：该文件的功能是设置系统时钟和总线时钟。我们还要通过CM3核的核内寄存器来对8M的时钟进行倍频、分频，或者使用芯片内部的时钟。所有的外设都与时钟的频率有关。</p>
+</li>
+<li><p>stm32f10x.h文件：它包含了STM32中寄存器地址和结构体类型定义，在使用到STM32固件库的地方都要包含这个头文件。</p>
+</li>
+<li><p>启动文件：Libraries\CMSIS\Core\CM3\startup\arm文件夹下是由汇编语言编写的系统启动文件，不同的文件对应不同的芯片型号。文件名的英文缩写的意义如下： xl：超高密度（容量）产品，stm32f101/103系列。 hd：高密度产品，Flash大于128KB。 启动文件的作用：启动文件是任何处理器在上电复位之后最先运行的一段汇编程序。初始化堆栈指针SP。初始化程序计数器指针PC。设置堆、栈的大小。设置异常向量表的入口地址。配置外部SRAM作为数据存储器（这个由用户配置，一般的开发板没有外部SRAM）。设置C库的分支入口__main。</p>
+</li>
+<li><p>STM32F10x_StdPeriph_Driver文件夹：Libraries\STM32F10x_StdPeriph_Driver文件夹下有inc（include的缩写）和src（source的缩写）这两个文件夹，这都属于CMSIS的设备外设函数部分。如针对模数转换（ADC）外设，在src文件夹下有一个stm32f10x_adc.c源文件，在inc文件夹下有一个stm32f10x_adc.h头文件，若我们开发的工程中用到了STM32内部的ADC，则至少要把这两个文件包含到工程里。这两个文件夹中还有一个很特别的misc.c文件，这个文件提供了外设对内核中的NVIC（中断向量控制器）的访问函数，在配置中断时，我们必须把这个文件添加到工程中。</p>
+</li>
+<li><p>stm32f10x_it.c和stm32f10x_conf.h文件：在库目录的Project\STM32F10x_StdPeriph_Template目录下，存放了官方的一个库工程模板，我们在用库建立一个完整的工程时，还需要添加这个目录下的stm32f10x_it.c、stm32f10x_it.h和stm32f10x_conf.h这三个文件。stm32f10x_it. c是专门用来编写中断服务函数的。stm32f10x_conf. h文件被包含进stm32f10x.h文件，是用来配置使用了什么外设的头文件，用这个头文件我们可以很方便地增加或删除上面Driver目录下的外设驱动函数库。</p>
+</li>
+</ol>
+<h2 id="MDK入门："><a href="#MDK入门：" class="headerlink" title="MDK入门："></a>MDK入门：</h2><h3 id="新建工程教程："><a href="#新建工程教程：" class="headerlink" title="新建工程教程："></a>新建工程教程：</h3><p>MDK这里用的版本是V4.12，在新建工程文件夹中，新建5个文件夹，分别为USER、FWlib、CMSIS、Output、Listing。 USER用来存放工程文件和用户层代码，包括主函数main.c。 FWlib用来存放STM32库里面的inc和src这两个文件夹，这两个文件包含了芯片上的所有驱动，这两个文件夹下的文件我们不需要修改。 CMSIS用来存放库为我们自带的启动文件和一些位于CMSIS层的文件。 Output文件夹用来保存软件编译后输出的文件。 Listing用来保存编译后生成的链接文件。 把库\Libraries\STM32F10x_StdPeriph_Driver文件夹下的inc跟src这两个文件夹复制到FWlib文件夹中。 把库文件夹Project\STM32F10x_StdPeriph_Template下的main.c、stm32f10x_conf.h、stm32f10x_it.h和stm32f10x_it.c复制到USER目录下。 将库文件\Libraries\CMSIS\CM3文件夹下的全部文件复制到CMSIS文件夹中。Startup\arm里面把startup_stm32f10x_hd.s启动文件添加到我们的工程中。system.stm32f10x.h、system.stm32f10x.c、stm32f10x.h这几个位于CMSIS层的文件也是放到CMSIS文件夹中。 回到我们的工程中，选中Target右键选中Add Group选项新建4个组，分别命名为STARTCODE、USER、FWlib、CMSIS。 在STARTCODE组里面添加startup_stm32f10x_hd.s启动文件。 在USER组里面添加main.c和stm32f10x_it.c这两个文件。 【待补充】 在Define文本框里面添加两个宏定义：USE_STDPERIPH_DRIVER, STM32F10X_HD, 在建立工程时需要注意的是： 1）因为我们用的是ST官方的新版本库，与编译器自带的库会存在不兼容性，所以我们需要修改库的搜索路径。 2）这个工程我们是设置成软件仿真，如果是用开发板加J-LINK调试的话，还需要在开发环境中做修改。</p>
+<h3 id="编译按钮说明："><a href="#编译按钮说明：" class="headerlink" title="编译按钮说明："></a>编译按钮说明：</h3><p>Translate按钮：就是编译当下修改过的文件，即检查一下有没有语法错误，既不链接库文件，也不会生成可执行文件。 Build按钮：就是编译当下修改过的工程，它包含了语法检查、链接动态库文件、生成可执行文件。 Rebuild按钮：即重新编译整个工程，与Build这个按钮实现的功能是一样的，但有所不同的是它是重新编译整个工程的所有文件，耗时巨大。</p>
+<h3 id="下载方式："><a href="#下载方式：" class="headerlink" title="下载方式："></a>下载方式：</h3><p>1.J-LINK下载：MDK工具栏中的Load按钮就可将编译好的程序下载到开发板的Flash。 2.串口下载：1）给开发板供电（DC5V），拔掉J-LINK，插上串口线（注意是两头都是母的交叉线），接的是串口1，串口2是下载不了程序的，再将BOOT0接到VCC。 串口下载软件是mcuisp。 设置波特率为115200。可执行文件（hex文件）都在工程目录下Output这个文件下。</p>
+<h2 id="流水灯例程分析："><a href="#流水灯例程分析：" class="headerlink" title="流水灯例程分析："></a>流水灯例程分析：</h2><p>想要控制LED灯，当然是通过控制STM32芯片的I/O引脚电平的高低来实现。 在STM32芯片上，I/O引脚可以被软件设置成各种不同的功能，如输入或输出，所以又被称为GPIO（General-Purpose I/O）。 而GPIO引脚又被分为GPIOA、GPIOB、……、GPIOG不同的组，每组端口分为0～15共16个不同的引脚，对于不同型号的芯片，端口的组和引脚的数量不同。 控制LED的步骤就自然整理出来了： 1）GPIO端口引脚多——就要选定需要控制的特定引脚。 2）GPIO功能如此丰富——配置需要的特定功能。 3）控制LED的亮和灭——设置GPIO输出电压的高低。 要控制GPIO端口，就要涉及控制相关的寄存器。 寄存器可以分为以下4类，其功能简要概括如下： 1）配置寄存器：选定GPIO的特定功能，最基本的如选择作为输入还是输出端口。 2）数据寄存器：保存了GPIO的输入电平或将要输出的电平。 3）位控制寄存器：设置某引脚的数据为1或0，控制输出的电平。 4）锁定寄存器：设置某锁定引脚后，就不能修改其配置。 关于寄存器名称如GPIOx_CRL、GPIOx_CRH上的标号x，其取值可以为图中括号内的值（A……E），表示这些寄存器也跟GPIO一样，是分组的。 端口配置高寄存器（GPIOx_CRH）:其中x=A~E CNFy[1:0]位，其中 y=8~15：在输入模式时MODE=00： 00 模拟输入 01 浮空输入模式（复位后的状态） 10 上拉、下拉输入模式 11 保留 MODE&gt;00时： 00 通用推挽输出模式 01 通用开漏输出模式 10 服用功能推挽输出模式 11 服用开漏输出模式 MODEy[1:0]位，其中y=8~15： 00 输入模式（复位后的状态） 01 输出模式，最大10MHz 10 输出模式，最大2MHz 11 输出模式，最大50MHz 举例说明对CRH寄存器的配置：当将GPIOx_CRH寄存器的第28至29位设置为参数“11”，并将第30至31位设置为参数“00”时，则把x端口第15个引脚的模式配置成了“输出的最大速度为50MHz的通用推挽输出模式”， 端口位设置、清除寄存器（GPIOx_BSRR）,其中x=A~E: 位数31~16：清除端口x的位，0表示对应位不产生影响。1表示清除对应位为0。 位数15~0：设置端口x的位，0表示对应位不产生影响。1表示设置对应位为1。 同时设置了清除、设置，设置优先。 例如：对x端口的寄存器GPIOx_BSRR的第0位（BS0）进行写1，则x端口的第0引脚被设置为1，输出高电平，若要令第0引脚再输出低电平，则需要向GPIOx_BSRR的第16位（BR0）写1。 地址映射： Cortex-M3有32根地址线，所以它的寻址空间大小为2^32 bit=4 GB。ARM公司设计时，预先把这4 GB的寻址空间大致地分配好了。它把从0x40000000至0x5FFFFFFF（512 MB）的地址分配给片上外设。 以后我们写代码的时候，如果要修改GPIO的寄存器，就可以用如下的方式来实现。 GPIO_TypeDef*GPIOx；//定义一个GPIO_TypeDef型结构体指针GPIOx GPIOx=GPIOA；//把指针地址设置为宏GPIOA地址 GPIOx-＞CRL=0xffffffff；//通过指针访问并修改GPIOA_CRL寄存器 但这只是库开发的皮毛，而且实际上我们并不是这样使用库的，库为我们提供了更简单的开发方式。</p>
+<h2 id="STM32的时钟系统"><a href="#STM32的时钟系统" class="headerlink" title="STM32的时钟系统"></a>STM32的时钟系统</h2><p>STM32芯片为了实现低功耗，设计了一个功能完善但却非常复杂的时钟系统。普通的MCU一般只要配置好GPIO的寄存器就可以使用了，但STM32还有一个步骤，就是开启外设时钟。 从时钟频率来说，又分为高速时钟和低速时钟，高速时钟是提供给芯片主体的主时钟，而低速时钟只是提供给芯片中的RTC（实时时钟）及独立看门狗使用。从芯片角度来说，时钟源分为内部时钟与外部时钟源，内部时钟是由芯片内部RC振荡器产生的，起振较快，所以时钟在芯片刚上电的时候，默认使用内部高速时钟。而外部时钟信号是由外部的晶振输入的，在精度和稳定性上都有很大优势，所以上电之后我们再通过软件配置，转而采用外部时钟信号。 STM32有以下4个时钟源： 1）高速外部时钟（HSE）：以外部晶振作为时钟源，晶振频率可取范围为4～16 MHz，我们一般采用8 MHz的晶振。 2）高速内部时钟（HSI）：由内部RC振荡器产生，频率为8 MHz，但不稳定。 3）低速外部时钟（LSE）：以外部晶振作为时钟源，主要提供给实时时钟模块，所以一般采用32.768 kHz。配套STM32实验板上用的是32.768 kHz、6p负载规格的晶振。 4）低速内部时钟（LSI）：由内部RC振荡器产生，也主要提供给实时时钟模块，频率大约为40 kHz。 GPIO外设是挂载在APB2总线上的，APB2的时钟是APB2预分频器的输出，我们就可以得到GPIO外设的时钟也等于HCLK，即72 MHz。 与我们开发密切相关的时钟： 1）SYSCLK：系统时钟，是STM32大部分器件的时钟来源。 2）HCLK：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/08/stm32-study-mdk/" data-id="cjhdn25kl005esobtpme1otc4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

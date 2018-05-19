@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>STM32操纵DHT11湿度传感器 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网上的例子不是说不能用，而是各种坑爹引用，搞得想移植都要改半天。现贴出一份经过Sandeepin精心整理的、清晰明了的代码供大家直观学习。 其实DHT11传感器不仅可测湿度，温度也能测，所以代码中包括了两种数据。  不多废话，直接上代码： #include “stm32f10x.h” #include “stdio.h” #define HIGH  1 #define LOW   0 #defin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32操纵DHT11湿度传感器">
+<meta property="og:url" content="http://yoursite.com/2016/04/25/stm32-dht11/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="网上的例子不是说不能用，而是各种坑爹引用，搞得想移植都要改半天。现贴出一份经过Sandeepin精心整理的、清晰明了的代码供大家直观学习。 其实DHT11传感器不仅可测湿度，温度也能测，所以代码中包括了两种数据。  不多废话，直接上代码： #include “stm32f10x.h” #include “stdio.h” #define HIGH  1 #define LOW   0 #defin">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-dht11.jpg">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STM32操纵DHT11湿度传感器">
+<meta name="twitter:description" content="网上的例子不是说不能用，而是各种坑爹引用，搞得想移植都要改半天。现贴出一份经过Sandeepin精心整理的、清晰明了的代码供大家直观学习。 其实DHT11传感器不仅可测湿度，温度也能测，所以代码中包括了两种数据。  不多废话，直接上代码： #include “stm32f10x.h” #include “stdio.h” #define HIGH  1 #define LOW   0 #defin">
+<meta name="twitter:image" content="http://img.jfz.me/img/2016/stm32-dht11.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-stm32-dht11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/25/stm32-dht11/" class="article-date">
+  <time datetime="2016-04-25T03:51:49.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      STM32操纵DHT11湿度传感器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上的例子不是说不能用，而是各种坑爹引用，搞得想移植都要改半天。现贴出一份经过Sandeepin精心整理的、清晰明了的代码供大家直观学习。 其实DHT11传感器不仅可测湿度，温度也能测，所以代码中包括了两种数据。 <img src="http://img.jfz.me/img/2016/stm32-dht11.jpg" alt=""> 不多废话，直接上代码：</p>
+<p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”</p>
+<p>#define HIGH  1</p>
+<p>#define LOW   0</p>
+<p>#define DHT11_CLK     RCC_APB2Periph_GPIOC</p>
+<p>#define DHT11_PIN     GPIO_Pin_2</p>
+<p>#define DHT11_PORT    GPIOC</p>
+<p>#define DHT11_DATA_IN()   GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2) //读取引脚的电平<br>//带参宏，可以像内联函数一样使用,输出高电平或低电平</p>
+<p>#define DHT11_DATA_OUT(a)  if (a)  \<br>                    GPIO_SetBits(GPIOC,GPIO_Pin_2);\<br>                    else        \<br>                    GPIO_ResetBits(GPIOC,GPIO_Pin_2)</p>
+<p>u32 TimingDelay;</p>
+<p>typedef struct<br>{<br>    uint8_t  humi_int;  //湿度的整数部分<br>    uint8_t  humi_deci; //湿度的小数部分<br>    uint8_t  temp_int;  //温度的整数部分<br>    uint8_t  temp_deci; //温度的小数部分<br>    uint8_t  check_sum; //校验和<br>}DHT11_Data_TypeDef;</p>
+<p>void Delay_us(u32 ntimes)<br>{<br>    u32 flag;<br>    SysTick-&gt;LOAD=9*ntimes; //时间加载<br>    SysTick-&gt;VAL=0; //清空计数器<br>    SysTick-&gt;CTRL=0x00000001; //bit2清空,选择外部时钟HCLK/8, bit0位清空,开启倒计时<br>    do<br>    {<br>        flag=SysTick-&gt;CTRL;<br>    }<br>    while(flag&amp;0x01&amp;&amp;!(flag&amp;(1&lt;&lt;16)));//等待时间到达<br>    SysTick-&gt;CTRL=0;//关闭计数器<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    USART_InitStructure.USART_BaudRate = bound;<br>    USART_InitStructure.USART_WordLength = USART_WordLength_8b;<br>    USART_InitStructure.USART_StopBits = USART_StopBits_1;<br>    USART_InitStructure.USART_Parity = USART_Parity_No;<br>    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;<br>    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;<br>    USART_Init(USART1, &amp;USART_InitStructure);<br>    USART_Cmd(USART1, ENABLE);<br>}</p>
+<p>void DHT11_GPIO_Config(void)//DHT11的GPIO配置<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(DHT11_CLK, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>    GPIO_ResetBits(DHT11_PORT, GPIO_Pin_2);<br>}</p>
+<p>static void DHT11_Mode_IPU(void)//使DHT11-DATA引脚变为上拉输入模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>}</p>
+<p>static void DHT11_Mode_Out_PP(void)//使DHT11-DATA引脚变为推挽输出模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    GPIO_InitStructure.GPIO_Pin = DHT11_PIN;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(DHT11_PORT, &amp;GPIO_InitStructure);<br>}</p>
+<p>static uint8_t Read_Byte(void)//从DHT11读取一个字节，MSB先行<br>{<br>    uint8_t i, temp=0;<br>    for(i=0;i&lt;8;i++)<br>    {<br>        while(DHT11_DATA_IN()==Bit_RESET);//每bit以50us低电平标置开始，轮询直到从机发出 的50us 低电平 结束<br>        //DHT11 以26~28us的高电平表示“0”，以70us高电平表示“1”，<br>        //通过检测 x us后的电平即可区别这两个状 ，x 即下面的延时<br>        Delay_us(40); //延时x us 这个延时需要大于数据0持续的时间即可<br>        if(DHT11_DATA_IN()==Bit_SET)// x us后仍为高电平表示数据“1”<br>        {<br>            while(DHT11_DATA_IN()==Bit_SET);//等待数据1的高电平结束<br>            temp|=(uint8_t)(0x01&lt;&lt;(7-i));  //把第7-i位置1，MSB先行<br>        }<br>        else     // x us后为低电平表示数据“0”<br>        {<br>            temp&amp;=(uint8_t)~(0x01&lt;&lt;(7-i)); //把第7-i位置0，MSB先行<br>        }<br>    }<br>    return temp;<br>}</p>
+<p>uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data)//一次完整的数据传输为40bit，高位先出,8bit 湿度整数 + 8bit 湿度小数 + 8bit 温度整数 + 8bit 温度小数 + 8bit 校验和<br>{<br>    DHT11_Mode_Out_PP();</p>
+<pre><code>DHT11\_DATA\_OUT(LOW);//主机拉低
+Delay_us(18000);//延时18ms
+DHT11\_DATA\_OUT(HIGH); //总线拉高 主机延时30us
+Delay_us(30);   //延时30us
+DHT11\_Mode\_IPU();//主机设为输入 判断从机响应信号
+if(DHT11\_DATA\_IN()==Bit_RESET)//判断从机是否有低电平响应信号 如不响应则跳出，响应则向下运行
+{
+    while(DHT11\_DATA\_IN()==Bit_RESET);//轮询直到从机发出 的80us 低电平响应信号结束
+    while(DHT11\_DATA\_IN()==Bit_SET);//轮询直到从机发出的 80us 高电平 标置信号结束
+    DHT11\_Data-&gt;humi\_int= Read_Byte();//开始接收数据
+    DHT11\_Data-&gt;humi\_deci= Read_Byte();
+    DHT11\_Data-&gt;temp\_int= Read_Byte();
+    DHT11\_Data-&gt;temp\_deci= Read_Byte();
+    DHT11\_Data-&gt;check\_sum= Read_Byte();
+    DHT11\_Mode\_Out_PP();//读取结束，引脚改为输出模式
+    DHT11\_DATA\_OUT(HIGH);//主机拉高
+    //检查读取的数据是否正确
+    if(DHT11\_Data-&gt;check\_sum == DHT11\_Data-&gt;humi\_int + DHT11\_Data-&gt;humi\_deci + DHT11\_Data-&gt;temp\_int+ DHT11\_Data-&gt;temp\_deci)
+        return SUCCESS;
+    else
+        return ERROR;
+}
+else
+{
+    return ERROR;
+}   
+</code></pre><p>}</p>
+<p>DHT11_Data_TypeDef DHT11_Data;<br>int main(void)<br>{<br>    USART1_Config(9600);<br>    DHT11_GPIO_Config();<br>    while(1){//调用Read_DHT11读取温湿度，若成功则输出该信息<br>        if( Read_DHT11(&amp;DHT11_Data)==SUCCESS)<br>        {<br>            printf(“Relative Humidity: %d.%d  Temperature: %d.%d \r\n”,\<br>                DHT11_Data.humi_int,DHT11_Data.humi_deci,DHT11_Data.temp_int,DHT11_Data.temp_deci);<br>            Delay_us(500000);<br>        }<br>        else<br>        {<br>            printf(“Read DHT11 ERROR! \r\n”);<br>            Delay_us(500000);<br>        }<br>    }<br>}</p>
+<p>实现效果：在PC2接湿度传感器，通过串口1打印出湿度值、温度值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/25/stm32-dht11/" data-id="cjhdn25ja003zsobttc9kfr2r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/01/pcb-study-altium-designer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PCB设计学习笔记：Altium Designer入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/16/stm32-ili9325/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">STM32操纵2.4寸液晶(ILI9325)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
