@@ -1,94 +1,552 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
-<meta property="og:site_name" content="Hexo">
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Sandeepin" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="异想博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="异想博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="异想博客">
+<meta property="og:url" content="http://blog.jfz.me/page/4/index.html">
+<meta property="og:site_name" content="异想博客">
+<meta property="og:description" content="异想博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:title" content="异想博客">
+<meta name="twitter:description" content="异想博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.jfz.me/page/4/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> 异想博客 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">异想博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">异想家博采众长的客厅！</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
         
-      </nav>
-      <nav id="sub-nav">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-idevise-note" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/02/idevise-note/" class="article-date">
-  <time datetime="2016-04-02T03:27:26.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/02/idevise-note/">iDevise主题修改备忘</a>
-    </h1>
+      
+    </ul>
   
 
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2016/idevise-note.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/idevise-note.html" itemprop="url">
+                  iDevise主题修改备忘
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-02T11:27:26+08:00">
+                2016-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2016/idevise-note.html" class="leancloud_visitors" data-flag-title="iDevise主题修改备忘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>为了使iDevise主题更适合异想博客的需要，我将对主题部分功能进行增添修改。大多数修改都可通用于其它主题，但部分修改只是为了满足个人偏好，也许会感觉比较无聊。对于一些简单的修改就几句话说明了，涉及代码的将会分点列出。 <img src="http://img.jfz.me/img/2016/idevise-note01.jpg" alt=""> 一些简单修改：去掉了更新(感觉iDevise_16.03.13版本的特效比较合意)、删掉了搜索Button(回车以搜索)、改了底部信息。</p>
+      
+
+      
+        
+          
+            <p>为了使iDevise主题更适合异想博客的需要，我将对主题部分功能进行增添修改。大多数修改都可通用于其它主题，但部分修改只是为了满足个人偏好，也许会感觉比较无聊。对于一些简单的修改就几句话说明了，涉及代码的将会分点列出。 <img src="http://img.jfz.me/img/2016/idevise-note01.jpg" alt=""> 一些简单修改：去掉了更新(感觉iDevise_16.03.13版本的特效比较合意)、删掉了搜索Button(回车以搜索)、改了底部信息。</p>
 <h2 id="1、文章段落首行缩进、改段内间距"><a href="#1、文章段落首行缩进、改段内间距" class="headerlink" title="1、文章段落首行缩进、改段内间距"></a>1、文章段落首行缩进、改段内间距</h2><p>一般主题可用Chrome审查元素找到段落对应的CSS，加入：</p>
 <pre><code>text-indent:2em;line-height: 26px;
 </code></pre><p>即可，例如iDevise主题设置：</p>
@@ -123,87 +581,391 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <h2 id="7、WordPress后台雅黑字体"><a href="#7、WordPress后台雅黑字体" class="headerlink" title="7、WordPress后台雅黑字体"></a>7、WordPress后台雅黑字体</h2><p>将下面代码添加到当前主题functions.php中即可：</p>
 <p>function admin_lettering(){<br>    echo’<style type="text/css"><br>     body{ font-family: Microsoft YaHei;}<br>    </style>‘;<br>    }<br>add_action(‘admin_head’, ‘admin_lettering’);</p>
 <h2 id="8、字体"><a href="#8、字体" class="headerlink" title="8、字体"></a>8、字体</h2>
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/02/idevise-note/" data-id="cjhdn25ht001msobt267ub0xh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
-  
-    <article id="post-kaizhangdiyipian" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/01/kaizhangdiyipian/" class="article-date">
-  <time datetime="2016-04-01T03:24:27.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/kaizhangdiyipian/">poilife开张第一篇</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>去年就看到ifamec折腾阿里云服务器和域名备案，可惜自己当时要考研，因此想在国内买服务器及办个备案的域名的愿景直至今年才实现。考研的结果出来了，初试复试的流程也走完了，尽管接来下的日子仍是或者说甚至是比本科时代还要繁忙，但些许的休憩还是有的，于是借着空闲的时光，构成了本博客的由来。 本来ifamec推荐自己买阿里云服务器ECS的学生优惠型号，想到自己现在已经是大四下的学生，优惠也持续不了不久，虽然读研，但讨厌各种琐碎的麻烦的步骤，再说也并不想把服务器与自己的学生身份绑定，故最终选择了阿里云的弹性Web托管，200左右一年，贵了些，但我建立博客的初衷就是想安静写博，记录学习与生活，因此这样的选择不如说恰到好处，毫发不爽。 关于我，可以在博客的“关于”页面获得详尽的信息，我的新浪微博、QQ、豆瓣及GitHub账号在每篇文章的末尾都有标注。域名选择的是poilife.com，因为我很喜欢《舰队Collection》中夕立的口头禅poi，但我最喜欢的舰娘角色却是金刚，喜欢她充满灵性的个性，所以我设她作为头像。我的网名叫做异想家，英文名常用Sandeepin，故本博客起名异想博客，主要分享些编程学习笔记，记录些问题解决过程，评论些小说电影，推荐些好用软件，发布些原创作品，等等等等。这是我有意义的积极的生活博客，我是一位不愿传染给他人忧伤悲苦的人，在这里不会有肮脏的内容，在这里也不会有恶毒的言辞，因此我不打算开放所有文章的评论功能，但也不愿闭目塞听，言论依然自由——我提供了“留言”页面。估计个人小博客也不会有大量的人访问吧，只在一个页面留言，用于交流足矣。 <img src="http://img.jfz.me/img/2016/kaizhangdiyipian.jpg" alt=""> 博客的主题选择的是Tokin制作的iDevise，后期自己也做了不少修改，选择这款主题的原因是喜欢其简练的响应式设计和PJAX加载方式，估计自己将长久使用这款主题了。当然随着时间的流逝，人会变，人变了什么就变了，因此也不敢对博客的未来做什么深远的计划。不过变化的事物也就是发展的事物，慢慢打磨的异想博客定会更加精致吧。</p>
-
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/01/kaizhangdiyipian/" data-id="cjhdn25i0001vsobth4gapuui" class="article-share-link">Share</a>
+  
+
+
+    <div>
       
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-yixiangjiajisuanqi2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/03/yixiangjiajisuanqi2/" class="article-date">
-  <time datetime="2014-09-03T11:58:36.000Z" itemprop="datePublished">2014-09-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2016/kaizhangdiyipian.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/03/yixiangjiajisuanqi2/">异想家计算器2</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/kaizhangdiyipian.html" itemprop="url">
+                  poilife开张第一篇
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-01T11:24:27+08:00">
+                2016-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2016/kaizhangdiyipian.html" class="leancloud_visitors" data-flag-title="poilife开张第一篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>之前我写了<a href="http://blog.yxsy.org/yixiangjiajisuanqi.html" target="_blank" rel="noopener">异想家计算器最初版本</a>(1.0)，实现了简单的加减乘除混合运算和复数运算。暑假在家没事，断断续续地花了一个月写了异想家计算器2.0版本，扩展了很多新功能，重新设计了面板输入方式，更正了软件的一些错误。 异想家计算器2.0在常规计算中增加了更多常用函数、变量赋值、函数计算等功能，方便使用，可进行更复杂的计算。复数运算模块与1.0版本相比，支持更多的运算功能，并修复了原先的某些计算错误。此外软件增加了矩阵运算、大数运算、方程求解模块，使软件更适合科学工作者、学生、教师使用，达到事半功倍的效果。 使用本程序需要安装.Net Framework 4以上的版本(Win8自带)，请到微软官方网站进行升级或选择软件管家之类进行升级。 本软件是我的编程学习之作，不足之处欢迎大家批评指正！我的邮箱：<a href="mailto:sandeepin@qq.com" target="_blank" rel="noopener">sandeepin@qq.com</a>，也可在本页留言。 软件详细功能介绍见下文使用帮助部分。</p>
+      
+
+      
+        
+          
+            <p>去年就看到ifamec折腾阿里云服务器和域名备案，可惜自己当时要考研，因此想在国内买服务器及办个备案的域名的愿景直至今年才实现。考研的结果出来了，初试复试的流程也走完了，尽管接来下的日子仍是或者说甚至是比本科时代还要繁忙，但些许的休憩还是有的，于是借着空闲的时光，构成了本博客的由来。 本来ifamec推荐自己买阿里云服务器ECS的学生优惠型号，想到自己现在已经是大四下的学生，优惠也持续不了不久，虽然读研，但讨厌各种琐碎的麻烦的步骤，再说也并不想把服务器与自己的学生身份绑定，故最终选择了阿里云的弹性Web托管，200左右一年，贵了些，但我建立博客的初衷就是想安静写博，记录学习与生活，因此这样的选择不如说恰到好处，毫发不爽。 关于我，可以在博客的“关于”页面获得详尽的信息，我的新浪微博、QQ、豆瓣及GitHub账号在每篇文章的末尾都有标注。域名选择的是poilife.com，因为我很喜欢《舰队Collection》中夕立的口头禅poi，但我最喜欢的舰娘角色却是金刚，喜欢她充满灵性的个性，所以我设她作为头像。我的网名叫做异想家，英文名常用Sandeepin，故本博客起名异想博客，主要分享些编程学习笔记，记录些问题解决过程，评论些小说电影，推荐些好用软件，发布些原创作品，等等等等。这是我有意义的积极的生活博客，我是一位不愿传染给他人忧伤悲苦的人，在这里不会有肮脏的内容，在这里也不会有恶毒的言辞，因此我不打算开放所有文章的评论功能，但也不愿闭目塞听，言论依然自由——我提供了“留言”页面。估计个人小博客也不会有大量的人访问吧，只在一个页面留言，用于交流足矣。 <img src="http://img.jfz.me/img/2016/kaizhangdiyipian.jpg" alt=""> 博客的主题选择的是Tokin制作的iDevise，后期自己也做了不少修改，选择这款主题的原因是喜欢其简练的响应式设计和PJAX加载方式，估计自己将长久使用这款主题了。当然随着时间的流逝，人会变，人变了什么就变了，因此也不敢对博客的未来做什么深远的计划。不过变化的事物也就是发展的事物，慢慢打磨的异想博客定会更加精致吧。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/yixiangjiajisuanqi2.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/yixiangjiajisuanqi2.html" itemprop="url">
+                  异想家计算器2
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-03T19:58:36+08:00">
+                2014-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/yixiangjiajisuanqi2.html" class="leancloud_visitors" data-flag-title="异想家计算器2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前我写了<a href="http://blog.yxsy.org/yixiangjiajisuanqi.html" target="_blank" rel="noopener">异想家计算器最初版本</a>(1.0)，实现了简单的加减乘除混合运算和复数运算。暑假在家没事，断断续续地花了一个月写了异想家计算器2.0版本，扩展了很多新功能，重新设计了面板输入方式，更正了软件的一些错误。 异想家计算器2.0在常规计算中增加了更多常用函数、变量赋值、函数计算等功能，方便使用，可进行更复杂的计算。复数运算模块与1.0版本相比，支持更多的运算功能，并修复了原先的某些计算错误。此外软件增加了矩阵运算、大数运算、方程求解模块，使软件更适合科学工作者、学生、教师使用，达到事半功倍的效果。 使用本程序需要安装.Net Framework 4以上的版本(Win8自带)，请到微软官方网站进行升级或选择软件管家之类进行升级。 本软件是我的编程学习之作，不足之处欢迎大家批评指正！我的邮箱：<a href="mailto:sandeepin@qq.com" target="_blank" rel="noopener">sandeepin@qq.com</a>，也可在本页留言。 软件详细功能介绍见下文使用帮助部分。</p>
 <h2 id="软件主界面"><a href="#软件主界面" class="headerlink" title="软件主界面"></a>软件主界面</h2><p><a href="http://img.yxsy.org/BlogImages/2014/yixiangjiajisuanqi201.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/2014/yixiangjiajisuanqi201.png" alt=""></a></p>
 <h2 id="使用帮助"><a href="#使用帮助" class="headerlink" title="使用帮助"></a>使用帮助</h2><h3 id="常规运算"><a href="#常规运算" class="headerlink" title="常规运算"></a>常规运算</h3><p>1、在此面板下输入help()（不区分大小写，也可Help()，下文同）可查看帮助，并例举出支持的函数。输入about()可查看关于信息。输入clear()可清空面板。 2、程序支持加、减、乘、除、正弦、余弦等函数的混合运算。其中Pi=3.14159265358979，E=2.71828182845905。 例：5_(4/27-3)+18_sin(Pi/6) 结果：-5.25925925925926 例：3^3 结果：27 例：2^(0.5) 结果：1.4142135623731 3、变量赋值、函数功能： 例：依次输入x:=5，回车，输入f(x):=sin(x)/cos(x)，回车，输入f(x)，回车。 显示结果：-3.38051500624659</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/yixiangjiajisuanqi202.png" alt=""></p>
@@ -218,93 +980,393 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p>输入系数即可解方程。一元多次方程支持复数根。多元一次方程只支持实数，元数不要超过8，否则见面会显示不全。</p>
 <h2 id="软件更新"><a href="#软件更新" class="headerlink" title="软件更新"></a>软件更新</h2><p>2014-9-3：v2.0 <a href="http://pan.baidu.com/s/1mgHVmQk" target="_blank" rel="noopener">点击下载</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/03/yixiangjiajisuanqi2/" data-id="cjhdn25l20067sobtbs86ruvc" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原创软件/">原创软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-chrome-extensions" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/08/03/chrome-extensions/" class="article-date">
-  <time datetime="2014-08-03T14:52:01.000Z" itemprop="datePublished">2014-08-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/03/chrome-extensions/">我常用的Chrome扩展插件</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/chrome-extensions.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/chrome-extensions.html" itemprop="url">
+                  我常用的Chrome扩展插件
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-03T22:52:01+08:00">
+                2014-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/chrome-extensions.html" class="leancloud_visitors" data-flag-title="我常用的Chrome扩展插件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>最近国产的各大第三方Chrome核浏览器都放出了更新了内核的版本，爱折腾的Sandeepin于是下载了各种浏览器捣腾。很多浏览器要用着顺手必须加上各类扩展插件才行，但是Google访问极不稳定，下个扩展总要越沟实在麻烦，各大浏览器厂商的自配商店应用又不全，所以写下这篇文章，一是向网友推荐自己喜爱的浏览器扩展，二是方便自己下载所需。</p>
+      
+
+      
+        
+          
+            <p>最近国产的各大第三方Chrome核浏览器都放出了更新了内核的版本，爱折腾的Sandeepin于是下载了各种浏览器捣腾。很多浏览器要用着顺手必须加上各类扩展插件才行，但是Google访问极不稳定，下个扩展总要越沟实在麻烦，各大浏览器厂商的自配商店应用又不全，所以写下这篇文章，一是向网友推荐自己喜爱的浏览器扩展，二是方便自己下载所需。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/chrome-extensions01.jpg" alt=""></p>
 <p><a href="http://img.yxsy.org/BlogFiles/crx/Adblock-Plus.crx" target="_blank" rel="noopener">Adblock Plus</a> <a href="http://img.yxsy.org/BlogFiles/crx/Adkill-and-Media-Download.crx" target="_blank" rel="noopener">Adkill and Media Download</a> <a href="http://img.yxsy.org/BlogFiles/crx/Chrome-YouTube-Downloader.crx" target="_blank" rel="noopener">Chrome YouTube Downloader</a> <a href="http://img.yxsy.org/BlogFiles/crx/doubanIMDb.crx" target="_blank" rel="noopener">doubanIMDb</a> <a href="http://img.yxsy.org/BlogFiles/crx/Proxy-SwitchySharp.crx" target="_blank" rel="noopener">Proxy SwitchySharp</a> <a href="http://img.yxsy.org/BlogFiles/crx/Speeddial2-CN.crx" target="_blank" rel="noopener">Speeddial2 中文版</a> <a href="http://img.yxsy.org/BlogFiles/crx/SSLspeedy2.crx" target="_blank" rel="noopener">SSLspeedy2</a> <a href="http://img.yxsy.org/BlogFiles/crx/User-Agent.crx" target="_blank" rel="noopener">User Agent</a> <a href="http://img.yxsy.org/BlogFiles/crx/View-Image-Info.crx" target="_blank" rel="noopener">View Image Info</a> <a href="http://img.yxsy.org/BlogFiles/crx/wmpChrome.crx" target="_blank" rel="noopener">Windows Media Player Extension for HTML5</a> <a href="http://img.yxsy.org/BlogFiles/crx/Download-Movie.crx" target="_blank" rel="noopener">下电影</a> <a href="http://img.yxsy.org/BlogFiles/crx/yijian-download.user.js" target="_blank" rel="noopener">下载一键通</a> <a href="http://img.yxsy.org/BlogFiles/crx/youjiansou.crx" target="_blank" rel="noopener">右键搜</a> <a href="http://img.yxsy.org/BlogFiles/crx/Picture-Search.crx" target="_blank" rel="noopener">图片搜索(&amp;A)</a> <a href="http://img.yxsy.org/BlogFiles/crx/weiboxi.crx" target="_blank" rel="noopener">微博洗刷刷</a> <a href="http://img.yxsy.org/BlogFiles/crx/xintongwentang.crx" target="_blank" rel="noopener">新同文堂</a> <a href="http://img.yxsy.org/BlogFiles/crx/youdaofanyi.crx" target="_blank" rel="noopener">有道智能翻译</a> <a href="http://img.yxsy.org/BlogFiles/crx/Baidu-Music-Download.crx" target="_blank" rel="noopener">百度音乐助手</a> <a href="http://img.yxsy.org/BlogFiles/crx/Sandeepin-Douban-Search.crx" target="_blank" rel="noopener">豆瓣电影搜索 异想圣域专版</a> <a href="http://img.yxsy.org/BlogFiles/crx/gouwudang.crx" target="_blank" rel="noopener">购物党</a> <a href="http://img.yxsy.org/BlogFiles/crx/VeryHelper.crx" target="_blank" rel="noopener">非常助手(VeryHelper)</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/03/chrome-extensions/" data-id="cjhdn25h1000csobtz312pmp4" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-terra-master-f2-nas2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/07/29/terra-master-f2-nas2/" class="article-date">
-  <time datetime="2014-07-29T13:56:17.000Z" itemprop="datePublished">2014-07-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/07/29/terra-master-f2-nas2/">折腾铁威马F2-NAS2增强版</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/terra-master-f2-nas2.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/terra-master-f2-nas2.html" itemprop="url">
+                  折腾铁威马F2-NAS2增强版
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-29T21:56:17+08:00">
+                2014-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/terra-master-f2-nas2.html" class="leancloud_visitors" data-flag-title="折腾铁威马F2-NAS2增强版">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>今天买的铁威马F2-NAS2增强版到手，配上自己前段时期买的西数4T红盘，Sandeepin开始了自己的NAS时代。 NAS说得通俗点就是网络存储器，能将自己的照片和电影存到服务器，用不同的设备访问。我下了很多动漫、电影，有时在手机上看，有时在电脑上看，这样一个文件常要拷几遍。特别是放在电脑里的文件，文件夹建了一层又一层，久了之后，重复的文件懒得整理，几T的硬盘就这样塞满了。 我入手NAS的初衷就是这个，想建一个自己的影音文件合集，所有的影音文件存在服务器上，自己想看就从上里面取，源文件不动，自己手机、电脑里看完就删，这样既能珍藏文件，又能节约空间，文件毫不凌乱。至于备份文件之类，NAS倒不是我的首选，我更习惯于放在移动硬盘里，不想让自己的私有文件总挂在服务器上，虽然在自己家里，隐私问题不用太担心，但寿命就不好说了。</p>
+      
+
+      
+        
+          
+            <p>今天买的铁威马F2-NAS2增强版到手，配上自己前段时期买的西数4T红盘，Sandeepin开始了自己的NAS时代。 NAS说得通俗点就是网络存储器，能将自己的照片和电影存到服务器，用不同的设备访问。我下了很多动漫、电影，有时在手机上看，有时在电脑上看，这样一个文件常要拷几遍。特别是放在电脑里的文件，文件夹建了一层又一层，久了之后，重复的文件懒得整理，几T的硬盘就这样塞满了。 我入手NAS的初衷就是这个，想建一个自己的影音文件合集，所有的影音文件存在服务器上，自己想看就从上里面取，源文件不动，自己手机、电脑里看完就删，这样既能珍藏文件，又能节约空间，文件毫不凌乱。至于备份文件之类，NAS倒不是我的首选，我更习惯于放在移动硬盘里，不想让自己的私有文件总挂在服务器上，虽然在自己家里，隐私问题不用太担心，但寿命就不好说了。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/F2-NAS201.jpg" alt=""></p>
 <p>铁威马F2-NAS2增强版的配置(增强版内存为1G)：</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/F2-NAS202.jpg" alt=""></p>
@@ -339,48 +1401,198 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p><img src="http://img.yxsy.org/BlogImages/2014/F2-NAS218.jpg" alt=""></p>
 <p>此外还有各种协议的传输、播放功能，我都不懂，还得慢慢折腾。 总之呢，还算满意，我说过2014年给我带来最具幸福感的产品就是铁威马F2-NAS2增强版了，真正使用后，总觉得还是有些不爽，也不能说产品很差，反正就这样了。幸福感可能来源于第一次接触NAS这种东西吧，产品本身带来的幸福可能没有想象得大。传输文件我比较习惯传统的FTP，有这项功能，用着倒也满足了。图个新鲜，玩玩，就当多学些网络知识了。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/29/terra-master-f2-nas2/" data-id="cjhdn25ji004csobtfcy9p3iv" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/硬件/">硬件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-ubuntu-win7-install" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/07/11/ubuntu-win7-install/" class="article-date">
-  <time datetime="2014-07-11T12:34:14.000Z" itemprop="datePublished">2014-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/07/11/ubuntu-win7-install/">Ubuntu和Win7双系统安装图解</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/ubuntu-win7-install.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/ubuntu-win7-install.html" itemprop="url">
+                  Ubuntu和Win7双系统安装图解
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-11T20:34:14+08:00">
+                2014-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/ubuntu-win7-install.html" class="leancloud_visitors" data-flag-title="Ubuntu和Win7双系统安装图解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>本文转自PCBeta远景论坛，原贴地址点<a href="http://www.pcbeta.com/forum.php?mod=viewthread&amp;tid=1046663" target="_blank" rel="noopener">这里</a>，为与本博客的排版更契合，稍有改动。 Ubuntu是一个操作系统，和安卓一样同是linux内核下的子民，所以来这贡献一下，也求JW放出安卓4.0原生正式版，我只想要这个。前几天发布了Ubuntu 12.04 LTS 版本，兴奋中…… 看到网上挺Ubuntu的很多，搞了个安装方法给那些害怕乱弄把硬盘全格的盆友们。也是我用了那么久Ubuntu，对它的小小贡献吧。图片是M9拍的，有艺术细胞吧？ 的确可以用wubi安装，wubi安装就像一个程序一样装在windows文件系统之上。用WUBI安装Ubuntu的缺点： 1、一休眠或挂起就会死机，不能从休眠或挂起状态恢复，只能强行关机然后重启。因为休眠和待机需要使用FUSE和基于文件的交换。建议用Ubuntu Tweak禁用休眠和挂起功能。 2、如果安装分区以外的分区也有名为“Ubuntu”的文件夹的话，卸载时可能会把其它分区的Ubuntu文件夹误删除，所以建议不要在安装分区以外的分区自行建立名为“Ubuntu”的文件夹。 3、删除Windows分区里的文件时不能使用回收站，会被直接删除。 4、用Live CD启动不能访问虚拟分区里的文件。一旦系统崩溃，文件可能无法取回！建议把所有个人文件都存放到Windows分区中。 5、进入在Windows里安装的Ubuntu时，如果突然断电的话，系统很容易崩溃，因为这样安装的Ubuntu系统会被当作是Windows系统下的一个文件，断电时这个文件会受损，启动或运行就会不正常了。 所以如果你和我一样最求极致纯正，那么就按照我的方法吧。其实不麻烦，让我装半个钟可以搞定。只是说了挺多基础的东西。 言归正传。 你需要的东西有： 1，Ubuntu系统镜像，官方下载地址(推荐到官网下载最新版本) Ubuntu Desktop 12.04 32位  <a href="ftp://ftp.ukc.mirrorservice.org/sites/releases.ubuntu.com//precise/ubuntu-12.04-desktop-i386.iso" target="_blank" rel="noopener">点击下载</a> Ubuntu Desktop 12.04 64位  <a href="http://mirror.ox.ac.uk/sites/releases.ubuntu.com/releases//precise/ubuntu-12.04-desktop-amd64.iso" target="_blank" rel="noopener">点击下载</a> 选64位吧，兼容性好些。 2，空闲的大于10G硬盘空间，多多益善，我用了50G。 3，刻录镜像用的至少有1G大小的空白U盘或光碟。如果电脑支持usb设备启动就选择U盘吧，否则只能用光碟。 4，EasyBCD, 因为Ubuntu引导和win7不同，别用Ubuntu的引导来启动win7,你会后悔的。下载后在windows里直接装好。 开始安装旅程： 1.给硬盘划分空白空间安装Ubuntu,如果你不是用Windows home版本的话，不需要工具，开始菜单——右键点击我的电脑——管理——存储——磁盘管理（本地），这个大小个人使用情况决定的，我用70GB来装Ubuntu 那么单击E盘，右键选择“压缩卷” 然后在弹出的窗口里的“输入压缩空间量”输入70000，然后一直下一步直到结束。 2.刻录Ubuntu镜像到你的U盘或者光碟，可以用ultraISO（软碟通）刻录进U盘，怎么刻录自己去百度。光碟刻录win7自带的就行。 3.重启电脑，和安装windows一样，调整成光驱启动或者USB设备启动，插入你的U盘或者光碟正常情况出现以下的图图： 这时候请在键盘上随便按个键，空格啥的。</p>
+      
+
+      
+        
+          
+            <p>本文转自PCBeta远景论坛，原贴地址点<a href="http://www.pcbeta.com/forum.php?mod=viewthread&amp;tid=1046663" target="_blank" rel="noopener">这里</a>，为与本博客的排版更契合，稍有改动。 Ubuntu是一个操作系统，和安卓一样同是linux内核下的子民，所以来这贡献一下，也求JW放出安卓4.0原生正式版，我只想要这个。前几天发布了Ubuntu 12.04 LTS 版本，兴奋中…… 看到网上挺Ubuntu的很多，搞了个安装方法给那些害怕乱弄把硬盘全格的盆友们。也是我用了那么久Ubuntu，对它的小小贡献吧。图片是M9拍的，有艺术细胞吧？ 的确可以用wubi安装，wubi安装就像一个程序一样装在windows文件系统之上。用WUBI安装Ubuntu的缺点： 1、一休眠或挂起就会死机，不能从休眠或挂起状态恢复，只能强行关机然后重启。因为休眠和待机需要使用FUSE和基于文件的交换。建议用Ubuntu Tweak禁用休眠和挂起功能。 2、如果安装分区以外的分区也有名为“Ubuntu”的文件夹的话，卸载时可能会把其它分区的Ubuntu文件夹误删除，所以建议不要在安装分区以外的分区自行建立名为“Ubuntu”的文件夹。 3、删除Windows分区里的文件时不能使用回收站，会被直接删除。 4、用Live CD启动不能访问虚拟分区里的文件。一旦系统崩溃，文件可能无法取回！建议把所有个人文件都存放到Windows分区中。 5、进入在Windows里安装的Ubuntu时，如果突然断电的话，系统很容易崩溃，因为这样安装的Ubuntu系统会被当作是Windows系统下的一个文件，断电时这个文件会受损，启动或运行就会不正常了。 所以如果你和我一样最求极致纯正，那么就按照我的方法吧。其实不麻烦，让我装半个钟可以搞定。只是说了挺多基础的东西。 言归正传。 你需要的东西有： 1，Ubuntu系统镜像，官方下载地址(推荐到官网下载最新版本) Ubuntu Desktop 12.04 32位  <a href="ftp://ftp.ukc.mirrorservice.org/sites/releases.ubuntu.com//precise/ubuntu-12.04-desktop-i386.iso" target="_blank" rel="noopener">点击下载</a> Ubuntu Desktop 12.04 64位  <a href="http://mirror.ox.ac.uk/sites/releases.ubuntu.com/releases//precise/ubuntu-12.04-desktop-amd64.iso" target="_blank" rel="noopener">点击下载</a> 选64位吧，兼容性好些。 2，空闲的大于10G硬盘空间，多多益善，我用了50G。 3，刻录镜像用的至少有1G大小的空白U盘或光碟。如果电脑支持usb设备启动就选择U盘吧，否则只能用光碟。 4，EasyBCD, 因为Ubuntu引导和win7不同，别用Ubuntu的引导来启动win7,你会后悔的。下载后在windows里直接装好。 开始安装旅程： 1.给硬盘划分空白空间安装Ubuntu,如果你不是用Windows home版本的话，不需要工具，开始菜单——右键点击我的电脑——管理——存储——磁盘管理（本地），这个大小个人使用情况决定的，我用70GB来装Ubuntu 那么单击E盘，右键选择“压缩卷” 然后在弹出的窗口里的“输入压缩空间量”输入70000，然后一直下一步直到结束。 2.刻录Ubuntu镜像到你的U盘或者光碟，可以用ultraISO（软碟通）刻录进U盘，怎么刻录自己去百度。光碟刻录win7自带的就行。 3.重启电脑，和安装windows一样，调整成光驱启动或者USB设备启动，插入你的U盘或者光碟正常情况出现以下的图图： 这时候请在键盘上随便按个键，空格啥的。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/ubuntu-win7-install01.jpg" alt=""></p>
 <p>然后选择语言“简体中文”。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/ubuntu-win7-install02.jpg" alt=""></p>
@@ -405,48 +1617,198 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p><img src="http://img.yxsy.org/BlogImages/2014/ubuntu-win7-install13.png" alt=""></p>
 <p>做完这些重启系统，选择Ubuntu,正常的应该都能进入Ubuntu系统了。That’s all. 当你不要Ubuntu的时候，直接在window里磁盘管理删了它所在的分区，然后在Easybcd里删了它的引导就行，不影响你的Windows系统，这就是为啥我不用Ubuntu来引导Windows的原因。 网友cxbii建议：不建议单独分／boot啊。如果分了可能对重装不好啊我就分／、／home、swap，准备把swap也不分了。不是笔记本，休眠没什么用。 网友jinjin6736建议：不单独分／boot的话，就会用UBUNTU来引导WINDOWS7了，那样你会后悔的，以后要删除UBUNTU很麻烦。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/11/ubuntu-win7-install/" data-id="cjhdn25jm004ksobtnhm7pea2" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-csharp-matlab-hunhebiancheng" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/13/csharp-matlab-hunhebiancheng/" class="article-date">
-  <time datetime="2014-05-13T10:28:13.000Z" itemprop="datePublished">2014-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/13/csharp-matlab-hunhebiancheng/">C#中调用Matlab编写的函数</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/csharp-matlab-hunhebiancheng.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/csharp-matlab-hunhebiancheng.html" itemprop="url">
+                  C#中调用Matlab编写的函数
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-13T18:28:13+08:00">
+                2014-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/csharp-matlab-hunhebiancheng.html" class="leancloud_visitors" data-flag-title="C#中调用Matlab编写的函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>关于C#与Matlab的混合编程，我在网上看了很多教程，按他们的步骤进行，总会遇到各种各样的问题不能解决，最终以失败而告终。经过自己两天的努力，看了诸多文献，终于成功了，故把自己确信能成功的方法分享给大家。当然在编写不同功能的函数会遇到其它千奇百怪的问题，因此我不能保证按我的方法在任何环境下都能成功。本文只是一个简单的例子，遇到的问题相对较少，更复杂的问题或更诡异的出错只能请教其他大神了。 本文所用的编程平台为Visual Studio 2010，Matlab版本为MATLAB R2012a，这是最后一版经典界面的Matlab。</p>
+      
+
+      
+        
+          
+            <p>关于C#与Matlab的混合编程，我在网上看了很多教程，按他们的步骤进行，总会遇到各种各样的问题不能解决，最终以失败而告终。经过自己两天的努力，看了诸多文献，终于成功了，故把自己确信能成功的方法分享给大家。当然在编写不同功能的函数会遇到其它千奇百怪的问题，因此我不能保证按我的方法在任何环境下都能成功。本文只是一个简单的例子，遇到的问题相对较少，更复杂的问题或更诡异的出错只能请教其他大神了。 本文所用的编程平台为Visual Studio 2010，Matlab版本为MATLAB R2012a，这是最后一版经典界面的Matlab。</p>
 <h2 id="一、编写Matlab函数文件"><a href="#一、编写Matlab函数文件" class="headerlink" title="一、编写Matlab函数文件"></a>一、编写Matlab函数文件</h2><p>此部分不多说，学过Matlab的都懂。 例子为一个已知半径R计算圆周长的函数zhouchang()。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/csharp-matlab-hunhebiancheng01.png" alt=""></p>
 <h2 id="二、编译函数文件为DLL"><a href="#二、编译函数文件为DLL" class="headerlink" title="二、编译函数文件为DLL"></a>二、编译函数文件为DLL</h2><p>在Matlab命令行下运行deploytool，在图形界面里选.net组件，然后进入一个工程目录的界面，新建工程，工程的名字就是.net组件的名字，在其下面的目录表示.net类名，在类名上点右键”Add File…”，把Matlab的.m函数文件选进去。</p>
@@ -470,48 +1832,198 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p><img src="http://img.yxsy.org/BlogImages/2014/csharp-matlab-hunhebiancheng12.png" alt=""></p>
 <p>大功告成！</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/05/13/csharp-matlab-hunhebiancheng/" data-id="cjhdn25ha000psobtel6n1kh9" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-wuxianjingduchufayunsuan" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/10/wuxianjingduchufayunsuan/" class="article-date">
-  <time datetime="2014-05-10T04:07:00.000Z" itemprop="datePublished">2014-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/10/wuxianjingduchufayunsuan/">无限精度除法运算</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/wuxianjingduchufayunsuan.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/wuxianjingduchufayunsuan.html" itemprop="url">
+                  无限精度除法运算
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-10T12:07:00+08:00">
+                2014-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/wuxianjingduchufayunsuan.html" class="leancloud_visitors" data-flag-title="无限精度除法运算">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>心血来潮写了个可进行无限精度除法运算的算法。算法类似手动计算除法，相除得到商和余数，将商输出，余数扩大十倍，再用余数除以除数得到商，循环往复即可无限精度计算除法了。但由于我用的是int类型，事实上不能真正的“无限”精度，C语言最高精度没验证，C#中测试最多只能算到32767位小数。更改类型当然可算得更精确，本文只是抛砖引玉，就不继续深入探讨了，C语言代码如下：</p>
+      
+
+      
+        
+          
+            <p>心血来潮写了个可进行无限精度除法运算的算法。算法类似手动计算除法，相除得到商和余数，将商输出，余数扩大十倍，再用余数除以除数得到商，循环往复即可无限精度计算除法了。但由于我用的是int类型，事实上不能真正的“无限”精度，C语言最高精度没验证，C#中测试最多只能算到32767位小数。更改类型当然可算得更精确，本文只是抛砖引玉，就不继续深入探讨了，C语言代码如下：</p>
 <p>#include “stdio.h”<br>void Chu(int a,int b,int n) // 无限精度除法，a除以b，n为小数位数<br>{<br>    int x,i;<br>    x=a/b;<br>    printf(“%d.”,x);<br>    a=(a%b)<em>10;<br>    for(i=1;i&lt;=n;i++)<br>    {<br>        x=a/b;<br>        printf(“%d”,x);<br>        a=(a%b)</em>10;<br>    }<br>    printf(“n”);<br>}</p>
 <p>void main()<br>{<br>    int a,b,n;<br>    while(1)<br>    {<br>        scanf(“%d”,&amp;a);<br>        scanf(“%d”,&amp;b);<br>        scanf(“%d”,&amp;n);<br>        Chu(a,b,n);<br>    }<br>}</p>
 <p>效果如图：</p>
@@ -520,48 +2032,198 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p><img src="http://img.yxsy.org/BlogImages/2014/wuxianjingduchufayunsuan02.png" alt=""></p>
 <p>可见运算效率并不高，像数学软件Mathematica、Matlab等都是用矩阵进行运算的，计算速度很快，本程序的算法只能说实现了功能，根本不实用，就当做一次C语言练习吧。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/05/10/wuxianjingduchufayunsuan/" data-id="cjhdn25kr005nsobt6lf9rz44" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原创软件/">原创软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-csharp-diaoyong-c-dll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/02/csharp-diaoyong-c-dll/" class="article-date">
-  <time datetime="2014-05-02T14:34:08.000Z" itemprop="datePublished">2014-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/02/csharp-diaoyong-c-dll/">C#中调用C语言写的dll</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/csharp-diaoyong-c-dll.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/csharp-diaoyong-c-dll.html" itemprop="url">
+                  C#中调用C语言写的dll
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-02T22:34:08+08:00">
+                2014-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/csharp-diaoyong-c-dll.html" class="leancloud_visitors" data-flag-title="C#中调用C语言写的dll">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>Sandeepin喜欢用C#做GUI，因为方便，随手画就能做好，但是写代码还是喜欢用C语言。可是学C语言时书上根本没教如何编写dll，经过自己查阅各种资料教程，终于成功啦，现分享自己的心得。IDE用的是Visual Studio 2010。</p>
+      
+
+      
+        
+          
+            <p>Sandeepin喜欢用C#做GUI，因为方便，随手画就能做好，但是写代码还是喜欢用C语言。可是学C语言时书上根本没教如何编写dll，经过自己查阅各种资料教程，终于成功啦，现分享自己的心得。IDE用的是Visual Studio 2010。</p>
 <h2 id="一、创建dll"><a href="#一、创建dll" class="headerlink" title="一、创建dll"></a>一、创建dll</h2><p>1、建立一个 Win32控制台应用程序 。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/csharp-diaoyong-c-dll01.png" alt=""></p>
 <p>2、选择类型为DLL。</p>
@@ -578,180 +2240,691 @@ function() {$(this).fadeTo(&quot;fast&quot;, 1);
 <p>3、编译后即可看到结果：</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/csharp-diaoyong-c-dll06.png" alt=""></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/05/02/csharp-diaoyong-c-dll/" data-id="cjhdn25hc000ssobtmx5gkmo5" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-yixiangjiajisuanqi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/03/14/yixiangjiajisuanqi/" class="article-date">
-  <time datetime="2014-03-14T11:37:46.000Z" itemprop="datePublished">2014-03-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/14/yixiangjiajisuanqi/">异想家计算器</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2014/yixiangjiajisuanqi.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/yixiangjiajisuanqi.html" itemprop="url">
+                  异想家计算器
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-14T19:37:46+08:00">
+                2014-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2014/yixiangjiajisuanqi.html" class="leancloud_visitors" data-flag-title="异想家计算器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>本计算器是我在C#学习中做的一个小程序，可进行加减乘除、开方乘方、三角函数的混合运算。 我把它取名为异想家计算器，意思就是我的计算器。我之前还做了一个<a href="http://blog.yxsy.org/fushujisuanqi.html" target="_blank" rel="noopener">复数计算器</a>，现在异想家计算器也把它集成到了里面，点击“扩展”—“复数计算”即可打开。 软件谈不上强大、实用，但它是自己学习过程中的产物，是自己的劳动成果，所以还是发到博客，算是留作纪念吧。 作为学习之作，肯定有很多不足，欢迎大家批评指正！软件版本为1.0，以后还会不断完善，让自己这个小作品变得更加强大！ 软件源代码就不公开了，很简单的一个程序，没啥技术含量。</p>
+      
+
+      
+        
+          
+            <p>本计算器是我在C#学习中做的一个小程序，可进行加减乘除、开方乘方、三角函数的混合运算。 我把它取名为异想家计算器，意思就是我的计算器。我之前还做了一个<a href="http://blog.yxsy.org/fushujisuanqi.html" target="_blank" rel="noopener">复数计算器</a>，现在异想家计算器也把它集成到了里面，点击“扩展”—“复数计算”即可打开。 软件谈不上强大、实用，但它是自己学习过程中的产物，是自己的劳动成果，所以还是发到博客，算是留作纪念吧。 作为学习之作，肯定有很多不足，欢迎大家批评指正！软件版本为1.0，以后还会不断完善，让自己这个小作品变得更加强大！ 软件源代码就不公开了，很简单的一个程序，没啥技术含量。</p>
 <p><img src="http://img.yxsy.org/BlogImages/2014/yixiangjiajisuanqi01.png" alt=""></p>
 <p>[Downlink href=”<a href="https://app.box.com/s/ml467x5ww56gczsescp8&quot;\]Box网盘\[/Downlink\]" target="_blank" rel="noopener">https://app.box.com/s/ml467x5ww56gczsescp8&quot;\]Box网盘\[/Downlink\]</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/03/14/yixiangjiajisuanqi/" data-id="cjhdn25l00063sobt84wbmx3b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原创软件/">原创软件</a></li></ul>
 
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</section>
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sandeepin" />
+          <p class="site-author-name" itemprop="name">Sandeepin</p>
+          <p class="site-description motion-element" itemprop="description">异想博客</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/EZLippi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ouyanglip" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lippi-ouyang" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy;  2008 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandeepin</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>| Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
-  </div>
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
 </body>
 </html>

@@ -1,94 +1,552 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
-<meta property="og:site_name" content="Hexo">
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Sandeepin" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="异想博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="异想博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="异想博客">
+<meta property="og:url" content="http://blog.jfz.me/page/2/index.html">
+<meta property="og:site_name" content="异想博客">
+<meta property="og:description" content="异想博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:title" content="异想博客">
+<meta name="twitter:description" content="异想博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.jfz.me/page/2/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> 异想博客 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">异想博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">异想家博采众长的客厅！</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
         
-      </nav>
-      <nav id="sub-nav">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-python-blog-img" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/09/python-blog-img/" class="article-date">
-  <time datetime="2017-03-09T12:45:24.000Z" itemprop="datePublished">2017-03-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/09/python-blog-img/">利用Python进行博客图片压缩</a>
-    </h1>
+      
+    </ul>
   
 
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/python-blog-img.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/python-blog-img.html" itemprop="url">
+                  利用Python进行博客图片压缩
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:45:24+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/python-blog-img.html" class="leancloud_visitors" data-flag-title="利用Python进行博客图片压缩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>自己写博客的时候常常要插入一些手机拍的照片，都是几M的大小，每张手动压缩太费事了，于是根据自己博客的排版特点用Python写了一个简单的图片压缩脚本，功能是将博客图片生成缩略图，横屏的图片压缩为宽度最大1280像素，竖屏的图片压缩为宽度最大1000像素。 代码如下：</p>
+      
+
+      
+        
+          
+            <p>自己写博客的时候常常要插入一些手机拍的照片，都是几M的大小，每张手动压缩太费事了，于是根据自己博客的排版特点用Python写了一个简单的图片压缩脚本，功能是将博客图片生成缩略图，横屏的图片压缩为宽度最大1280像素，竖屏的图片压缩为宽度最大1000像素。 代码如下：</p>
 <p>#!/usr/bin/env python3<br># coding=utf-8<br>‘ 蒋方正Python函数库 ‘<br>__author__ = ‘Sandeepin’</p>
 <p>import math<br>import os<br>from PIL import Image</p>
 <p># 功能：博客图片生成缩略图，1280横屏压缩，1000竖屏压缩<br># 参数：图片名称<br># 返回：OK，保存同名文件在thumb目录下<br>def JfzBlogImgThumb(ImgName):<br>    im = Image.open(ImgName)<br>    print(‘格式’,im.format, ‘，分辨率’,im.size, ‘，色彩’,im.mode)<br>    if max(im.size[0], im.size[1]) &gt; 1000:<br>        if im.size[0] &gt; im.size[1]:<br>            im.thumbnail((1280, 1280))<br>        else:<br>            im.thumbnail((1000, 1000))<br>        if ImgName.endswith(‘.JPG’):<br>            ImgName = ImgName.replace(‘.JPG’,’.jpg’)<br>        if ImgName.endswith(‘.png’):<br>            ImgName = ImgName.replace(‘.png’,’.jpg’)<br>        if ImgName.endswith(‘.PNG’):<br>            ImgName = ImgName.replace(‘.PNG’,’.jpg’)<br>        im.save(‘thumb\\’+ImgName, ‘JPEG’, quality=90)</p>
@@ -99,46 +557,198 @@ return &apos;OK&apos;
 <p># 列出当前目录所有jpg文件<br>lst=os.listdir(os.getcwd())<br>imgname = [c for c in lst if os.path.isfile(c) and (c.endswith(‘.jpg’) or c.endswith(‘.JPG’) or c.endswith(‘.png’) or c.endswith(‘.PNG’))]<br>print(imgname)</p>
 <p># 全处理<br>OutCheck = map(JfzBlogImgThumb,imgname)<br>print(list(OutCheck))</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/09/python-blog-img/" data-id="cjhdn25ip0038sobt44lpivke" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-qt-armadillo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/08/qt-armadillo/" class="article-date">
-  <time datetime="2017-03-08T12:42:44.000Z" itemprop="datePublished">2017-03-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/qt-armadillo.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/08/qt-armadillo/">Qt下Armadillo矩阵函数库的添加</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/qt-armadillo.html" itemprop="url">
+                  Qt下Armadillo矩阵函数库的添加
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-08T20:42:44+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/qt-armadillo.html" class="leancloud_visitors" data-flag-title="Qt下Armadillo矩阵函数库的添加">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>其实本文严格说只能算VS2013添加Armadillo教程，因为为了省事，用的是VS2013编译器版本的Qt，Armadillo也直接用了自带例子中的blas_win64_MT.dll、blas_win64_MT.lib、lapack_win64_MT.dll、lapack_win64_MT.lib，没有完整编译Armadillo，仅是调用举例。 版本信息： <strong>qt-opensource-windows-x86-msvc2013_64-5.8.0.exe、Armadillo v7.500.2、VS2013</strong></p>
+      
+
+      
+        
+          
+            <p>其实本文严格说只能算VS2013添加Armadillo教程，因为为了省事，用的是VS2013编译器版本的Qt，Armadillo也直接用了自带例子中的blas_win64_MT.dll、blas_win64_MT.lib、lapack_win64_MT.dll、lapack_win64_MT.lib，没有完整编译Armadillo，仅是调用举例。 版本信息： <strong>qt-opensource-windows-x86-msvc2013_64-5.8.0.exe、Armadillo v7.500.2、VS2013</strong></p>
 <h2 id="第1步："><a href="#第1步：" class="headerlink" title="第1步："></a>第1步：</h2><p>下载一个Armadillo文件包，在官网下即可： <a href="http://arma.sourceforge.net/download.html" target="_blank" rel="noopener">http://arma.sourceforge.net/download.html</a></p>
 <h2 id="第2步："><a href="#第2步：" class="headerlink" title="第2步："></a>第2步：</h2><p>用Qt随便建一个Console工程，在.pro下添加如下代码，路径就是解压Armadillo的那个路径：</p>
 <p>INCLUDEPATH+= D:/Library/Armadillo/include \  </p>
@@ -266,46 +876,198 @@ return a.exec();
 <h2 id="第4步："><a href="#第4步：" class="headerlink" title="第4步："></a>第4步：</h2><p>先清除，执行qmake一下，构建，运行。</p>
 <h2 id="第5步："><a href="#第5步：" class="headerlink" title="第5步："></a>第5步：</h2><p>已经成功了！ <img src="http://img.blog.csdn.net/20170308091323782?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FuZGVlcGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/08/qt-armadillo/" data-id="cjhdn25iv003isobto9h9c8jm" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-qt-eigen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/05/qt-eigen/" class="article-date">
-  <time datetime="2017-03-05T12:39:39.000Z" itemprop="datePublished">2017-03-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/qt-eigen.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/05/qt-eigen/">Qt下Eigen矩阵函数库的添加</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/qt-eigen.html" itemprop="url">
+                  Qt下Eigen矩阵函数库的添加
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T20:39:39+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/qt-eigen.html" class="leancloud_visitors" data-flag-title="Qt下Eigen矩阵函数库的添加">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h2 id="第1步："><a href="#第1步：" class="headerlink" title="第1步："></a>第1步：</h2><p>下载一个Eigen文件包，在官网下即可： <a href="http://eigen.tuxfamily.org/" target="_blank" rel="noopener">http://eigen.tuxfamily.org/</a></p>
+      
+
+      
+        
+          
+            <h2 id="第1步："><a href="#第1步：" class="headerlink" title="第1步："></a>第1步：</h2><p>下载一个Eigen文件包，在官网下即可： <a href="http://eigen.tuxfamily.org/" target="_blank" rel="noopener">http://eigen.tuxfamily.org/</a></p>
 <h2 id="第2步："><a href="#第2步：" class="headerlink" title="第2步："></a>第2步：</h2><p>用Qt随便建一个GUI工程，在.pro下添加如下代码，路径就是解压Eigen的那个路径： INCLUDEPATH+=D:\Library\Eigen\Eigen</p>
 <h2 id="第3步："><a href="#第3步：" class="headerlink" title="第3步："></a>第3步：</h2><p>cpp文件中添加：</p>
 <p>// Qt下Eigen矩阵函数库的添加  </p>
@@ -314,46 +1076,198 @@ return a.exec();
 <h2 id="第4步："><a href="#第4步：" class="headerlink" title="第4步："></a>第4步：</h2><p>先清除，执行qmake一下，构建，运行。</p>
 <h2 id="第5步："><a href="#第5步：" class="headerlink" title="第5步："></a>第5步：</h2><p>已经成功了！</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/05/qt-eigen/" data-id="cjhdn25j2003qsobtnzr72m5m" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-opencv2-4-13-vs2013" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/02/opencv2-4-13-vs2013/" class="article-date">
-  <time datetime="2017-03-02T12:38:33.000Z" itemprop="datePublished">2017-03-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/教程技巧/">教程技巧</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/opencv2-4-13-vs2013.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/opencv2-4-13-vs2013/">OpenCV2.4.13+VS2013配置方法</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/opencv2-4-13-vs2013.html" itemprop="url">
+                  OpenCV2.4.13+VS2013配置方法
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T20:38:33+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">教程技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/opencv2-4-13-vs2013.html" class="leancloud_visitors" data-flag-title="OpenCV2.4.13+VS2013配置方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p><strong>VC版本编号：</strong> 先说一下VC几代表的对应版本： vc8 = Visual Studio 2005 vc9 = Visual Studio 2008 vc10 = Visual Studio 2010 vc11 = Visual Studio 2012 vc12 = Visual Studio 2013 vc14 = Visual Studio 2015 本文重点讲OpenCV2.4.13 配 VS2013，因为OpenCV2没3坑多，VS2013又智能又兼容老旧工程： <strong>环境变量：</strong> D:\Soft\OpenCV2\build\x86\vc12\bin; <strong>包含目录：</strong> D盘版本：D:\Soft\OpenCV2\build\include;D:\Soft\OpenCV2\build\include\opencv;D:\Soft\OpenCV2\build\include\opencv2; C盘版本：C:\Soft\OpenCV2\build\include;C:\Soft\OpenCV2\build\include\opencv;C:\Soft\OpenCV2\build\include\opencv2; <strong>库目录：</strong> D盘版本：D:\Soft\OpenCV2\build\x86\vc12\lib;D:\Soft\OpenCV2\build\x86\vc12\staticlib; C盘版本：C:\Soft\OpenCV2\build\x86\vc12\lib;C:\Soft\OpenCV2\build\x86\vc12\staticlib; <strong>链接器-&gt;输入-&gt;附加依赖项(Release)：</strong></p>
+      
+
+      
+        
+          
+            <p><strong>VC版本编号：</strong> 先说一下VC几代表的对应版本： vc8 = Visual Studio 2005 vc9 = Visual Studio 2008 vc10 = Visual Studio 2010 vc11 = Visual Studio 2012 vc12 = Visual Studio 2013 vc14 = Visual Studio 2015 本文重点讲OpenCV2.4.13 配 VS2013，因为OpenCV2没3坑多，VS2013又智能又兼容老旧工程： <strong>环境变量：</strong> D:\Soft\OpenCV2\build\x86\vc12\bin; <strong>包含目录：</strong> D盘版本：D:\Soft\OpenCV2\build\include;D:\Soft\OpenCV2\build\include\opencv;D:\Soft\OpenCV2\build\include\opencv2; C盘版本：C:\Soft\OpenCV2\build\include;C:\Soft\OpenCV2\build\include\opencv;C:\Soft\OpenCV2\build\include\opencv2; <strong>库目录：</strong> D盘版本：D:\Soft\OpenCV2\build\x86\vc12\lib;D:\Soft\OpenCV2\build\x86\vc12\staticlib; C盘版本：C:\Soft\OpenCV2\build\x86\vc12\lib;C:\Soft\OpenCV2\build\x86\vc12\staticlib; <strong>链接器-&gt;输入-&gt;附加依赖项(Release)：</strong></p>
 <blockquote>
 <p>opencv_objdetect2413.lib opencv_ts2413.lib opencv_video2413.lib opencv_nonfree2413.lib opencv_ocl2413.lib opencv_photo2413.lib opencv_stitching2413.lib opencv_superres2413.lib opencv_videostab2413.lib opencv_calib3d2413.lib opencv_contrib2413.lib opencv_core2413.lib opencv_features2d2413.lib opencv_flann2413.lib opencv_gpu2413.lib opencv_highgui2413.lib opencv_imgproc2413.lib opencv_legacy2413.lib opencv_ml2413.lib</p>
 </blockquote>
@@ -362,46 +1276,198 @@ return a.exec();
 <p>opencv_ml2413d.lib opencv_calib3d2413d.lib opencv_contrib2413d.lib opencv_core2413d.lib opencv_features2d2413d.lib opencv_flann2413d.lib opencv_gpu2413d.lib opencv_highgui2413d.lib opencv_imgproc2413d.lib opencv_legacy2413d.lib opencv_objdetect2413d.lib opencv_ts2413d.lib opencv_video2413d.lib opencv_nonfree2413d.lib opencv_ocl2413d.lib opencv_photo2413d.lib opencv_stitching2413d.lib opencv_superres2413d.lib opencv_videostab2413d.lib</p>
 </blockquote>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/02/opencv2-4-13-vs2013/" data-id="cjhdn25ii002usobtvualguo0" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-opencv2-4-13-qt5-6-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/01/opencv2-4-13-qt5-6-2/" class="article-date">
-  <time datetime="2017-03-01T12:34:49.000Z" itemprop="datePublished">2017-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/教程技巧/">教程技巧</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/opencv2-4-13-qt5-6-2.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/01/opencv2-4-13-qt5-6-2/">OpenCV2.4.13+Qt5.6.2配置方法</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/opencv2-4-13-qt5-6-2.html" itemprop="url">
+                  OpenCV2.4.13+Qt5.6.2配置方法
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T20:34:49+08:00">
+                2017-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">教程技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/opencv2-4-13-qt5-6-2.html" class="leancloud_visitors" data-flag-title="OpenCV2.4.13+Qt5.6.2配置方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h2 id="1、环境变量"><a href="#1、环境变量" class="headerlink" title="1、环境变量"></a>1、环境变量</h2><p>D:\Soft\OpenCV2\MinGW_build\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; D:\Soft\Programming\CMake3.7.0\bin;</p>
+      
+
+      
+        
+          
+            <h2 id="1、环境变量"><a href="#1、环境变量" class="headerlink" title="1、环境变量"></a>1、环境变量</h2><p>D:\Soft\OpenCV2\MinGW_build\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; D:\Soft\Programming\CMake3.7.0\bin;</p>
 <h2 id="2、OpenCV2-4-13的MinGW-build版本位置"><a href="#2、OpenCV2-4-13的MinGW-build版本位置" class="headerlink" title="2、OpenCV2.4.13的MinGW_build版本位置"></a>2、OpenCV2.4.13的MinGW_build版本位置</h2><p>D:\Soft\OpenCV2\MinGW_build\</p>
 <h2 id="3、Qt5-6-2位置"><a href="#3、Qt5-6-2位置" class="headerlink" title="3、Qt5.6.2位置"></a>3、Qt5.6.2位置</h2><p>C:\Qt\Qt5.6.2\</p>
 <h2 id="4、Qt的pro文件写法"><a href="#4、Qt的pro文件写法" class="headerlink" title="4、Qt的pro文件写法"></a>4、Qt的pro文件写法</h2><p>QT += core<br>QT -= gui  </p>
@@ -427,169 +1493,777 @@ cvReleaseImage(&amp;pImg);              //释放图像
 waitKey(0);  
 </code></pre><p>}</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/opencv2-4-13-qt5-6-2/" data-id="cjhdn25ie002nsobtp6w109gl" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
-  
-    <article id="post-sandeepin-win10-soft" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/16/sandeepin-win10-soft/" class="article-date">
-  <time datetime="2017-02-16T12:32:07.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/分享推荐/">分享推荐</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/sandeepin-win10-soft/">异想家Win10系统安装的软件与配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、C盘推荐一个硬盘，256G，安装好驱动，显卡配置好高性能，激活Win10，屏蔽Win10驱动更新，改电脑名称为Sandeepin-PC。QHCPT-N6P3F-8WTP2-R277X-XKXTT 2、安装我的个性字体、韩语字体。时间同步：开始-&gt;运行-&gt;CMD(管理员)： Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1 3、桌面图标：此电脑、我的文档、回收站。桌面、下载、文档移到D盘。 4、显示器分辨率设置、盘符设置。 5、使用【一分钟解决英文字体模糊，对话框拉长变马脸】，再替换字体。 6、文件夹选项——打开文件资源管理器时打开“此电脑”；“隐私”选项都去掉。 7、关闭Windows Defender、防火墙： 运行——gpedit.msc——计算机配置——管理模板——Windows组件——Windows Defender——关闭Windows Defender。 【不关服务中的Windows防火墙(Firewall)，否则问题多多。】 把“索引服务”禁用(即关闭Windows Search服务)。 8、关闭Windows安全机制： Win键+R–运行gpedit.msc； 用户配置–管理模版–Windows组件–附件管理器； 文件类型的默认风险级别，设置为“启用”，选择“低风险”； 低风险文件类型的包含列表，设置为“启用”，扩展名增加比如：.exe;.rar;.zip;.7z； 文件附件值中不保留区域信息，设置为“启用”。 9、关闭所有维护消息(通知和操作——不获取通知)、关闭任务栏搜索框、小娜等。 10、删除Metro应用：以管理员身份运行Powershell Get-AppxPackage -AllUsers | Remove-AppxPackage 找回应用商店、计算器：WindowsApps增加Everyone的权限 add-appxpackage -register “C:\Program Files\WindowsApps\Microsoft.WindowsStore_11606.1001.39.0_x64__8wekyb3d8bbwe\AppxManifest.xml” -disabledevelopmentmode add-appxpackage -register “C:\Program Files\WindowsApps\Microsoft.WindowsCalculator_10.1605.1582.0_x64__8wekyb3d8bbwe\AppxManifest.xml” -disabledevelopmentmode 11、修复Win10图片查看器：执行【修复Win10图片查看器.reg】。 12、安装.NET Framework 3.5： 12.1、Win+X（或者鼠标右键点击屏幕左下角处）选择命令提示符（管理员模式）。 12.2、输入如下命令： DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:E:\Win10安装\【03、Framework3.5】 13、关闭磁盘碎片整理： 开始——管理工具——磁盘碎片整理程序——配置计划——去掉“按计划运行”。 14、偏好设置： 显示星期(yyyy/M/d dddd)； 个人头像设置； 删除不要的输入法； 任务管理器调节大小、窗口默认最大化、画图默认缩小； 系统最佳外观、系统还原关闭、屏幕30分钟黑； IP固定192.168.1.200； 显示隐藏文件和后缀名、操作中心各种提示消息全部关掉。 15、系统相关必备组件： Flash、.NET v3.5(已经装了)、JDK、VC运行库 16、最基础软件： WinRAR(默认配置：最大压缩、密码) PDF-XChange Viewer 手心输入法(或搜狗输入法)、导入配置词库 XnView Shell Extension(右键看图) NetSpeedMonitor(网速显示) QQ软件管理 输入法切换快捷键修改：控制面板\时钟、语言和区域\语言\高级设置 更改热键 切换键盘布局，不设置 17、WPS、Microsoft Office、Visio、MathType等办公软件。 18、设置、注册绿色软件： 设置右键：Everything、FileMenu Tools安装配置(高级重命名大小调整，导入配置) 配置注册：去广告软件(阿呆喵、adbyby等选择)、Notepad2、EverEdit(关联文件类型、右键打开)、排版助手、Flash播放器、虚拟光驱、WinSnap、Image Optimizer(设置中文)、SPX Instant Screen Capture注册、SolveigMM Video Splitter注册 放开始菜单：Notepad2、EverEdit、计算器、画图、Winsnap、WPS、Office、Visio、MathType 19、Potplayer、千千静听、网易云音 20、迅雷(设置下载文件到：我的文档-下载)、迅雷快鸟 21、腾讯QQ(文件保存在我的文档) 22、魔方优化 23、文件关联、浏览器放在任务栏 24、桌面图标： 腾讯QQ、迅雷、Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PortHelper、远程桌面连接、Virtual Serial Port、MATLAB等，根据需求摆放。 弄好备份一次系统(基础)！ 25、安装编程、同步等生活工作软件： 同步工具：坚果云、百度云 编程环境：MinGW、OpenCV、Qt、Matlab、Java、Boost、Python(Anaconda)…… IDE：Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PyCharm …… 26、部分环境变量设置： JAVA_HOME中加入：C:\Program Files (x86)\Java\jdk1.8.0_112\ classpath中加入：.;%JAVA_HOME%lib\dt.jar;%JAVA_HOME%lib\toos.jar;%JAVA_HOME%jre\lib\rt.jar; Path中加入： ;%JAVA_HOME%bin; D:\Library\OpenCV2\MinGW_build\bin; D:\Library\OpenCV2\build\x86\vc12\bin; D:\Library\Boost; D:\Library\Boost\stage\lib; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; C:\Qt\Qt5.6.2\5.6\mingw49_32\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\i686-w64-mingw32\bin; D:\Soft\Matlab\bin; D:\Soft\Matlab\runtime\win64; D:\Soft\Matlab\polyspace\bin; C:\ProgramData\Anaconda3; C:\ProgramData\Anaconda3\Scripts; C:\ProgramData\Anaconda3\Library\bin; 运行常见软件进行测试，弄好后备份一次系统(完整)！ 27、VMware Workstation 28、【应用商店软件推荐】 贴吧极速版Beta 不要直接下应用商店里的贴吧！ QQ 手机淘宝 UWP UWP播放器/ACG播放器 vlc for windowsphone IT之家UWP 网易云音乐 Office全家桶 微软必应词典 CanKnockDown3 游戏 B站 换成winsows 神一般的软件 美团 微信</p>
-
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/sandeepin-win10-soft/" data-id="cjhdn25j5003ssobt2hdjat2g" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-sandeepin-win7-soft" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/11/sandeepin-win7-soft/" class="article-date">
-  <time datetime="2017-02-11T12:29:46.000Z" itemprop="datePublished">2017-02-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/分享推荐/">分享推荐</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/11/sandeepin-win7-soft/">异想家Win7系统安装的软件与配置</a>
-    </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>C盘推荐一个硬盘，256G以上，安装好驱动，激活Win7，备份一次系统(纯净)！ 1、Mac、Linux时间同步(双系统时配置)： 开始-&gt;运行-&gt;CMD，打开命令行程序(以管理员方式打开命令行)，在命令行中输入下面命令并回车： Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1 2、自己喜欢的字体安装。 3、关闭磁盘碎片整理： 开始——所有程序——附件——系统工具——磁盘碎片整理程序——配置计划-去掉“按计划运行”的对号，或者更改设置。 4、把“索引服务”禁用(即关闭Windows Search服务)、系统不更新、防火墙关。 5、关闭Windows安全机制： Win键+R——运行gpedit.msc； 用户配置——管理模版——Windows组件——附件管理器； 文件类型的默认风险级别，设置为“启用”，选择“低风险”； 低风险文件类型的包含列表，设置为“启用”，扩展名增加比如：.exe;.rar;.zip;.7z； 文件附件值中不保留区域信息，设置为“启用”。 6、偏好设置： 显示星期(yyyy/M/d dddd)； 桌面放“计算机”“我的文档”“回收站”； 开始菜单隐私保护、开始菜单文件夹链接及图标摆放； 个人头像设置； 删除不要的输入法； 任务管理器调节大小、窗口默认最大化、画图默认缩小； 系统最佳外观、系统还原关闭、屏幕30分钟黑； IP固定192.168.1.200； 显示隐藏文件和后缀名、操作中心各种提示消息全部关掉。 7、系统相关必备组件： Win7摄像头、Flash插件(IE、第三方)、NET.Framework、Java JDK、VC运行库、DirectX、IE浏览器升级 8、最基础软件： WinRAR(默认配置：最大压缩、密码) PDF-XChange Viewer (PXP40-4O031-1514Y-KRJM6-6A6E8-6WLE2) 手心输入法(或搜狗输入法)、导入配置词库 XnView Shell Extension(右键看图) NetSpeedMonitor(网速显示) QQ软件管理 9、WPS、Microsoft Office、Visio、MathType等办公软件。 10、设置、注册绿色软件： 设置右键：Everything、FileMenu Tools安装配置(高级重命名大小调整，导入配置) 配置注册：去广告软件(阿呆喵、adbyby等选择)、Notepad2、EverEdit(关联文件类型)、排版助手、Flash播放器、虚拟光驱、WinSnap、Image Optimizer(设置中文)、SPX Instant Screen Capture注册、SolveigMM Video Splitter注册 放开始菜单：Notepad2、EverEdit、计算器、画图、Winsnap、WPS、Office、Visio、MathType 11、Potplayer、千千静听、网易云音乐 12、迅雷(设置下载文件到：我的文档-下载)、迅雷快鸟 13、腾讯QQ(文件保存在安装目录) 14、魔方优化、扁平化主题、破解主题文件 15、文件关联、浏览器放在任务栏 16、桌面图标： 腾讯QQ、迅雷、Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PortHelper、远程桌面连接、Virtual Serial Port、MATLAB等，根据需求摆放。 弄好备份一次系统(基础)！ 17、安装编程、同步等生活工作软件： 同步工具：坚果云、百度云 编程环境：MinGW、OpenCV、Qt、Matlab、Java、Boost、Python(Anaconda)…… IDE：Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PyCharm …… 18、部分环境变量设置： JAVA_HOME中加入：C:\Program Files (x86)\Java\jdk1.8.0_112\ classpath中加入：.;%JAVA_HOME%lib\dt.jar;%JAVA_HOME%lib\toos.jar;%JAVA_HOME%jre\lib\rt.jar; Path中加入： ;%JAVA_HOME%bin; D:\Library\OpenCV2\MinGW_build\bin; D:\Library\OpenCV2\build\x86\vc12\bin; D:\Library\Boost; D:\Library\Boost\stage\lib; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; C:\Qt\Qt5.6.2\5.6\mingw49_32\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\i686-w64-mingw32\bin; D:\Soft\Matlab\bin; D:\Soft\Matlab\runtime\win64; D:\Soft\Matlab\polyspace\bin; C:\ProgramData\Anaconda3; C:\ProgramData\Anaconda3\Scripts; C:\ProgramData\Anaconda3\Library\bin; 运行常见软件测试，弄好后备份一次系统(完整)！</p>
 
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/11/sandeepin-win7-soft/" data-id="cjhdn25j7003usobtqs0mwxsq" class="article-share-link">Share</a>
+
+
+    <footer class="post-footer">
+        
+     <div>    
       
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/16/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95/" class="article-date">
-  <time datetime="2017-01-16T12:25:24.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/sandeepin-win10-soft.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/16/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95/">Qt常用UI控件读取、写入方法</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/sandeepin-win10-soft.html" itemprop="url">
+                  异想家Win10系统安装的软件与配置
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T20:32:07+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分享推荐/" itemprop="url" rel="index">
+                    <span itemprop="name">分享推荐</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/sandeepin-win10-soft.html" class="leancloud_visitors" data-flag-title="异想家Win10系统安装的软件与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文用途：快速备忘，方便调用，写熟了自然就记下了。 【1、标签label】 读取：ui-&gt;label-&gt;text() 写入：ui-&gt;label-&gt;setText(“poi”) 【2、单行文本框lineEdit】 读取：ui-&gt;lineEdit-&gt;text() 写入：ui-&gt;lineEdit-&gt;setText(“poi”) 【3、单行文本框textEdit】 读取(文本)：ui-&gt;textEdit-&gt;toPlainText() 读取(富文本)：ui-&gt;textedit-&gt;toHtml() 写入：ui-&gt;textEdit-&gt;setText(“poi”) 追加：ui-&gt;textEdit-&gt;append(“jfz”) 【4、spinBox】 读取：ui-&gt;spinBox-&gt;text() 【5、doubleSpinBox】 读取：ui-&gt;doubleSpinBox-&gt;text() 【6、comboBox】 读取：ui-&gt;comboBox-&gt;currentText() 【7、radioButton】 读取：ui-&gt;radioButton-&gt;isChecked() 【8、checkBox】 读取：checkBox-&gt;checkState() == Qt::Checked</p>
 
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、C盘推荐一个硬盘，256G，安装好驱动，显卡配置好高性能，激活Win10，屏蔽Win10驱动更新，改电脑名称为Sandeepin-PC。QHCPT-N6P3F-8WTP2-R277X-XKXTT 2、安装我的个性字体、韩语字体。时间同步：开始-&gt;运行-&gt;CMD(管理员)： Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1 3、桌面图标：此电脑、我的文档、回收站。桌面、下载、文档移到D盘。 4、显示器分辨率设置、盘符设置。 5、使用【一分钟解决英文字体模糊，对话框拉长变马脸】，再替换字体。 6、文件夹选项——打开文件资源管理器时打开“此电脑”；“隐私”选项都去掉。 7、关闭Windows Defender、防火墙： 运行——gpedit.msc——计算机配置——管理模板——Windows组件——Windows Defender——关闭Windows Defender。 【不关服务中的Windows防火墙(Firewall)，否则问题多多。】 把“索引服务”禁用(即关闭Windows Search服务)。 8、关闭Windows安全机制： Win键+R–运行gpedit.msc； 用户配置–管理模版–Windows组件–附件管理器； 文件类型的默认风险级别，设置为“启用”，选择“低风险”； 低风险文件类型的包含列表，设置为“启用”，扩展名增加比如：.exe;.rar;.zip;.7z； 文件附件值中不保留区域信息，设置为“启用”。 9、关闭所有维护消息(通知和操作——不获取通知)、关闭任务栏搜索框、小娜等。 10、删除Metro应用：以管理员身份运行Powershell Get-AppxPackage -AllUsers | Remove-AppxPackage 找回应用商店、计算器：WindowsApps增加Everyone的权限 add-appxpackage -register “C:\Program Files\WindowsApps\Microsoft.WindowsStore_11606.1001.39.0_x64__8wekyb3d8bbwe\AppxManifest.xml” -disabledevelopmentmode add-appxpackage -register “C:\Program Files\WindowsApps\Microsoft.WindowsCalculator_10.1605.1582.0_x64__8wekyb3d8bbwe\AppxManifest.xml” -disabledevelopmentmode 11、修复Win10图片查看器：执行【修复Win10图片查看器.reg】。 12、安装.NET Framework 3.5： 12.1、Win+X（或者鼠标右键点击屏幕左下角处）选择命令提示符（管理员模式）。 12.2、输入如下命令： DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:E:\Win10安装\【03、Framework3.5】 13、关闭磁盘碎片整理： 开始——管理工具——磁盘碎片整理程序——配置计划——去掉“按计划运行”。 14、偏好设置： 显示星期(yyyy/M/d dddd)； 个人头像设置； 删除不要的输入法； 任务管理器调节大小、窗口默认最大化、画图默认缩小； 系统最佳外观、系统还原关闭、屏幕30分钟黑； IP固定192.168.1.200； 显示隐藏文件和后缀名、操作中心各种提示消息全部关掉。 15、系统相关必备组件： Flash、.NET v3.5(已经装了)、JDK、VC运行库 16、最基础软件： WinRAR(默认配置：最大压缩、密码) PDF-XChange Viewer 手心输入法(或搜狗输入法)、导入配置词库 XnView Shell Extension(右键看图) NetSpeedMonitor(网速显示) QQ软件管理 输入法切换快捷键修改：控制面板\时钟、语言和区域\语言\高级设置 更改热键 切换键盘布局，不设置 17、WPS、Microsoft Office、Visio、MathType等办公软件。 18、设置、注册绿色软件： 设置右键：Everything、FileMenu Tools安装配置(高级重命名大小调整，导入配置) 配置注册：去广告软件(阿呆喵、adbyby等选择)、Notepad2、EverEdit(关联文件类型、右键打开)、排版助手、Flash播放器、虚拟光驱、WinSnap、Image Optimizer(设置中文)、SPX Instant Screen Capture注册、SolveigMM Video Splitter注册 放开始菜单：Notepad2、EverEdit、计算器、画图、Winsnap、WPS、Office、Visio、MathType 19、Potplayer、千千静听、网易云音 20、迅雷(设置下载文件到：我的文档-下载)、迅雷快鸟 21、腾讯QQ(文件保存在我的文档) 22、魔方优化 23、文件关联、浏览器放在任务栏 24、桌面图标： 腾讯QQ、迅雷、Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PortHelper、远程桌面连接、Virtual Serial Port、MATLAB等，根据需求摆放。 弄好备份一次系统(基础)！ 25、安装编程、同步等生活工作软件： 同步工具：坚果云、百度云 编程环境：MinGW、OpenCV、Qt、Matlab、Java、Boost、Python(Anaconda)…… IDE：Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PyCharm …… 26、部分环境变量设置： JAVA_HOME中加入：C:\Program Files (x86)\Java\jdk1.8.0_112\ classpath中加入：.;%JAVA_HOME%lib\dt.jar;%JAVA_HOME%lib\toos.jar;%JAVA_HOME%jre\lib\rt.jar; Path中加入： ;%JAVA_HOME%bin; D:\Library\OpenCV2\MinGW_build\bin; D:\Library\OpenCV2\build\x86\vc12\bin; D:\Library\Boost; D:\Library\Boost\stage\lib; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; C:\Qt\Qt5.6.2\5.6\mingw49_32\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\i686-w64-mingw32\bin; D:\Soft\Matlab\bin; D:\Soft\Matlab\runtime\win64; D:\Soft\Matlab\polyspace\bin; C:\ProgramData\Anaconda3; C:\ProgramData\Anaconda3\Scripts; C:\ProgramData\Anaconda3\Library\bin; 运行常见软件进行测试，弄好后备份一次系统(完整)！ 27、VMware Workstation 28、【应用商店软件推荐】 贴吧极速版Beta 不要直接下应用商店里的贴吧！ QQ 手机淘宝 UWP UWP播放器/ACG播放器 vlc for windowsphone IT之家UWP 网易云音乐 Office全家桶 微软必应词典 CanKnockDown3 游戏 B站 换成winsows 神一般的软件 美团 微信</p>
+
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/16/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95/" data-id="cjhdn25is003fsobtkyl0zgxa" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-stm32-ds18b20s" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/14/stm32-ds18b20s/" class="article-date">
-  <time datetime="2016-12-14T12:24:31.000Z" itemprop="datePublished">2016-12-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/sandeepin-win7-soft.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/stm32-ds18b20s/">完美实现STM32单总线挂多个DS18B20</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/sandeepin-win7-soft.html" itemprop="url">
+                  异想家Win7系统安装的软件与配置
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-11T20:29:46+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分享推荐/" itemprop="url" rel="index">
+                    <span itemprop="name">分享推荐</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/sandeepin-win7-soft.html" class="leancloud_visitors" data-flag-title="异想家Win7系统安装的软件与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20.c文件代码：</p>
+      
+
+      
+        
+          
+            <p>C盘推荐一个硬盘，256G以上，安装好驱动，激活Win7，备份一次系统(纯净)！ 1、Mac、Linux时间同步(双系统时配置)： 开始-&gt;运行-&gt;CMD，打开命令行程序(以管理员方式打开命令行)，在命令行中输入下面命令并回车： Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1 2、自己喜欢的字体安装。 3、关闭磁盘碎片整理： 开始——所有程序——附件——系统工具——磁盘碎片整理程序——配置计划-去掉“按计划运行”的对号，或者更改设置。 4、把“索引服务”禁用(即关闭Windows Search服务)、系统不更新、防火墙关。 5、关闭Windows安全机制： Win键+R——运行gpedit.msc； 用户配置——管理模版——Windows组件——附件管理器； 文件类型的默认风险级别，设置为“启用”，选择“低风险”； 低风险文件类型的包含列表，设置为“启用”，扩展名增加比如：.exe;.rar;.zip;.7z； 文件附件值中不保留区域信息，设置为“启用”。 6、偏好设置： 显示星期(yyyy/M/d dddd)； 桌面放“计算机”“我的文档”“回收站”； 开始菜单隐私保护、开始菜单文件夹链接及图标摆放； 个人头像设置； 删除不要的输入法； 任务管理器调节大小、窗口默认最大化、画图默认缩小； 系统最佳外观、系统还原关闭、屏幕30分钟黑； IP固定192.168.1.200； 显示隐藏文件和后缀名、操作中心各种提示消息全部关掉。 7、系统相关必备组件： Win7摄像头、Flash插件(IE、第三方)、NET.Framework、Java JDK、VC运行库、DirectX、IE浏览器升级 8、最基础软件： WinRAR(默认配置：最大压缩、密码) PDF-XChange Viewer (PXP40-4O031-1514Y-KRJM6-6A6E8-6WLE2) 手心输入法(或搜狗输入法)、导入配置词库 XnView Shell Extension(右键看图) NetSpeedMonitor(网速显示) QQ软件管理 9、WPS、Microsoft Office、Visio、MathType等办公软件。 10、设置、注册绿色软件： 设置右键：Everything、FileMenu Tools安装配置(高级重命名大小调整，导入配置) 配置注册：去广告软件(阿呆喵、adbyby等选择)、Notepad2、EverEdit(关联文件类型)、排版助手、Flash播放器、虚拟光驱、WinSnap、Image Optimizer(设置中文)、SPX Instant Screen Capture注册、SolveigMM Video Splitter注册 放开始菜单：Notepad2、EverEdit、计算器、画图、Winsnap、WPS、Office、Visio、MathType 11、Potplayer、千千静听、网易云音乐 12、迅雷(设置下载文件到：我的文档-下载)、迅雷快鸟 13、腾讯QQ(文件保存在安装目录) 14、魔方优化、扁平化主题、破解主题文件 15、文件关联、浏览器放在任务栏 16、桌面图标： 腾讯QQ、迅雷、Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PortHelper、远程桌面连接、Virtual Serial Port、MATLAB等，根据需求摆放。 弄好备份一次系统(基础)！ 17、安装编程、同步等生活工作软件： 同步工具：坚果云、百度云 编程环境：MinGW、OpenCV、Qt、Matlab、Java、Boost、Python(Anaconda)…… IDE：Visual Studio 2013、Qt Creator、Keil uVision4、Spyder、PyCharm …… 18、部分环境变量设置： JAVA_HOME中加入：C:\Program Files (x86)\Java\jdk1.8.0_112\ classpath中加入：.;%JAVA_HOME%lib\dt.jar;%JAVA_HOME%lib\toos.jar;%JAVA_HOME%jre\lib\rt.jar; Path中加入： ;%JAVA_HOME%bin; D:\Library\OpenCV2\MinGW_build\bin; D:\Library\OpenCV2\build\x86\vc12\bin; D:\Library\Boost; D:\Library\Boost\stage\lib; C:\Qt\Qt5.6.2\Tools\mingw492_32\bin; C:\Qt\Qt5.6.2\5.6\mingw49_32\bin; C:\Qt\Qt5.6.2\Tools\mingw492_32\i686-w64-mingw32\bin; D:\Soft\Matlab\bin; D:\Soft\Matlab\runtime\win64; D:\Soft\Matlab\polyspace\bin; C:\ProgramData\Anaconda3; C:\ProgramData\Anaconda3\Scripts; C:\ProgramData\Anaconda3\Library\bin; 运行常见软件测试，弄好后备份一次系统(完整)！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2017/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95.html" itemprop="url">
+                  Qt常用UI控件读取、写入方法
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-16T20:25:24+08:00">
+                2017-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2017/qt-e5-b8-b8-e7-94-a8ui-e6-8e-a7-e4-bb-b6-e8-af-bb-e5-8f-96-e3-80-81-e5-86-99-e5-85-a5-e6-96-b9-e6-b3-95.html" class="leancloud_visitors" data-flag-title="Qt常用UI控件读取、写入方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文用途：快速备忘，方便调用，写熟了自然就记下了。 【1、标签label】 读取：ui-&gt;label-&gt;text() 写入：ui-&gt;label-&gt;setText(“poi”) 【2、单行文本框lineEdit】 读取：ui-&gt;lineEdit-&gt;text() 写入：ui-&gt;lineEdit-&gt;setText(“poi”) 【3、单行文本框textEdit】 读取(文本)：ui-&gt;textEdit-&gt;toPlainText() 读取(富文本)：ui-&gt;textedit-&gt;toHtml() 写入：ui-&gt;textEdit-&gt;setText(“poi”) 追加：ui-&gt;textEdit-&gt;append(“jfz”) 【4、spinBox】 读取：ui-&gt;spinBox-&gt;text() 【5、doubleSpinBox】 读取：ui-&gt;doubleSpinBox-&gt;text() 【6、comboBox】 读取：ui-&gt;comboBox-&gt;currentText() 【7、radioButton】 读取：ui-&gt;radioButton-&gt;isChecked() 【8、checkBox】 读取：checkBox-&gt;checkState() == Qt::Checked</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2016/stm32-ds18b20s.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/stm32-ds18b20s.html" itemprop="url">
+                  完美实现STM32单总线挂多个DS18B20
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-14T20:24:31+08:00">
+                2016-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2016/stm32-ds18b20s.html" class="leancloud_visitors" data-flag-title="完美实现STM32单总线挂多个DS18B20">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一般常见的STM32的关于DS18B20的例程都是检测一个传感器，代码一般都是跳过ROM检测，直接获取温度值。这种写法并不适用于单总线上挂载多个DS18B20的情况，Sandeepin的这个代码就是针对这种情况完善的单总线挂多个DS18B20检测，实现获取每个DS18B20的ID和温度。 主要的DS18B20时序代码没变，增加了搜索ROM函数，获取温度时先匹配ID。 核心代码如下： DS18B20.c文件代码：</p>
 <p>#include “DS18B20.h”  </p>
 <p>#include “Delay.h”  </p>
 <p>#include “stdio.h” // printf用  </p>
@@ -705,46 +2379,198 @@ DS18B20_SensorNum = num;
 <p>int main(void)<br>{<br>    u8 num=0;<br>    USART1_init(9600);<br>    while(DS18B20_Init())//初始化DS18B20,兼检测18B20<br>    {<br>        printf(“DS18B20 Check Failed!\r\n”);<br>    }<br>    printf(“DS18B20 Ready!\r\n”);<br>    while(1)<br>    {<br>        DS18B20_Search_Rom();<br>        printf(“DS18B20_SensorNum:%d\r\n”,DS18B20_SensorNum);<br>      for(num=0;num&lt;DS18B20_SensorNum;num++)<br>        {<br>            printf(“ID:%02x%02x%02x%02x%02x%02x%02x%02x TM:%.2f\r\n”,DS18B20_ID[num][0],DS18B20_ID[num][1],DS18B20_ID[num][2],DS18B20_ID[num][3],DS18B20_ID[num][4],DS18B20_ID[num][5],DS18B20_ID[num][6],DS18B20_ID[num][7],DS18B20_Get_Temp(num));<br>        }<br>        printf(“\r\n”);<br>        Delay_s(2);<br>    }<br>}</p>
 <p>运行结果如图： <img src="http://img.blog.csdn.net/20161214135921014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FuZGVlcGlu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""> 帮严博士出本科题的时候，出了一个DS18B20的分布式温度检测系统，要求肯定不仅仅是这篇文章的简略例子了。不仅单总线，一块单片机还要挂多总线，实现更多传感器数据采集，最好还配上上位机，反正把自己能想到的东西都加进来了，把一个简单的DS18B20包装得高大上。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/14/stm32-ds18b20s/" data-id="cjhdn25kj005csobtl1hyic64" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-c-string-code" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/01/c-string-code/" class="article-date">
-  <time datetime="2016-12-01T12:21:25.000Z" itemprop="datePublished">2016-12-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2016/c-string-code.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/01/c-string-code/">C语言字符串处理</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/c-string-code.html" itemprop="url">
+                  C语言字符串处理
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-01T20:21:25+08:00">
+                2016-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2016/c-string-code.html" class="leancloud_visitors" data-flag-title="C语言字符串处理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>本文主要记录自己学习C语言字符串处理时常用的函数，方便以后使用查找，代码如下：</p>
+      
+
+      
+        
+          
+            <p>本文主要记录自己学习C语言字符串处理时常用的函数，方便以后使用查找，代码如下：</p>
 <p>#include &lt;stdio.h&gt;  </p>
 <p>#include &lt;string.h&gt;//字符串需调用  </p>
 <p>#include &lt;stdlib.h&gt;//字符串、整型转换要用  </p>
@@ -799,133 +2625,496 @@ return 0;
 </code></pre><p>}  </p>
 <p>这里只列出了常用的一些，推荐大家参考《C参考手册》、《C语言库函数速查手册》，网上有人都做成了.chm文件，方便查询。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/01/c-string-code/" data-id="cjhdn25h4000hsobtsqmf643f" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</section>
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sandeepin" />
+          <p class="site-author-name" itemprop="name">Sandeepin</p>
+          <p class="site-description motion-element" itemprop="description">异想博客</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/EZLippi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ouyanglip" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lippi-ouyang" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy;  2008 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandeepin</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>| Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
-  </div>
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
 </body>
 </html>

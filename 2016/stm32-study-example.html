@@ -1,0 +1,1338 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Sandeepin" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="异想博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本例子代码参考了STM32库开发实战指南中的代码，由于使用的板子是尚学STM32F103ZET6，为了配合板上已有资源，也参考了其配套代码。为了便于书写文本，我尽量将代码都写到了一个文件中，这种方式是不推荐的，在做具体工程时最好代码分类管理，使工程逻辑清晰。 现在对板上一些资源说明：板上有两个LED灯，引脚为PE5、PE6，均为ResetBits时点亮。有三个按钮，依次为黄色复位，红色PE4(按下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32学习笔记：基础例子">
+<meta property="og:url" content="http://blog.jfz.me/2016/stm32-study-example.html">
+<meta property="og:site_name" content="异想博客">
+<meta property="og:description" content="本例子代码参考了STM32库开发实战指南中的代码，由于使用的板子是尚学STM32F103ZET6，为了配合板上已有资源，也参考了其配套代码。为了便于书写文本，我尽量将代码都写到了一个文件中，这种方式是不推荐的，在做具体工程时最好代码分类管理，使工程逻辑清晰。 现在对板上一些资源说明：板上有两个LED灯，引脚为PE5、PE6，均为ResetBits时点亮。有三个按钮，依次为黄色复位，红色PE4(按下">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.jfz.me/img/2016/stm32-study-example01.jpg">
+<meta property="og:updated_time" content="2018-05-19T16:05:02.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STM32学习笔记：基础例子">
+<meta name="twitter:description" content="本例子代码参考了STM32库开发实战指南中的代码，由于使用的板子是尚学STM32F103ZET6，为了配合板上已有资源，也参考了其配套代码。为了便于书写文本，我尽量将代码都写到了一个文件中，这种方式是不推荐的，在做具体工程时最好代码分类管理，使工程逻辑清晰。 现在对板上一些资源说明：板上有两个LED灯，引脚为PE5、PE6，均为ResetBits时点亮。有三个按钮，依次为黄色复位，红色PE4(按下">
+<meta name="twitter:image" content="http://img.jfz.me/img/2016/stm32-study-example01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.jfz.me/2016/stm32-study-example.html"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> STM32学习笔记：基础例子 | 异想博客 </title>
+</head>
+
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">异想博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">异想家博采众长的客厅！</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2016/stm32-study-example.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                STM32学习笔记：基础例子
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-09T11:33:33+08:00">
+                2016-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2016/stm32-study-example.html" class="leancloud_visitors" data-flag-title="STM32学习笔记：基础例子">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本例子代码参考了STM32库开发实战指南中的代码，由于使用的板子是尚学STM32F103ZET6，为了配合板上已有资源，也参考了其配套代码。为了便于书写文本，我尽量将代码都写到了一个文件中，这种方式是不推荐的，在做具体工程时最好代码分类管理，使工程逻辑清晰。 现在对板上一些资源说明：板上有两个LED灯，引脚为PE5、PE6，均为ResetBits时点亮。有三个按钮，依次为黄色复位，红色PE4(按下接GND)、红色PA0(按下接3.3V，WAKE UP按钮)。ISP口为靠近电源开关的USB，也是USART1口。USART2口为PA3(Rx)、PA2(Tx)。IPD为高电平中断(按键一边接高电平)，IPU为低电平中断。 <img src="http://img.jfz.me/img/2016/stm32-study-example01.jpg" alt=""> 接下来例举基本操作：</p>
+<h2 id="用GPIO点亮灯-GPIO输出"><a href="#用GPIO点亮灯-GPIO输出" class="headerlink" title="用GPIO点亮灯(GPIO输出)"></a>用GPIO点亮灯(GPIO输出)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的I/O口<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>int main(void)<br>{<br>    GPIO_Config();<br>    while(1)<br>    {<br>    GPIO_SetBits(GPIOE , GPIO_Pin_5); //PE5输出高电平<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6); //PE6输出低电平<br>    Delay(1000000);//1,000,000 六个零以上才有明显闪烁<br>    GPIO_SetBits(GPIOE , GPIO_Pin_6); //PE6输出高电平<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_5); //PE5输出低电平<br>    Delay(1000000);<br>    }<br>}</p>
+<p>实现效果：PE6、PE5两盏灯闪烁。</p>
+<h2 id="按键输入-GPIO输入"><a href="#按键输入-GPIO输入" class="headerlink" title="按键输入(GPIO输入)"></a>按键输入(GPIO输入)</h2><p>#include “stm32f10x.h”</p>
+<p>#define KEY1 GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)   //读PE4(GND)</p>
+<p>#define KEY2 GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)   //读PA0(VCC)</p>
+<p>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的PE5、PE6<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>void Key_GPIO_Config(void)//按键配置，这里用PE4、PE5输入<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE);//开启GPIOE的时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4; //设置引脚PE4<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //上拉输入模式(按键按下接GND用这个)<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);</p>
+<pre><code>RCC\_APB2PeriphClockCmd(RCC\_APB2Periph_GPIOA,ENABLE);
+GPIO\_InitStructure.GPIO\_Pin  = GPIO\_Pin\_0;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPD; //下拉输入模式(按键按下接VCC用这个)
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+</code></pre><p>}</p>
+<p>unsigned char KEY1_Scan(void)<br>{<br>    static char key_up0=0;//按键按松开标志<br>    if(KEY1==0)<br>    {<br>    Delay(10000);//延时去抖动<br>        if(KEY1==0)<br>        {<br>            key_up0=1;<br>        }</p>
+<pre><code>}
+if(KEY1==1&amp;&amp;key_up0==1)
+{
+key_up0=0;
+return 1;
+}
+return 0;
+</code></pre><p>}</p>
+<p>unsigned char KEY2_Scan(void)<br>{<br>    static char key_up2=0;//按键按松开标志<br>    if(KEY2==1)<br>    {<br>    Delay(10000);//延时去抖动<br>        if(KEY2==1)<br>        {<br>            key_up2=1;<br>        }<br>    }<br>    if(KEY2==0&amp;&amp;key_up2==1)<br>    {<br>        key_up2=0;<br>        return 1;<br>    }<br>    return 0;<br>}</p>
+<p>unsigned char KEY_Scan(void)<br>{<br>    unsigned char key_code;<br>    if(KEY1_Scan()==1) key_code=1;<br>    else if(KEY2_Scan()==1) key_code=2;<br>    else key_code=0;<br>    return key_code;<br>}</p>
+<p>int main(void)<br>{<br>    int value=0;<br>    GPIO_Config();<br>    Key_GPIO_Config();//配置按键<br>    while(1)<br>    {<br>        value=KEY_Scan();//获取按键值<br>        if(value==1)<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//LED灯PE5反转<br>        else if(value==2)<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//LED灯PE6反转<br>    }<br>}</p>
+<p>实现效果：PE4按下控制PE5灯反转，PA0按下控制PE6灯反转(亮、灭)。</p>
+<h2 id="按键中断-EXTI外部中断操作"><a href="#按键中断-EXTI外部中断操作" class="headerlink" title="按键中断(EXTI外部中断操作)"></a>按键中断(EXTI外部中断操作)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void GPIO_Config(void) //配置LED用到的PE5、PE6<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure; //定义一个GPIO_InitTypeDef类型的结构体<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE); //开启GPIOE的外设时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6; //选择要控制的GPIOE引脚，这里选了PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //设置引脚模式为：通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置引脚速率为：50MHz<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);  //调用库函数，初始化GPIOE<br>    GPIO_SetBits(GPIOE, GPIO_Pin_5 | GPIO_Pin_6); //关闭所有LED灯<br>}</p>
+<p>static void NVIC_Configuration(void)//NVIC(中断控制器)初始化配置，这里配PE4、PA0<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//把NVIC中断优先级分组设为第1组<br>    NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;//PE4对应EXTI线为EXTI4，填EXTI4_IRQn。(EXTI5~EXTI9使用同一中断向量，则填EXTI9_5_IRQn)<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;//抢占优先级2<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;//响应优先级1<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;<br>    NVIC_Init(&amp;NVIC_InitStructure);//向寄存器写入参数</p>
+<pre><code>NVIC\_InitStructure.NVIC\_IRQChannel = EXTI0\_IRQn;//PA0对应EXTI线为EXTI0，填EXTI0\_IRQn
+NVIC\_InitStructure.NVIC\_IRQChannelPreemptionPriority = 2;//抢占优先级2
+NVIC\_InitStructure.NVIC\_IRQChannelSubPriority = 2;//响应优先级2
+NVIC\_InitStructure.NVIC\_IRQChannelCmd = ENABLE;//IRQ(中断请求)通道使能
+NVIC\_Init(&amp;NVIC\_InitStructure);//向寄存器写入参数
+</code></pre><p>}</p>
+<p>void EXTI_Config(void)//配置PE4、PA0为线中断口，并设置中断优先级<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    EXTI_InitTypeDef EXTI_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO,ENABLE);//配置中断线(PA0)时钟和第二功能AFIO时钟，AFIO指GPIO口的复用功能<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE | RCC_APB2Periph_AFIO,ENABLE);//配置中断线(PE4)时钟和第二功能AFIO时钟</p>
+<pre><code>NVIC_Configuration();//配置NVIC中断控制器
+
+//以下配PE4
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_4; //选定要配置为EXTI线的gpio口和设置其工作模式
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPU;//上拉输入
+GPIO\_Init(GPIOE, &amp;GPIO\_InitStructure);
+//以下配PA0
+GPIO\_InitStructure.GPIO\_Pin  = GPIO\_Pin\_0;//选PA0
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IPD;//下拉输入
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配PE4中断线、初始化配置
+GPIO\_EXTILineConfig(GPIO\_PortSourceGPIOE, GPIO_PinSource4); //EXTI中断线(PE5)工作模式配置
+EXTI\_InitStructure.EXTI\_Line = EXTI_Line4;
+EXTI\_InitStructure.EXTI\_Mode = EXTI\_Mode\_Interrupt;
+EXTI\_InitStructure.EXTI\_Trigger = EXTI\_Trigger\_Falling; //下降沿中断
+EXTI\_InitStructure.EXTI\_LineCmd = ENABLE;
+EXTI\_Init(&amp;EXTI\_InitStructure);
+//以下配PA0中断线、初始化配置
+GPIO\_EXTILineConfig(GPIO\_PortSourceGPIOA, GPIO_PinSource0); //EXTI中断线(PA0)工作模式配置
+EXTI\_InitStructure.EXTI\_Line = EXTI_Line0;
+EXTI\_InitStructure.EXTI\_Mode = EXTI\_Mode\_Interrupt;
+EXTI\_InitStructure.EXTI\_Trigger = EXTI\_Trigger\_Rising; //上升沿中断
+EXTI\_InitStructure.EXTI\_LineCmd = ENABLE;
+EXTI\_Init(&amp;EXTI\_InitStructure);
+</code></pre><p>}</p>
+<p>int main(void)<br>{<br>    GPIO_Config();//LED(PE5、PE6)配置<br>    EXTI_Config(); //外部中断EXTI配置，这里是选PE4、PA0<br>    while(1)//等待中断<br>    {<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为EXTI0_IRQHandler(void)和EXTI4_IRQHandler(void)函数：</p>
+<p>void EXTI0_IRQHandler(void)<br>{<br>    Delay(10000);//延时消抖<br>    if(EXTI_GetITStatus(EXTI_Line0) != RESET)//检查指定的EXTI0线路触发请求发生与否<br>    {<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//控制LED的PE6翻转<br>    }<br>    EXTI_ClearITPendingBit(EXTI_Line0);//清除EXTI0线路挂起位<br>}</p>
+<p>void EXTI4_IRQHandler(void)<br>{<br>    Delay(10000);//延时消抖<br>    if(EXTI_GetITStatus(EXTI_Line4) != RESET)//确保是否产生了EXTI4 Line中断<br>    {<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//控制LED的PE5翻转<br>    }<br>    EXTI_ClearITPendingBit(EXTI_Line4);//清除中断标志位<br>}</p>
+<p>实现效果：PE4按下触发中断，控制PE5灯反转；PA0按下触发中断，控制PE6灯反转(亮、灭)。</p>
+<h2 id="串口打印-用USART1"><a href="#串口打印-用USART1" class="headerlink" title="串口打印(用USART1)"></a>串口打印(用USART1)</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);//配置串口1时钟</p>
+<pre><code>//以下串口GPIO端口配置
+//以下配置串口1的Tx(PA9)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_9;//PA9为Tx
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_AF_PP;//复用推挽输出
+GPIO\_InitStructure.GPIO\_Speed = GPIO\_Speed\_50MHz;
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的Rx(PA10)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_10;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IN_FLOATING;//浮空输入模式，Rx不需配Speed
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的模式mode
+USART\_InitStructure.USART\_BaudRate = bound;//USART1的波特率
+USART\_InitStructure.USART\_WordLength = USART\_WordLength\_8b;//串口传输的字长
+USART\_InitStructure.USART\_StopBits = USART\_StopBits\_1;//停止位1位
+USART\_InitStructure.USART\_Parity = USART\_Parity\_No;//不设置奇偶校验位
+USART\_InitStructure.USART\_HardwareFlowControl = USART\_HardwareFlowControl\_None;//不用硬件流控制
+USART\_InitStructure.USART\_Mode = USART\_Mode\_Rx | USART\_Mode\_Tx;//双线全双工。Rx、Tx都开启
+USART\_Init(USART1, &amp;USART\_InitStructure);//向寄存器写入配置
+USART_Cmd(USART1, ENABLE); //使能串口1
+</code></pre><p>}</p>
+<p>int main(void)<br>{<br>    int a=0;<br>    USART1_Config(115200);<br>    while(1)<br>    {<br>    printf(“\r\n Sandeepin poi %d \r\n”,a);<br>    a++;<br>    Delay(2000000);<br>    Delay(2000000);<br>    }<br>}</p>
+<p>实现效果：可在串口调试助手中看到Sandeepin poi 0、Sandeepin poi 1……等信息。</p>
+<h2 id="串口中断-用USART1"><a href="#串口中断-用USART1" class="headerlink" title="串口中断(用USART1)"></a>串口中断(用USART1)</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>int fputc(int ch, FILE *f)//重定向c库函数printf到USART1<br>{<br>    USART_SendData(USART1, (unsigned char) ch);//将Printf内容发往串口<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void USART1_Config(unsigned int bound)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);//配置串口1时钟</p>
+<pre><code>//以下串口GPIO端口配置
+//以下配置串口1的Tx(PA9)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_9;//PA9为Tx
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_AF_PP;//复用推挽输出
+GPIO\_InitStructure.GPIO\_Speed = GPIO\_Speed\_50MHz;
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的Rx(PA10)参数
+GPIO\_InitStructure.GPIO\_Pin = GPIO\_Pin\_10;
+GPIO\_InitStructure.GPIO\_Mode = GPIO\_Mode\_IN_FLOATING;//浮空输入模式，Rx不需配Speed
+GPIO\_Init(GPIOA, &amp;GPIO\_InitStructure);
+//以下配置串口1的模式mode
+USART\_InitStructure.USART\_BaudRate = bound;//USART1的波特率
+USART\_InitStructure.USART\_WordLength = USART\_WordLength\_8b;//串口传输的字长
+USART\_InitStructure.USART\_StopBits = USART\_StopBits\_1;//停止位1位
+USART\_InitStructure.USART\_Parity = USART\_Parity\_No;//不设置奇偶校验位
+USART\_InitStructure.USART\_HardwareFlowControl = USART\_HardwareFlowControl\_None;//不用硬件流控制
+USART\_InitStructure.USART\_Mode = USART\_Mode\_Rx | USART\_Mode\_Tx;//双线全双工。Rx、Tx都开启
+USART\_Init(USART1, &amp;USART\_InitStructure);//向寄存器写入配置
+USART_Cmd(USART1, ENABLE); //使能串口1
+
+USART\_ITConfig(USART1, USART\_IT_RXNE, ENABLE);//开启中断
+</code></pre><p>}</p>
+<p>void NVIC_Configuration(void)//NVIC(中断控制器)初始化配置，这里配USART1<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);//把NVIC中断优先级分组设为第0组<br>    //以下使能串口1中断<br>    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//抢占优先级1<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;//响应优先级0<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;//IRQ(中断请求)通道使能<br>    NVIC_Init(&amp;NVIC_InitStructure);//根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器USART1<br>}</p>
+<p>int main(void)<br>{<br>    USART1_Config(115200);<br>    NVIC_Configuration();<br>    while(1)<br>    {<br>        Delay(2000000);<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为USART1_IRQHandler(void)函数：</p>
+<p>USART1_IRQHandler(void)<br>{<br>    unsigned char code;<br>    if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)<br>    {<br>        code=USART_ReceiveData(USART1);<br>        printf(“%c”,code);//将接受到的数据直接返回打印<br>    }<br>}</p>
+<p>实现效果：在串口调试助手中输入一系列字符，STM32接收到后直接将收到字符原样打印出来。</p>
+<h2 id="定时器-用TIM3"><a href="#定时器-用TIM3" class="headerlink" title="定时器(用TIM3)"></a>定时器(用TIM3)</h2><p>#include “stm32f10x.h”<br>void Delay(__IO u32 nCount)  //简单的延时函数<br>{<br>    for(; nCount != 0; nCount–);<br>}</p>
+<p>void LED_GPIO_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_5;//PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);//PE5初始输出高<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);//PE6初始输出低<br>}</p>
+<p>void TIME_NVIC_Configuration(void)//TIM3中断优先级配置<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置NVIC中断分组2<br>    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; //TIM3中断<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;//抢占优先级0<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;//响应优先级3<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能<br>    NVIC_Init(&amp;NVIC_InitStructure);//初始化外设<br>}</p>
+<p>void TIME_Configuration(void)<br>{<br>    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;<br>    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //定时器TIM3时钟使能<br>    TIM_TimeBaseStructure.TIM_Period = 5000; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值，计数到5000为500ms<br>    TIM_TimeBaseStructure.TIM_Prescaler =(7200-1);//设置用来作为TIMx时钟频率除数的预分频值<br>    TIM_TimeBaseStructure.TIM_ClockDivision = 0; //设置时钟分割:TDTS = Tck_tim<br>    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //TIM向上计数模式<br>    TIM_TimeBaseInit(TIM3, &amp;TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位<br>    TIM_ITConfig(TIM3,TIM_IT_Update|TIM_IT_Trigger,ENABLE);//使能、失能指定的TIM中断<br>    TIM_Cmd(TIM3, ENABLE);//使能TIMx外设<br>}</p>
+<p>int main(void)<br>{<br>    LED_GPIO_Config();//开LED的GPIO<br>    TIME_NVIC_Configuration();//TIM3定时器中断配置<br>    TIME_Configuration();//TIM3定时器配置<br>    while(1)<br>    {<br>    }<br>}</p>
+<p>在stm32f10x_it.c中加入名为TIM3_IRQHandler(void)函数：</p>
+<p>void TIM3_IRQHandler(void)<br>{<br>    if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) //检查指定的TIM中断发生与否<br>    {<br>        TIM_ClearITPendingBit(TIM3, TIM_IT_Update ); //清除TIMx的中断待处理位<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_5, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_5))));//控制LED灯PE5翻转<br>        GPIO_WriteBit(GPIOE, GPIO_Pin_6, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_6))));//控制LED灯PE6翻转<br>    }<br>}</p>
+<p>实现效果：每隔500ms后LED灯PE5、PE6翻转</p>
+<h2 id="SysTick-系统滴答定时器"><a href="#SysTick-系统滴答定时器" class="headerlink" title="SysTick(系统滴答定时器)"></a>SysTick(系统滴答定时器)</h2><p>#include “stm32f10x.h”<br>u32 TimingDelay;</p>
+<p>void LED_GPIO_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_5;//PE5、PE6<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//通用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOE, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);//PE5初始输出高<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);//PE6初始输出低<br>}</p>
+<p>void NVIC_Configuration(void)<br>{<br>    NVIC_InitTypeDef NVIC_InitStructure;<br>    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断组为2<br>    NVIC_InitStructure.NVIC_IRQChannel = SysTick_IRQn;//中断线<br>    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; //抢占优先级为2<br>    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;//响应优先级为0<br>    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //允许SysTick_IRQn中断<br>    NVIC_Init(&amp;NVIC_InitStructure);<br>}</p>
+<p>void SysTick_Init(void)<br>{<br>    /* SystemFrequency / 1000    1ms中断一次<br>     * SystemFrequency / 100000  10us中断一次，分析：ticks=SystemFrequency / 100000=720，T=ticks/f，f=72000000，T=720/72=10us<br>     * SystemFrequency / 1000000 1us中断一次<em>/<br>    while(SysTick_Config( SystemCoreClock / 1000));//Systick 配置延时n</em>ms。输入的参数为两个中断之间的脉冲数。<br>}</p>
+<p>void Delay(u32 nTime)//用Systick延时<br>{<br>    TimingDelay = nTime;<br>    while(TimingDelay != 0);<br>}</p>
+<p>int main(void)<br>{<br>    SysTick_Init();<br>    LED_GPIO_Config();<br>    NVIC_Configuration();//中断配置<br>    while(1)<br>    {<br>    GPIO_SetBits(GPIOE,GPIO_Pin_6);<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_5);<br>    Delay(200);//Systick 配置延时200<em>ms<br>    GPIO_SetBits(GPIOE,GPIO_Pin_5);<br>    GPIO_ResetBits(GPIOE,GPIO_Pin_6);<br>    Delay(200);//Systick 配置延时200</em>ms<br>    }<br>}</p>
+<p>在stm32f10x_it.c中找SysTick_Handler(void)函数，填入如下内容：</p>
+<p>extern u32 TimingDelay;<br>void SysTick_Handler(void)<br>{<br>    if (TimingDelay != 0x00)<br>    {<br>    TimingDelay–;<br>    }<br>}</p>
+<p>实现效果：每隔200ms后LED灯PE5、PE6翻转。</p>
+<h2 id="TFTLCD显示-2-4寸液晶ILI9325"><a href="#TFTLCD显示-2-4寸液晶ILI9325" class="headerlink" title="TFTLCD显示(2.4寸液晶ILI9325)"></a>TFTLCD显示(2.4寸液晶ILI9325)</h2><p>此部分代码复杂，参见我的另一篇文章<a href="http://img.jfz.me/stm32-ili9325.html" target="_blank" rel="noopener">《STM32操纵2.4寸液晶(ILI9325)》</a>。</p>
+<h2 id="调用DS18B20温度传感器"><a href="#调用DS18B20温度传感器" class="headerlink" title="调用DS18B20温度传感器"></a>调用DS18B20温度传感器</h2><p>#include “stm32f10x.h”</p>
+<p>#include “stdio.h”</p>
+<p>//DS18B20-DATA引脚为PC2</p>
+<p>#define DS18B20_DQ_OUT_Low GPIO_ResetBits(GPIOC,GPIO_Pin_2)  //数据端口PC2</p>
+<p>#define DS18B20_DQ_OUT_High GPIO_SetBits(GPIOC,GPIO_Pin_2)  //数据端口PC2</p>
+<p>#define DS18B20_DQ_IN GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)   //数据端口PC2</p>
+<p>void USART1_Config(void)<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    USART_InitTypeDef USART_InitStructure;<br>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    USART_InitStructure.USART_BaudRate = 9600;<br>    USART_InitStructure.USART_WordLength = USART_WordLength_8b;<br>    USART_InitStructure.USART_StopBits = USART_StopBits_1;<br>    USART_InitStructure.USART_Parity = USART_Parity_No ;<br>    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;<br>    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;<br>    USART_Init(USART1, &amp;USART_InitStructure);<br>    USART_Cmd(USART1, ENABLE);<br>}</p>
+<p>int fputc(int ch, FILE *f)<br>{<br>    USART_SendData(USART1, (unsigned char) ch);<br>    while( USART_GetFlagStatus(USART1,USART_FLAG_TC)!= SET);<br>    return (ch);<br>}</p>
+<p>void Delay_us(u32 ntimes)<br>{<br>    u32 flag;<br>    SysTick-&gt;LOAD=9*ntimes; //时间加载<br>    SysTick-&gt;VAL=0;        //清空计数器<br>    SysTick-&gt;CTRL=0x00000001; //bit2清空,选择外部时钟HCLK/8, bit0位清空,开启倒计时<br>    do<br>    {<br>        flag=SysTick-&gt;CTRL;<br>    }<br>    while(flag&amp;0x01&amp;&amp;!(flag&amp;(1&lt;&lt;16)));//等待时间到达<br>    SysTick-&gt;CTRL=0;//关闭计数器<br>}</p>
+<p>void DS18B20_GPIO_Config(void)//DS18B20的GPIO配置<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;<br>    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC, ENABLE );//使能PORTA口时钟<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2; //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//复用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOA, &amp;GPIO_InitStructure);<br>    GPIO_SetBits(GPIOC,GPIO_Pin_2);<br>}</p>
+<p>void DS18B20_Mode_IPU(void)//使DS18B20-DATA引脚变为输入模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;    //GPIO<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;  //复用推挽输出<br>    GPIO_Init(GPIOC, &amp;GPIO_InitStructure);</p>
+<p>}</p>
+<p>void DS18B20_Mode_Out(void)//使DS18B20-DATA引脚变为输出模式<br>{<br>    GPIO_InitTypeDef GPIO_InitStructure;    //GPIO<br>    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  //SPI CS<br>    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;  //复用推挽输出<br>    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;<br>    GPIO_Init(GPIOC, &amp;GPIO_InitStructure);</p>
+<p>}</p>
+<p>void DS18B20_Rst(void)//主机给从机发送复位脉冲<br>{<br>    DS18B20_Mode_Out(); //IO设置为推挽输出<br>    DS18B20_DQ_OUT_Low; //产生至少480us的低电平复位信号<br>    Delay_us(480);<br>    DS18B20_DQ_OUT_High; //在产生复位信号后，需将总线拉高<br>    Delay_us(15);<br>}</p>
+<p>u8 DS18B20_Answer_Check(void) //检测从机给主机返回的应答脉冲，从机接收到主机的复位信号后，会在15~60us后给主机发一个应答脉冲。0：成功1：失败<br>{<br>    u8 delay=0;<br>    DS18B20_Mode_IPU(); // 主机设置为上拉输入<br>    //等待应答脉冲（一个60~240us的低电平信号 ）的到来<br>    //如果100us内，没有应答脉冲，退出函数，注意：从机接收到主机的复位信号后，会在15~60us后给主机发一个存在脉冲<br>    while (DS18B20_DQ_IN&amp;&amp;delay&lt;100)<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    if(delay&gt;=100)//经过100us后，如果没有应答脉冲，退出函数<br>        return 1;<br>    else<br>        delay=0;<br>    while (!DS18B20_DQ_IN&amp;&amp;delay&lt;240)//有应答脉冲，且存在时间不超过240us<br>    {<br>        delay++;<br>        Delay_us(1);<br>    }<br>    if(delay&gt;=240)<br>        return 1;<br>    return 0;<br>}</p>
+<p>u8 DS18B20_Read_Bit(void) //从DS18B20读取一个位 返回值：1/0<br>{<br>    u8 data;<br>    DS18B20_Mode_Out();<br>    DS18B20_DQ_OUT_Low; //读时间的起始：必须由主机产生 &gt;1us &lt;15us 的低电平信号<br>    Delay_us(2);<br>    DS18B20_DQ_OUT_High;<br>    Delay_us(12);<br>    DS18B20_Mode_IPU();//设置成输入，释放总线，由外部上拉电阻将总线拉高<br>    if(DS18B20_DQ_IN)<br>        data=1;<br>    else<br>        data=0;<br>    Delay_us(50);<br>    return data;<br>}</p>
+<p>u8 DS18B20_Read_Byte(void)//从DS18B20读取一个字节 返回值：读到的数据<br>{<br>    u8 i,j,dat;<br>    dat=0;<br>    for(i=0; i&lt;8; i++)<br>    {<br>        j = DS18B20_Read_Bit();<br>        dat = (dat) | (j&lt;&lt;i);<br>    }<br>    return dat;<br>}</p>
+<p>void DS18B20_Write_Byte(u8 dat)//写一个字节到DS18B20<br>{<br>    u8 j;<br>    u8 testb;<br>    DS18B20_Mode_Out();//SET PA0 OUTPUT;<br>    for (j=1;j&lt;=8;j++)<br>    {<br>        testb=dat&0x01;<br>        dat=dat&gt;&gt;1;<br>        if (testb)<br>        {<br>            DS18B20_DQ_OUT_Low;// Write 1<br>            Delay_us(10);<br>            DS18B20_DQ_OUT_High;<br>            Delay_us(50);<br>        }<br>        else<br>        {<br>            DS18B20_DQ_OUT_Low;// Write 0<br>            Delay_us(60);<br>            DS18B20_DQ_OUT_High;   ///释放总线<br>            Delay_us(2);<br>        }<br>    }<br>}</p>
+<p>u8 DS18B20_Init(void)//初始化DS18B20的IO口 DQ 同时检测DS的存在 返回1:不存在 返回0:存在<br>{<br>    DS18B20_GPIO_Config();<br>    DS18B20_Rst();<br>    return DS18B20_Answer_Check();<br>}</p>
+<p>short DS18B20_Get_Temp(void)//从ds18b20得到温度值 精度：0.1C 返回值：温度值 （-550~1250）<br>{</p>
+<pre><code>u8 flag;
+u8 TL,TH;
+short Temperature;
+float Temperature1;
+DS18B20_Rst();
+DS18B20\_Answer\_Check();
+DS18B20\_Write\_Byte(0xcc);// skip rom
+DS18B20\_Write\_Byte(0x44);// ds1820 start convert
+DS18B20_Rst();
+DS18B20\_Answer\_Check();
+DS18B20\_Write\_Byte(0xcc);// skip rom
+DS18B20\_Write\_Byte(0xbe);// convert
+TL=DS18B20\_Read\_Byte(); // LSB
+TH=DS18B20\_Read\_Byte(); // MSB
+if( TH&amp;0xfc)
+{
+    flag=1;
+    Temperature=(TH&lt;&lt;8)|TL;
+    Temperature1=(~ Temperature)+1;
+    Temperature1*=0.0625;
+}
+else
+{
+    flag=0;
+    Temperature1=((TH&lt;&lt;8)|TL)*0.0625;
+}
+return Temperature1;
+</code></pre><p>} </p>
+<p>int main(void)<br>{<br>    USART1_Config();<br>    while(DS18B20_Init())//初始化兼检测DS18B20<br>    {<br>        printf(“DS18B20 Link ERROR \r\n!”);<br>        Delay_us(500000);<br>    }<br>    printf(“DS18B20 Link OK \r\n!”);<br>    while(1)<br>    {<br>        printf(“Temperature: %.2f \r\n”,DS18B20_Get_Temp());<br>        Delay_us(500000);<br>    }<br>}</p>
+<p>实现效果：在PC2接温度传感器，通过串口1打印出温度值。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="Sandeepin WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="Sandeepin Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 Sandeepin 的个人博客">Sandeepin</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="http://blog.jfz.me/2016/stm32-study-example.html" title="STM32学习笔记：基础例子">STM32学习笔记：基础例子</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="http://blog.jfz.me/2016/stm32-study-example.html" title="STM32学习笔记：基础例子">http://blog.jfz.me/2016/stm32-study-example.html</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间：</strong>2016年4月9日 - 11时04分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 Sandeepin 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> </br>转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>  
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/stm32-study-mdk.html" rel="next" title="STM32学习笔记：简介及MDK入门">
+                <i class="fa fa-chevron-left"></i> STM32学习笔记：简介及MDK入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/stm32-ili9325.html" rel="prev" title="STM32操纵2.4寸液晶(ILI9325)">
+                STM32操纵2.4寸液晶(ILI9325) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI4My84ODQ3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sandeepin" />
+          <p class="site-author-name" itemprop="name">Sandeepin</p>
+          <p class="site-description motion-element" itemprop="description">异想博客</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/EZLippi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ouyanglip" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lippi-ouyang" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用GPIO点亮灯-GPIO输出"><span class="nav-number">1.</span> <span class="nav-text">用GPIO点亮灯(GPIO输出)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按键输入-GPIO输入"><span class="nav-number">2.</span> <span class="nav-text">按键输入(GPIO输入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按键中断-EXTI外部中断操作"><span class="nav-number">3.</span> <span class="nav-text">按键中断(EXTI外部中断操作)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串口打印-用USART1"><span class="nav-number">4.</span> <span class="nav-text">串口打印(用USART1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串口中断-用USART1"><span class="nav-number">5.</span> <span class="nav-text">串口中断(用USART1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定时器-用TIM3"><span class="nav-number">6.</span> <span class="nav-text">定时器(用TIM3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SysTick-系统滴答定时器"><span class="nav-number">7.</span> <span class="nav-text">SysTick(系统滴答定时器)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TFTLCD显示-2-4寸液晶ILI9325"><span class="nav-number">8.</span> <span class="nav-text">TFTLCD显示(2.4寸液晶ILI9325)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用DS18B20温度传感器"><span class="nav-number">9.</span> <span class="nav-text">调用DS18B20温度传感器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2008 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandeepin</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>| Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+</body>
+</html>

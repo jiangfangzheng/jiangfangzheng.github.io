@@ -1,94 +1,552 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/6/index.html">
-<meta property="og:site_name" content="Hexo">
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Sandeepin" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="异想博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="异想博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="异想博客">
+<meta property="og:url" content="http://blog.jfz.me/page/6/index.html">
+<meta property="og:site_name" content="异想博客">
+<meta property="og:description" content="异想博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:title" content="异想博客">
+<meta name="twitter:description" content="异想博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.jfz.me/page/6/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> 异想博客 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">异想博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">异想家博采众长的客厅！</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
         
-      </nav>
-      <nav id="sub-nav">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-touch4-fix" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/21/touch4-fix/" class="article-date">
-  <time datetime="2012-07-21T07:17:54.000Z" itemprop="datePublished">2012-07-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/21/touch4-fix/">我的iPod Touch 4差点变砖</a>
-    </h1>
+      
+    </ul>
   
 
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/touch4-fix.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/touch4-fix.html" itemprop="url">
+                  我的iPod Touch 4差点变砖
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-07-21T15:17:54+08:00">
+                2012-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/touch4-fix.html" class="leancloud_visitors" data-flag-title="我的iPod Touch 4差点变砖">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>之前买了个Touch 4,那时刷的系统是4.3,后来苹果更新系统很快，不久就推出了5.0、5.1,不过当时我正读高三，没时间更新系统，于是4.3的系统就用到了现在。最近我有个同学新买了Touch,系统就是5.1的，于是今天心血来潮，自己也更新5.1系统，不久6.0都要出了，现在不用5.1将来自己也不会再用了，错过5时代岂不可惜？虽然自己不是什么狂热的苹果迷，但从自己使用的角度来说，觉得苹果的产品的做工、软件的设计都是很好的，不体会总有些亏的感觉。</p>
+      
+
+      
+        
+          
+            <p>之前买了个Touch 4,那时刷的系统是4.3,后来苹果更新系统很快，不久就推出了5.0、5.1,不过当时我正读高三，没时间更新系统，于是4.3的系统就用到了现在。最近我有个同学新买了Touch,系统就是5.1的，于是今天心血来潮，自己也更新5.1系统，不久6.0都要出了，现在不用5.1将来自己也不会再用了，错过5时代岂不可惜？虽然自己不是什么狂热的苹果迷，但从自己使用的角度来说，觉得苹果的产品的做工、软件的设计都是很好的，不体会总有些亏的感觉。</p>
 <p>于是我按最正确的操作连接iTunes按它的提示更新，可是升级过程中出现备份错误等杂七杂八的问题，我也不管它，什么乱七八糟的，只要最后给我更到了5.1.1,管你什么问题都无所谓了。但更新是个漫长的过程，自己就跑去洗了个澡，兴许回来看看应该更新好了吧。可是洗完澡回来一看电脑，大失所望，居然没更新成功，出什么莫名其妙的问题现在自己也记不清了，看看iPod,停留在数据线与iTunes连接的界面。尼玛！气死我了，千万别变砖啊。</p>
 <p>我拔了又插，插了又拔，弄了几回，开了又关，关了又开，怎么iTunes也识别不了我的iPod,这时可真的慌了。上网查了相关资料，什么按home按电源照它的规则折腾来折腾去，什么iTunes按Shift,DFU模式及恢复模式样样尝试过，可恶的iTunes就是识别不了机子，啊啊啊啊啊啊，怎么办啊，虽说touch不易变砖，但自己这么一搞，可能真成首例了。</p>
 <p>下了小雨伞、91、同步助手、iTools、iFunbox等等三方软件，希望出现奇迹自己的iPod能识别，也期望它的恢复功能能给我成功，可惜再次让我失望了，怎么折腾就是没有用。caocaocaocaocaocao……绝望~~~</p>
@@ -98,264 +556,1168 @@
 <p>1、<strong>一定要装iTunes</strong>，最后出什么问题还是要回到它来解决的。平时图方便可安些符合自己习惯的同步软件，但iTunes才是正统，这点千万不要忘记。</p>
 <p>2、<strong>出问题后别急着下杂七杂八的软件解决，也别急着按网上的教程改来改去</strong>，在我印象中，往往这些教程只教你怎么改，怎么改回来基本省略了的。到时候系统改得乱七八糟，本来有些方法是灵的，到时候真不灵了才叫你哭。<strong>最好先尝试最简单的、没有什么修改方法，比如换个插口再插，系统重启，软件卸载重装等</strong>，往往这些简单的方法有奇效！</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/07/21/touch4-fix/" data-id="cjhdn25jo004msobtl1sr17gg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
-
-  
-    <article id="post-yzsy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/20/yzsy/" class="article-date">
-  <time datetime="2012-07-20T03:37:48.000Z" itemprop="datePublished">2012-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/20/yzsy/">正式告别“影子圣域”</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt; p style=”text-indent: 2em;”&gt;当年由于各种原因由影子圣域转到异想圣域，自然原来的影子博客也变成了现在的异想博客，这之间的种种辛酸苦楚也就不提了。现在我主要持有三个域名：异想圣域yxsy.org、我名字简称的域名jfz.me、我网名的域名sandeepin.com。这些域名在Go Daddy注册的，算我真正持有的吧，而最早我注册的域名yzsy.org则是在国内注册的，国内行情不用说，真的不是我的。而我为了耗着这个使用权，每年还要交租金，而且租得也窝囊，别人想废了你就废了你，仿佛自己有种祈求别人的感觉，也像是给人家当孙子。 <img src="http://img.yxsy.org/BlogImages/yzsyorg01.png" alt=""> &lt; p style=”text-indent: 2em;”&gt;于是早有打算，策划建立异想圣域。新的异想博客也将原来在影子博客的部分好文转了回来，我在博客的信息窗有说明，我说是好文，其实是自己喜欢的，也是自己的美好回忆。从异想博客建立那时起，影子博客也就不更新了，放在那儿不管它，不过耗到了今天，影子圣域域名yzsy.org到期，你不管它它也要消失，而我也不想多花钱再租这域名，过期就随它过期吧，于是有了今天这篇文章——向“影子圣域”正式告别。  &lt; p style=”text-indent: 2em;”&gt;特此截图两张做纪念(一张影子圣域首页，一张影子博客首页)： <a href="http://img.yxsy.org/BlogImages/yzsyorg02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/yzsyorg02.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/yzsyorg03.jpg" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/yzsyorg03.jpg" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;域名yzsy.org是废了，不过它也是自己网络的足迹、博客发展历程的一部分。想想也是，部分幼稚的文章，没有保存回异想博客的文章，若随域名一同消失，还真有些划不来。就算再无用的文章，也是自己的思想发展的记录，自己辛酸的见证。所以还是不忍，原来影子圣域的主页永久做个存档，保存在yzsy.yxsy.org这里，原来影子博客是影子圣域的二级域名blog.yzsy.org，而我不想把域名扩得太长，影子博客就存档到shadowblog.yxsy.org吧。不过排版可做不到和原来影子博客一样了，原来影子博客用的是梦想博客的系统，现在既然是存档，就笼统的做个html页存着文章就行了。至于影子圣域其它的杂七杂八网站，当时雄心满满，想建个颇大的体系，现在看来都是夭折的工程，这些零碎网站就不管了。 &lt; p style=”text-indent: 2em;”&gt;总的来说，影子圣域和影子博客是我接触网络、了解Web技术的第一站，若没有当时那些傻傻的尝试，域名服务器之类的经验积累，也就不会有今天异想圣域、异想博客这些已经步入“成熟”的网站，也就不会有我今天的计算机水平，虽然我学的专业不是计算机，但我相信这将来一定会对我受用的。 &lt; p style=”text-indent: 2em;”&gt;感谢影子圣域、影子博客，是你陪我遨游了互联网，陪我走过了青春，陪我分享了孤独。现在，对你说声再见了……</p>
-
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/07/20/yzsy/" data-id="cjhdn25kz0060sobt1l26zqft" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/纪念/">纪念</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-qqplayer-vs-potplayer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/19/qqplayer-vs-potplayer/" class="article-date">
-  <time datetime="2012-07-19T14:06:14.000Z" itemprop="datePublished">2012-07-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/19/qqplayer-vs-potplayer/">QQ影音对比PotPlayer的两点不足</a>
-    </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt; p style=”text-indent: 2em;”&gt;本篇不是专业的测评，只是写写我在使用QQ影音所遇到的两个问题。两者都是我喜欢的播放器，没有谁优谁劣的对比。PotPlayer特点是专业、性能好，QQ影音的特点是方便、功能符合国人习惯。我先前喜欢用PotPlayer，可自定义很多设置，不过用了一段时间发现自己真的用不了这么多功能，而且一些实用的功能不是没有就是不方便，比如自动匹配字幕、截取视频段或图片、视频合并转码。我可不想为了实现这些功能下专门的软件，当然专业的软件肯定功能强大，不过这些功能自己本就为了临时用用，能在一款软件里实现对于普通用户来说则再方便不过，于是选择了QQ影音。QQ影音可谓真是了解国人需求，对于像我这样的傻瓜级用户QQ影音则恰到好处，用着顺风顺水，所以几乎一年我都把QQ影音作为我的主播放器。 &lt; p style=”text-indent: 2em;”&gt;不过最近用QQ影音则出现让我用着不适的地方。当然也不完全怪QQ影音，文件本身做得也不标准。我最近看的一部动画《化物语》，它采用了副音轨的形式增添了一些解说，然而QQ影音却读不出副音轨，PotPlayer则能正常读出。我也搞不清楚副音轨到底是什么，如果说就是类似多国语言的mkv那样多条音轨，切换就能换成不同国的语言，那读不出就是QQ影音的Bug了，如果不是这样，副音轨用的是另一种标准，读不出也只能说明QQ影音不强大。毕竟文件不标准不是理由，文件又不专门为哪个播放器做，其它播放器能识别也算它的本事，兼容性做得好。 <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer01.png" alt=""></a>  <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer02.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;第二个不足我个人认为怪格式问题，但从这方面也看出QQ影音在格式兼容方面还有缺陷。玩视频的老手都知道avi是种超级坑爹的格式，别看一种后缀，什么编码都能封装，好像没标准似的，它不像mp4、rmvb等格式，编码就几种。若一款mp4或平板说能播avi，你可以笑了，avi格式本身就大，拷到机子里真正能播的概率可能就50%，到时候播不出你才知坑爹。有时文件能打开但不支持拖放，有毛用；有时打开的画面起色块失真的，看个鸟。若是我，还是老老实实转成mp4、rmvb、3gp什么的保险些吧。不过有些老电影网上资源就是avi的，你不下也得下，没有选了。比如我下的安德烈·塔科夫斯基的《乡愁》，用QQ影音打开是能，但不能显示影片长度，也不能拖放。PotPlayer则正常。 <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer03.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer04.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;当然我并没贬低QQ影音的意思，就算有这两个不足我还是会把它作为主播放器。我写这篇文章也就希望QQ影音能做得更好，成为更出色的播放器。</p>
 
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/07/19/qqplayer-vs-potplayer/" data-id="cjhdn25ir003csobtnryidjqz" class="article-share-link">Share</a>
+
+
+    <footer class="post-footer">
+        
+     <div>    
       
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-360bookmark" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/02/360bookmark/" class="article-date">
-  <time datetime="2012-07-02T07:45:52.000Z" itemprop="datePublished">2012-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/yzsy.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/02/360bookmark/">Chrome插件：360旧版收藏夹菜单扩展</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/yzsy.html" itemprop="url">
+                  正式告别“影子圣域”
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-07-20T11:37:48+08:00">
+                2012-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/yzsy.html" class="leancloud_visitors" data-flag-title="正式告别“影子圣域”">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>与<a href="http://bbs.360.cn/5469930/253828671.html" target="_blank" rel="noopener">这里</a>的朋友同感，我也喜欢这样竖着展开的收藏夹。旧版还有个特色就是下次打开还是原来展开的样子，而新版的展开则是最上级页面。这对于收藏链接少的用户到没什么，但对于大量收藏并且目录建了几层的用户来说，则远远没有旧版方便，下图的对比就知道了。 <img src="http://img.yxsy.org/BlogImages/360BookMark01.png" alt="">  <a href="http://img.yxsy.org/BlogImages/360BookMark02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/360BookMark02.png" alt=""></a></p>
+      
+
+      
+        
+          
+            <p>&lt; p style=”text-indent: 2em;”&gt;当年由于各种原因由影子圣域转到异想圣域，自然原来的影子博客也变成了现在的异想博客，这之间的种种辛酸苦楚也就不提了。现在我主要持有三个域名：异想圣域yxsy.org、我名字简称的域名jfz.me、我网名的域名sandeepin.com。这些域名在Go Daddy注册的，算我真正持有的吧，而最早我注册的域名yzsy.org则是在国内注册的，国内行情不用说，真的不是我的。而我为了耗着这个使用权，每年还要交租金，而且租得也窝囊，别人想废了你就废了你，仿佛自己有种祈求别人的感觉，也像是给人家当孙子。 <img src="http://img.yxsy.org/BlogImages/yzsyorg01.png" alt=""> &lt; p style=”text-indent: 2em;”&gt;于是早有打算，策划建立异想圣域。新的异想博客也将原来在影子博客的部分好文转了回来，我在博客的信息窗有说明，我说是好文，其实是自己喜欢的，也是自己的美好回忆。从异想博客建立那时起，影子博客也就不更新了，放在那儿不管它，不过耗到了今天，影子圣域域名yzsy.org到期，你不管它它也要消失，而我也不想多花钱再租这域名，过期就随它过期吧，于是有了今天这篇文章——向“影子圣域”正式告别。  &lt; p style=”text-indent: 2em;”&gt;特此截图两张做纪念(一张影子圣域首页，一张影子博客首页)： <a href="http://img.yxsy.org/BlogImages/yzsyorg02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/yzsyorg02.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/yzsyorg03.jpg" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/yzsyorg03.jpg" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;域名yzsy.org是废了，不过它也是自己网络的足迹、博客发展历程的一部分。想想也是，部分幼稚的文章，没有保存回异想博客的文章，若随域名一同消失，还真有些划不来。就算再无用的文章，也是自己的思想发展的记录，自己辛酸的见证。所以还是不忍，原来影子圣域的主页永久做个存档，保存在yzsy.yxsy.org这里，原来影子博客是影子圣域的二级域名blog.yzsy.org，而我不想把域名扩得太长，影子博客就存档到shadowblog.yxsy.org吧。不过排版可做不到和原来影子博客一样了，原来影子博客用的是梦想博客的系统，现在既然是存档，就笼统的做个html页存着文章就行了。至于影子圣域其它的杂七杂八网站，当时雄心满满，想建个颇大的体系，现在看来都是夭折的工程，这些零碎网站就不管了。 &lt; p style=”text-indent: 2em;”&gt;总的来说，影子圣域和影子博客是我接触网络、了解Web技术的第一站，若没有当时那些傻傻的尝试，域名服务器之类的经验积累，也就不会有今天异想圣域、异想博客这些已经步入“成熟”的网站，也就不会有我今天的计算机水平，虽然我学的专业不是计算机，但我相信这将来一定会对我受用的。 &lt; p style=”text-indent: 2em;”&gt;感谢影子圣域、影子博客，是你陪我遨游了互联网，陪我走过了青春，陪我分享了孤独。现在，对你说声再见了……</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/qqplayer-vs-potplayer.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/qqplayer-vs-potplayer.html" itemprop="url">
+                  QQ影音对比PotPlayer的两点不足
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-07-19T22:06:14+08:00">
+                2012-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/qqplayer-vs-potplayer.html" class="leancloud_visitors" data-flag-title="QQ影音对比PotPlayer的两点不足">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&lt; p style=”text-indent: 2em;”&gt;本篇不是专业的测评，只是写写我在使用QQ影音所遇到的两个问题。两者都是我喜欢的播放器，没有谁优谁劣的对比。PotPlayer特点是专业、性能好，QQ影音的特点是方便、功能符合国人习惯。我先前喜欢用PotPlayer，可自定义很多设置，不过用了一段时间发现自己真的用不了这么多功能，而且一些实用的功能不是没有就是不方便，比如自动匹配字幕、截取视频段或图片、视频合并转码。我可不想为了实现这些功能下专门的软件，当然专业的软件肯定功能强大，不过这些功能自己本就为了临时用用，能在一款软件里实现对于普通用户来说则再方便不过，于是选择了QQ影音。QQ影音可谓真是了解国人需求，对于像我这样的傻瓜级用户QQ影音则恰到好处，用着顺风顺水，所以几乎一年我都把QQ影音作为我的主播放器。 &lt; p style=”text-indent: 2em;”&gt;不过最近用QQ影音则出现让我用着不适的地方。当然也不完全怪QQ影音，文件本身做得也不标准。我最近看的一部动画《化物语》，它采用了副音轨的形式增添了一些解说，然而QQ影音却读不出副音轨，PotPlayer则能正常读出。我也搞不清楚副音轨到底是什么，如果说就是类似多国语言的mkv那样多条音轨，切换就能换成不同国的语言，那读不出就是QQ影音的Bug了，如果不是这样，副音轨用的是另一种标准，读不出也只能说明QQ影音不强大。毕竟文件不标准不是理由，文件又不专门为哪个播放器做，其它播放器能识别也算它的本事，兼容性做得好。 <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer01.png" alt=""></a>  <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer02.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;第二个不足我个人认为怪格式问题，但从这方面也看出QQ影音在格式兼容方面还有缺陷。玩视频的老手都知道avi是种超级坑爹的格式，别看一种后缀，什么编码都能封装，好像没标准似的，它不像mp4、rmvb等格式，编码就几种。若一款mp4或平板说能播avi，你可以笑了，avi格式本身就大，拷到机子里真正能播的概率可能就50%，到时候播不出你才知坑爹。有时文件能打开但不支持拖放，有毛用；有时打开的画面起色块失真的，看个鸟。若是我，还是老老实实转成mp4、rmvb、3gp什么的保险些吧。不过有些老电影网上资源就是avi的，你不下也得下，没有选了。比如我下的安德烈·塔科夫斯基的《乡愁》，用QQ影音打开是能，但不能显示影片长度，也不能拖放。PotPlayer则正常。 <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer03.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/QQPlayerVSPotPlayer04.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;当然我并没贬低QQ影音的意思，就算有这两个不足我还是会把它作为主播放器。我写这篇文章也就希望QQ影音能做得更好，成为更出色的播放器。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/360bookmark.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/360bookmark.html" itemprop="url">
+                  Chrome插件：360旧版收藏夹菜单扩展
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-07-02T15:45:52+08:00">
+                2012-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/360bookmark.html" class="leancloud_visitors" data-flag-title="Chrome插件：360旧版收藏夹菜单扩展">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>与<a href="http://bbs.360.cn/5469930/253828671.html" target="_blank" rel="noopener">这里</a>的朋友同感，我也喜欢这样竖着展开的收藏夹。旧版还有个特色就是下次打开还是原来展开的样子，而新版的展开则是最上级页面。这对于收藏链接少的用户到没什么，但对于大量收藏并且目录建了几层的用户来说，则远远没有旧版方便，下图的对比就知道了。 <img src="http://img.yxsy.org/BlogImages/360BookMark01.png" alt="">  <a href="http://img.yxsy.org/BlogImages/360BookMark02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/360BookMark02.png" alt=""></a></p>
 <p>可惜这么好的插件官方竟然下架！如果是作者有什么原因倒还理解，若是官方主动下架则显出这家企业太不懂用户需求了。 <a href="http://img.yxsy.org/BlogImages/360BookMark03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/360BookMark03.png" alt=""></a></p>
 <p>于是试着用用官方推荐的另一款类似插件“简易收藏夹”（在Google商店可搜），图标做得还不错，界面也类似，不过少了搜索和管理收藏夹选项，毕竟不是配套的，也不对它要求太高。 <img src="http://img.yxsy.org/BlogImages/360BookMark04.png" alt=""></p>
 <p><img src="http://img.yxsy.org/BlogImages/360BookMark05.png" alt=""></p>
 <p>不过有个实用的功能这款“简易收藏夹”却没有，就是连点几个页面打开。有时为了方便查阅，会同时打开几个页面，若每点一个又要重新重复一轮操作，那么“简易”收藏夹也就失去用它的目的了。于是这时你才会觉得旧版360收藏夹的牛逼。 <a href="http://img.yxsy.org/BlogImages/360BookMark06.gif" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/360BookMark06.gif" alt=""></a></p>
 <p>呵呵，写了这么多自己都觉得太挑剔了，算了吧，到此为止。Sandeepin悄悄提供下载，嘘，还是内涵图的形式(在第一张图中，另存为改后缀rar，下次不说了哦)，不知朋友们习惯不。不过这也是我觉得分享小软件最好的形式了，唉，国内的网盘形势啊。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/07/02/360bookmark/" data-id="cjhdn25gi0000sobttwgqtazq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chrome-douban-search" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/01/chrome-douban-search/" class="article-date">
-  <time datetime="2012-07-01T13:08:45.000Z" itemprop="datePublished">2012-07-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/01/chrome-douban-search/">Chrome插件：豆瓣电影搜索</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt; p style=”text-indent: 2em;”&gt;Sandeepin最近狂看电影，自然少不了上豆瓣看看电影介绍短评顺便自己也吐吐槽，为了方便自己自己搜电影，在google商店找了几款右键豆瓣电影搜索的软件都不理想，比如这款“豆瓣一点”，的确可搜索，但进入的是综合搜索，但Sandeepin只对豆瓣电影的内容感兴趣啊，而且又没有设置选项只搜豆瓣电影，到头来还要在豆瓣网站上又重新点搜索电影，岂不麻烦？我试了几款同类软件，效果都不理想，没办法，还是老话说的好，自己动手丰衣足食，于是捣鼓了这款豆瓣电影搜索Chrome插件。 <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search01.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search02.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search03.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;我之前写了一篇教程<a href="http://blog.yxsy.org/make_crx_chrome_apps.html" target="_blank" rel="noopener">自己动手：修改crx文件制作自己的Chrome Apps</a>。当时是用百度做例子，这回换成豆瓣电影搜索完全是套式。爱折腾的孩子也可以自己做一个。 &lt; p style=”text-indent: 2em;”&gt;看看我改的豆瓣电影搜索插件吧！ <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search04.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search05.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search05.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search06.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search06.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search07.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search07.png" alt=""></a> <img src="http://i3.6.cn/cvbnm/51/38/43/2251c536e6a3a03e31d142674a9bfa84.jpg" alt=""> 文件存在最后一张图中(内涵图)，图片另存为，将png改为rar就可打开了。</p>
-
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/07/01/chrome-douban-search/" data-id="cjhdn25gz000bsobt19s7vsop" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-video-transcoding-cpu-key" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/06/20/video-transcoding-cpu-key/" class="article-date">
-  <time datetime="2012-06-20T05:17:45.000Z" itemprop="datePublished">2012-06-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/06/20/video-transcoding-cpu-key/">视频转码cpu才是关键</a>
-    </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt; p style=”text-indent: 2em;”&gt;上次提到<a href="http://blog.yxsy.org/xilisoft-video-converter-ultimate.html" target="_blank" rel="noopener">支持ATI显卡加速的视频转换软件</a>，也提到CPU比GPU重要，今天真正转个大型的电影才知道，CPU不仅重要一点，简直是超级主导主导主导主导主导作用，什么CUDA、AMD APP简直是鸡肋，都他妈浮云浮云浮云浮云啊！！！ &lt; p style=”text-indent: 2em;”&gt;我还是用魔影工厂，原来一代i3-530 2.93GHz双核四线程的CPU开CUDA的电脑转个视频用时30多分钟，现用新电脑三代i5-3550 3.3GHz四核四线程没有CUDA也不开AMD APP，转同样视频用时5分多，尼玛，GPU加速这不是坑爹吗！ &lt; p style=”text-indent: 2em;”&gt;以后在也不信GPU加速了，什么都是商家的忽悠手段，真的要相信GPU才是王道！就算我上篇文章白写了，做了回商家帮凶一起骗大家了，再次申明，GPU加速就是个玩笑，泡泡网<a href="http://www.pcpop.com/doc/0/572/572283.shtml" target="_blank" rel="noopener">这里</a>早有人写文章揭露过这个事实了，所以我奉劝大家，也当是自身经验教训，以后什么新功能一定要上网多看看，了解了解，别给商家说得好听骗你了。其实上网多看，不但可防止被忽悠，还能学到很多新知识，何乐而不为呢？据说英特尔的Lucid Universal MVP也他妈是个玩笑，当然这个功能我还没试过，在这里就不多评了。 &lt; p style=”text-indent: 2em;”&gt;虽说如此，Sandeepin其实对GPU加速还是有好感的，总希望技术进步嘛。GPU加速还是会继续关注，也祝愿GPU商家在新的一年有所突破！</p>
 
+    <div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/06/20/video-transcoding-cpu-key/" data-id="cjhdn25jp004psobtortplm8o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/硬件/">硬件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-    <article id="post-xilisoft-video-converter-ultimate" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/06/18/xilisoft-video-converter-ultimate/" class="article-date">
-  <time datetime="2012-06-18T13:26:12.000Z" itemprop="datePublished">2012-06-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/06/18/xilisoft-video-converter-ultimate/">支持ATI显卡加速的视频转换软件</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/chrome-douban-search.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/chrome-douban-search.html" itemprop="url">
+                  Chrome插件：豆瓣电影搜索
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-07-01T21:08:45+08:00">
+                2012-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/chrome-douban-search.html" class="leancloud_visitors" data-flag-title="Chrome插件：豆瓣电影搜索">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>Sandeepin虽然看的电影不算太多，但也勉强算个电影迷。不过我有个怪癖，在电脑上非得看1080P才过瘾，然而哪有这么多1080片源呢，就算有，也舍不得时间下，再说，有时忍不住要看刚出的电影、动漫，然而这些资源刚出却很难找高清、全高清的，特别有些动漫压根就不打算出高清。</p>
+      
+
+      
+        
+          
+            <p>&lt; p style=”text-indent: 2em;”&gt;Sandeepin最近狂看电影，自然少不了上豆瓣看看电影介绍短评顺便自己也吐吐槽，为了方便自己自己搜电影，在google商店找了几款右键豆瓣电影搜索的软件都不理想，比如这款“豆瓣一点”，的确可搜索，但进入的是综合搜索，但Sandeepin只对豆瓣电影的内容感兴趣啊，而且又没有设置选项只搜豆瓣电影，到头来还要在豆瓣网站上又重新点搜索电影，岂不麻烦？我试了几款同类软件，效果都不理想，没办法，还是老话说的好，自己动手丰衣足食，于是捣鼓了这款豆瓣电影搜索Chrome插件。 <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search01.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search02.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search03.png" alt=""></a> &lt; p style=”text-indent: 2em;”&gt;我之前写了一篇教程<a href="http://blog.yxsy.org/make_crx_chrome_apps.html" target="_blank" rel="noopener">自己动手：修改crx文件制作自己的Chrome Apps</a>。当时是用百度做例子，这回换成豆瓣电影搜索完全是套式。爱折腾的孩子也可以自己做一个。 &lt; p style=”text-indent: 2em;”&gt;看看我改的豆瓣电影搜索插件吧！ <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search04.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search05.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search05.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search06.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search06.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Douban_search07.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Douban_search07.png" alt=""></a> <img src="http://i3.6.cn/cvbnm/51/38/43/2251c536e6a3a03e31d142674a9bfa84.jpg" alt=""> 文件存在最后一张图中(内涵图)，图片另存为，将png改为rar就可打开了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/video-transcoding-cpu-key.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/video-transcoding-cpu-key.html" itemprop="url">
+                  视频转码cpu才是关键
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-06-20T13:17:45+08:00">
+                2012-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/video-transcoding-cpu-key.html" class="leancloud_visitors" data-flag-title="视频转码cpu才是关键">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&lt; p style=”text-indent: 2em;”&gt;上次提到<a href="http://blog.yxsy.org/xilisoft-video-converter-ultimate.html" target="_blank" rel="noopener">支持ATI显卡加速的视频转换软件</a>，也提到CPU比GPU重要，今天真正转个大型的电影才知道，CPU不仅重要一点，简直是超级主导主导主导主导主导作用，什么CUDA、AMD APP简直是鸡肋，都他妈浮云浮云浮云浮云啊！！！ &lt; p style=”text-indent: 2em;”&gt;我还是用魔影工厂，原来一代i3-530 2.93GHz双核四线程的CPU开CUDA的电脑转个视频用时30多分钟，现用新电脑三代i5-3550 3.3GHz四核四线程没有CUDA也不开AMD APP，转同样视频用时5分多，尼玛，GPU加速这不是坑爹吗！ &lt; p style=”text-indent: 2em;”&gt;以后在也不信GPU加速了，什么都是商家的忽悠手段，真的要相信GPU才是王道！就算我上篇文章白写了，做了回商家帮凶一起骗大家了，再次申明，GPU加速就是个玩笑，泡泡网<a href="http://www.pcpop.com/doc/0/572/572283.shtml" target="_blank" rel="noopener">这里</a>早有人写文章揭露过这个事实了，所以我奉劝大家，也当是自身经验教训，以后什么新功能一定要上网多看看，了解了解，别给商家说得好听骗你了。其实上网多看，不但可防止被忽悠，还能学到很多新知识，何乐而不为呢？据说英特尔的Lucid Universal MVP也他妈是个玩笑，当然这个功能我还没试过，在这里就不多评了。 &lt; p style=”text-indent: 2em;”&gt;虽说如此，Sandeepin其实对GPU加速还是有好感的，总希望技术进步嘛。GPU加速还是会继续关注，也祝愿GPU商家在新的一年有所突破！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2012/xilisoft-video-converter-ultimate.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/xilisoft-video-converter-ultimate.html" itemprop="url">
+                  支持ATI显卡加速的视频转换软件
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-06-18T21:26:12+08:00">
+                2012-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2012/xilisoft-video-converter-ultimate.html" class="leancloud_visitors" data-flag-title="支持ATI显卡加速的视频转换软件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Sandeepin虽然看的电影不算太多，但也勉强算个电影迷。不过我有个怪癖，在电脑上非得看1080P才过瘾，然而哪有这么多1080片源呢，就算有，也舍不得时间下，再说，有时忍不住要看刚出的电影、动漫，然而这些资源刚出却很难找高清、全高清的，特别有些动漫压根就不打算出高清。</p>
 <p>不过我在手机、MP4上看那些480p的资源却也觉高清，其实说白了我就是希望看得精细，刚好对准像素最有精细感，因为手机屏幕也就是800x480,你下720的片源与480的片源没区别，不像电脑非得1080才对准显示器像素。</p>
 <p>此外我长时间在学校住校，不可能经常碰电脑，于是手机、MP4自然成看电影的唯一方法，因此在手机上看电影也很过瘾，甚至觉得比电脑看更爽，大概是习惯的作用吧。</p>
 <p>然而我用的手机是高通的处理器，大家也知道高通整体性能好，但视频解码能力比起国产处理器就差远了，但用国产处理器的MP4屏幕基本好不到哪里去。在屏幕与硬解的纠结中最终选择了屏幕，还是老老实实转码吧，高通处理器也支持mkv的硬解，但苹果产品却不支持mkv硬解，为了更好跨平台，mp4格式成了我最终的选择。</p>
@@ -366,264 +1728,1079 @@
 <p>现抄一段网上的功能介绍：</p>
 <p>曦力音视频转换专家， 强大至近乎完美的音视频转换专家，支持转换几乎所有格式的音视频转换AVI、MPEG、WMV、diyX、MP4、H.264/AVC、RM、3GP、 FLV、MP3、WMA、WAV、RA、AAC.针对多种数码设备，提供数十种转换方案，满足所有的转换需求。支持的设备有：iPod、iPad、 iphone、PSP、Apple TV、3GP手机及各种Google手机等常用的数码设备。 主要功能 1、视频转换 2、支持高清到高清视频的转换，高清视频到普通视频的转换，普通到普通视频的转换。 3、提取、转换音频 4、从视频中提取音频，也可在音频格式之间进行转换。 5、视频到图片 6、可以在视频播放中抓取任意喜欢的画面，也可以设置截图时间间隔，从视频中批量提取图片。 主要特性 支持ATI GPU和NVINIA GPU处理器加速。 将转换完成的文件直接传输到多种移动设备中，比如PSP、iPod、iPad、iPhone4等。 将多个视频或图片合并为一个新的文件，并在视频或图片之间添加转场效果。 为视频添加多个字幕文件，调整其位置和样式，制作多语言字幕视频。 （这一点是西风最喜欢的！） 添加多个音轨，设置循环播放选项，制作多语言音轨视频。 随意剪下想要的一段或多段视频片断，并精确设置片断的起始和结束时间。 预置了适合各种CD和DVD容量的分割方式，同时允许自定义分割时间长度或文件大小。 支持裁剪画面，您可设置裁剪区域、比例和裁剪区域位置裁去不需要的边距。 添加特殊艺术效果，您可以对视频添加黑白、油画、素描、老电影或更多的艺术效果。 调整视频色彩，改变亮度、对比度和饱和度以调整视频画面色彩。 可以给视频添加多个文字、图片水印，也可同时添加文字和图片水印。 软件为各种多媒体设备准备了优化的预置方案，无需进行设置即可享用。当然，您也可以对预置方案进行参数调整，创建自定义预置方案。 在预置方案设置面板上，您可以调整开始时间，时间长度，视频分辨率，音频/视频质量，分割，等等。还有更为高级的参数设置窗口供高级用户使用。 为一个源文件设定多个目标预置方案，一次性输出多个不同格式相同内容的目标文件。 提供码率计算器，自定义文件大小，自动计算出相应的视频码率。 内置视频播放器可预览源视频，剪辑后的视频，编辑过的视频，并将编辑过的视频与源视频进行对比预览。 支持多核CPU转换，也可以选择进行转换的内核数；支持多线程批量转换；后台运行。 多核CPU支持使转换速度更快；更多视频编辑功能；界面更加人性化，操作更简单。 &lt; p style=”text-indent: 2em;”&gt;我觉得大体描述真实，试用效果也不错，但就我自己测试，视频转换加速也没那么夸张，转了一集柯南用时3分04秒，我用没有GPU加速的魔影工厂也就3分08秒，顶多快十多秒几十秒了不得了。说句老实话，转码还是要看CPU,一个i7的CPU比什么都要重要，什么GPU加速在强大CPU面前就是个玩笑。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/06/18/xilisoft-video-converter-ultimate/" data-id="cjhdn25kv005tsobtj34sso83" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-tangyinluohuashi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/11/05/tangyinluohuashi/" class="article-date">
-  <time datetime="2011-11-05T11:26:52.000Z" itemprop="datePublished">2011-11-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2011/tangyinluohuashi.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/11/05/tangyinluohuashi/">书法精品--唐寅落花诗册PDF高清版</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/tangyinluohuashi.html" itemprop="url">
+                  书法精品--唐寅落花诗册PDF高清版
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-11-05T19:26:52+08:00">
+                2011-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2011/tangyinluohuashi.html" class="leancloud_visitors" data-flag-title="书法精品--唐寅落花诗册PDF高清版">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>记得小学学书法学行书时用的书就是《唐寅落花诗册》，我们都知道天下第一行书是王羲之的兰亭序，不过当时我书法老师认为兰亭序版本繁多，当时能买到好字帖少，而且兰亭集序原文改得很乱，不适合初学者用，因为我们不仅要临摹原字，行书更重要的是整体布局，如果改得太乱初学者就很难临了。</p>
+      
+
+      
+        
+          
+            <p>记得小学学书法学行书时用的书就是《唐寅落花诗册》，我们都知道天下第一行书是王羲之的兰亭序，不过当时我书法老师认为兰亭序版本繁多，当时能买到好字帖少，而且兰亭集序原文改得很乱，不适合初学者用，因为我们不仅要临摹原字，行书更重要的是整体布局，如果改得太乱初学者就很难临了。</p>
 <p>所以老师最终挑选的就是这本《唐寅落花诗册》，此帖不但书法严谨俊逸挺秀，用笔圆转妍美灵活，提按顿挫，转折分明，而且结构有正有奇，正奇相间，错落有致，笔断意连，尽显唐伯虎的风流倜傥，是唐寅的代表作品之一。极便初学者临摹学习。</p>
 <p><img src="http://img.yxsy.org/BlogImages/tangyin01.jpg" alt=""></p>
 <p>最近整理旧书，翻出了很多原来学习书法的字帖，不过唯独这本落花诗在搬家过程中丢失了。不过庆幸的是当今网络这么发达，很容易在网上找到电子版，下载来珍藏也算是能保住心中的美好回忆。版本虽多，不过要找好的全的清晰的却很难，经我挑选“<a href="http://wenku.baidu.com/view/c783f02de2bd960590c67775.html" target="_blank" rel="noopener">唐寅《落花诗册》苏州市博物馆藏本</a>”最清晰最全，不过百度上分了几个档，而且每档都要20金币下载，我想其他朋友需要就不太方便了。于是Sandeepin就根据这一版本，并且补上封面，封装成一个PDF,分享给各位网友以及书法爱好者。这是本人做的第一个PDF,初次使用Acrobat肯定有些地方没做好，也希望朋友们多提意见，呵呵。</p>
 <p>[Downlink href=”<a href="http://pan.baidu.com/share/link?shareid=567596&amp;uk=3540488741&quot;\]百度网盘\[/Downlink\]" target="_blank" rel="noopener">http://pan.baidu.com/share/link?shareid=567596&amp;uk=3540488741&quot;\]百度网盘\[/Downlink\]</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2011/11/05/tangyinluohuashi/" data-id="cjhdn25jj004esobtzq3a2e6m" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
+  </article>
+
+
+    
+      
+
   
-</article>
-
 
   
-    <article id="post-wen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/07/16/wen/" class="article-date">
-  <time datetime="2011-07-16T15:45:47.000Z" itemprop="datePublished">2011-07-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
+  
+  
 
-  </div>
-  <div class="article-inner">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2011/wen.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/16/wen/">吻</a>
-    </h1>
-  
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/wen.html" itemprop="url">
+                  吻
+                </a>
+              
+            
+          </h2>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-07-16T23:45:47+08:00">
+                2011-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2011/wen.html" class="leancloud_visitors" data-flag-title="吻">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>读者（2011.7）上看到一篇文章，人物心理刻画得太妙了，膜拜ing,激动ing 作者：[瑞典]雅·瑟德尔贝里 有一天，两个非常年轻的人–一个姑娘和一个小伙子–坐在一块伸进水里的湖畔的石板上，湖水汩汩地拍打着他们的双脚。他们静静地坐在那儿，一动也不懂，两人都瞧着西沉的落日，陷入沉思。 小伙子想：“我真想吻她。”他抬头看看她的嘴唇，立刻感到那嘴唇的样儿就像是意味着要他去吻。当然，他在和别的姑娘恋爱，而且，她也并不是他见过的最漂亮的姑娘。但是像眼前这样一位姑娘，他确实从来没有吻过，因为她是一个理想的化身，一颗天上的明星。对一位可望而不可即的女性，又能怎么办呢？ 姑娘想：“我真想要他吻。这样一来，我也许就有机会给他一点颜色看看，让他知道我对他根本不屑一顾。我会站起来，把身上的裙子裹得紧紧的，非常冷淡地、轻蔑地白他一眼，然后挺起腰杆，静静地走开，而且并不显示任何不必要的慌张。不过眼下为了不让他猜出自己的想法活动，我应轻声慢语地问他一声：‘你认为，这以后生活就与从前不一样了吗？’” 他想：“如果我的回答符合她的心意，她也许就更愿意让我吻她了。”但是他不能确定，过去在另一种情况下，对于同一个问题，踏实怎么回答的，他生怕自相矛盾。因此，他注视着她的眼睛，回答说：“我有时候这么想。” 她对这样的回答很高兴。 她想：“最低限度，我喜欢他的头发，也喜欢他的前额。颇有点美中不足的是，他的鼻子长得太丑了；另外，他没有社会地位，他只是个学生，只是一个为通过毕业考试而读书的学生。总体来说，他并不是使我们的女友们赶到厌烦的那一类人物。” 他想：“这会儿我肯定可以吻她了。”尽管如此，他还是怕得要命，因为他从来没有吻过官宦之家的千金小姐。他也不知道这一吻是否带有危险性，因为她的父亲是这个小城市的市长，而且他就在离这儿不远的吊床上睡觉。 她想：“要是他吻我，我想我最好给他一记响亮的耳光。” 接着她又想：“可是他干吗不吻我呢？难道说我是个丑八怪，根本不讨男人喜欢？” 她朝水面上探着身子，想看看自个儿映在水中的形象，但是她一无所获，荡漾的微波把她在水中的影子打得粉碎。 她又想：“要是他吻我，我真不知道是什么滋味。” 事实上，她只被男人吻过一次，那是在城市大饭店的舞会后，被一位酒气熏天、烟臭扑鼻的中尉吻的。在接吻时，她几乎没有什么快感，尽管他是一位中尉。要是他不是中尉的话，她真不情愿让他吻。除此以外，她恨他。因为从那以后，他就没有向她献过殷勤，也根本没有表示对她感兴趣。 他们两人就这样坐着，各自揣摩着自己的心事。 最后一缕光线也消失在山那边，天色渐暗。 他想：“尽管夕阳西下，夜色降临，但她仍然愿意和我坐在一起，这表明她也许不会太反对我吻她。” 于是，他用一只胳膊轻轻低搂着她的脖子。 对这样的轻举妄动，她压根儿就没有想到。她原先以为他仅仅是吻她，不会动手动脚，那样一来，她就给他一记响亮的耳光，然后像公主似的抽身而去。但是面对他的这个举动，她却不知道如何是好了。当然，她也想对他生气，但是她又不想失去这次被吻的机会。因此，她就这样一动不动地坐着。 紧接着，他吻了她。 这一吻比她原先想象中的还要微妙。她觉得自己渐渐脸色发白，周身无力。这当儿，她根本没想到要给他一记耳光，她根本也不记得他只是一个为了毕业考试而读书的学生。她的脑海里一片空白。 而他却想起一位笃信宗教的医生所写的一本书《女性的性生活》中的一段文字：“必须预防夫妻之间的拥抱受色欲的支配。”但是，他想，这个预防很难实施，因为仅仅是一次亲吻，就使人感到灵魂的颤动。 皓月东升，两个年轻人仍旧坐在那儿，相互吻着。 她在她的耳边悄悄地说：“我一看见你，就爱上你了。” 他回答说：“在这个世界上，你是我唯一的爱人。”</p>
 
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>读者（2011.7）上看到一篇文章，人物心理刻画得太妙了，膜拜ing,激动ing 作者：[瑞典]雅·瑟德尔贝里 有一天，两个非常年轻的人–一个姑娘和一个小伙子–坐在一块伸进水里的湖畔的石板上，湖水汩汩地拍打着他们的双脚。他们静静地坐在那儿，一动也不懂，两人都瞧着西沉的落日，陷入沉思。 小伙子想：“我真想吻她。”他抬头看看她的嘴唇，立刻感到那嘴唇的样儿就像是意味着要他去吻。当然，他在和别的姑娘恋爱，而且，她也并不是他见过的最漂亮的姑娘。但是像眼前这样一位姑娘，他确实从来没有吻过，因为她是一个理想的化身，一颗天上的明星。对一位可望而不可即的女性，又能怎么办呢？ 姑娘想：“我真想要他吻。这样一来，我也许就有机会给他一点颜色看看，让他知道我对他根本不屑一顾。我会站起来，把身上的裙子裹得紧紧的，非常冷淡地、轻蔑地白他一眼，然后挺起腰杆，静静地走开，而且并不显示任何不必要的慌张。不过眼下为了不让他猜出自己的想法活动，我应轻声慢语地问他一声：‘你认为，这以后生活就与从前不一样了吗？’” 他想：“如果我的回答符合她的心意，她也许就更愿意让我吻她了。”但是他不能确定，过去在另一种情况下，对于同一个问题，踏实怎么回答的，他生怕自相矛盾。因此，他注视着她的眼睛，回答说：“我有时候这么想。” 她对这样的回答很高兴。 她想：“最低限度，我喜欢他的头发，也喜欢他的前额。颇有点美中不足的是，他的鼻子长得太丑了；另外，他没有社会地位，他只是个学生，只是一个为通过毕业考试而读书的学生。总体来说，他并不是使我们的女友们赶到厌烦的那一类人物。” 他想：“这会儿我肯定可以吻她了。”尽管如此，他还是怕得要命，因为他从来没有吻过官宦之家的千金小姐。他也不知道这一吻是否带有危险性，因为她的父亲是这个小城市的市长，而且他就在离这儿不远的吊床上睡觉。 她想：“要是他吻我，我想我最好给他一记响亮的耳光。” 接着她又想：“可是他干吗不吻我呢？难道说我是个丑八怪，根本不讨男人喜欢？” 她朝水面上探着身子，想看看自个儿映在水中的形象，但是她一无所获，荡漾的微波把她在水中的影子打得粉碎。 她又想：“要是他吻我，我真不知道是什么滋味。” 事实上，她只被男人吻过一次，那是在城市大饭店的舞会后，被一位酒气熏天、烟臭扑鼻的中尉吻的。在接吻时，她几乎没有什么快感，尽管他是一位中尉。要是他不是中尉的话，她真不情愿让他吻。除此以外，她恨他。因为从那以后，他就没有向她献过殷勤，也根本没有表示对她感兴趣。 他们两人就这样坐着，各自揣摩着自己的心事。 最后一缕光线也消失在山那边，天色渐暗。 他想：“尽管夕阳西下，夜色降临，但她仍然愿意和我坐在一起，这表明她也许不会太反对我吻她。” 于是，他用一只胳膊轻轻低搂着她的脖子。 对这样的轻举妄动，她压根儿就没有想到。她原先以为他仅仅是吻她，不会动手动脚，那样一来，她就给他一记响亮的耳光，然后像公主似的抽身而去。但是面对他的这个举动，她却不知道如何是好了。当然，她也想对他生气，但是她又不想失去这次被吻的机会。因此，她就这样一动不动地坐着。 紧接着，他吻了她。 这一吻比她原先想象中的还要微妙。她觉得自己渐渐脸色发白，周身无力。这当儿，她根本没想到要给他一记耳光，她根本也不记得他只是一个为了毕业考试而读书的学生。她的脑海里一片空白。 而他却想起一位笃信宗教的医生所写的一本书《女性的性生活》中的一段文字：“必须预防夫妻之间的拥抱受色欲的支配。”但是，他想，这个预防很难实施，因为仅仅是一次亲吻，就使人感到灵魂的颤动。 皓月东升，两个年轻人仍旧坐在那儿，相互吻着。 她在她的耳边悄悄地说：“我一看见你，就爱上你了。” 他回答说：“在这个世界上，你是我唯一的爱人。”</p>
+
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2011/07/16/wen/" data-id="cjhdn25k7004ysobtng2kespi" class="article-share-link">Share</a>
+
+    <div>
       
+    </div>
+  
+
+
+    <div>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文学/">文学</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+    </div>
 
 
-  
-    <article id="post-make-crx-chrome-apps" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/07/11/make-crx-chrome-apps/" class="article-date">
-  <time datetime="2011-07-11T05:27:15.000Z" itemprop="datePublished">2011-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程开发/">编程开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <footer class="post-footer">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/11/make-crx-chrome-apps/">自己动手：修改crx文件制作自己的Chrome Apps</a>
-    </h1>
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.jfz.me/2011/make-crx-chrome-apps.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sandeepin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="异想博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="异想博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/make-crx-chrome-apps.html" itemprop="url">
+                  自己动手：修改crx文件制作自己的Chrome Apps
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-07-11T13:27:15+08:00">
+                2011-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程开发/" itemprop="url" rel="index">
+                    <span itemprop="name">编程开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2011/make-crx-chrome-apps.html" class="leancloud_visitors" data-flag-title="自己动手：修改crx文件制作自己的Chrome Apps">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>此想法源于使用Chrome时，选中文本后右键菜单会增加一条“使用Google搜索”菜单，此功能非常方便，不过chrome默认支持添加一个搜索引擎，要么google,要么百度，或者其它，相比搜索效果，肯定google最好了，不信大家搜索图片“科学”,就知道孰优孰劣。所以Sandeepin默认使用的是google,不过大家也知道，“胡萝卜温度计是不能随便学习的”,再说有时找一些中国特色软件，还是百度给力，所以能同时使用两个搜索引擎就最好了。我在网上搜索很多相关插件，均不让我满意。不过在<a href="http://chensd.com/2011-01/chrome-plugins-china-search-engine.html" target="_blank" rel="noopener">这里</a>看到一有道搜索插件倒还不错，若能改为百度搜索就更棒了。 于是自己动手，丰衣足食。在介绍制作方法前，先卖弄下自己制作的插件吧。插件功能与<a href="http://chensd.com/2011-01/chrome-plugins-china-search-engine.html" target="_blank" rel="noopener">这里</a>介绍的有道插件一样，只不过换个搜索引擎罢了。那就不要脸的把原插件的作用抄过来： 1、在不改变默认搜索引擎的情况下，在右键中增加一个搜索引擎选项； 2、只有在选中文字的情况下才增加这个选项； 来关键的了，也不多说，自己看图就明白： 将下载的crx改后缀zip或rar，然后解压。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search01.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search02.png" alt=""></a> 之后修改文件，照我的图自己举一反三吧。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search03.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search04.png" alt=""></a> 按照原图片规格替换成自己的图片。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search05.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search05.png" alt=""></a> 接下来开始打包，看图： <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search06.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search06.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search07.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search07.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search08.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search08.png" alt=""></a> 打包成功后的crx文件： <img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search09.png" alt=""> 最后安装吧： <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search10.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search10.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search11.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search11.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search12.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search12.png" alt=""></a> 怎么样，成功了吧，大家也不妨试试，由于这只是个搜索引擎，很容易替换，至于复杂的程序，那就要看你的本事了，不过做个简单修改汉化还是挺方便的。 最后献出我做的百度插件吧。 <img src="http://i3.6.cn/cvbnm/51/38/43/2251c536e6a3a03e31d142674a9bfa84.jpg" alt=""> <a href="http://www.box.net/shared/bd7q6nm60ir1s5fnzs1o" target="_blank" rel="noopener">Box.net</a></p>
 
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>此想法源于使用Chrome时，选中文本后右键菜单会增加一条“使用Google搜索”菜单，此功能非常方便，不过chrome默认支持添加一个搜索引擎，要么google,要么百度，或者其它，相比搜索效果，肯定google最好了，不信大家搜索图片“科学”,就知道孰优孰劣。所以Sandeepin默认使用的是google,不过大家也知道，“胡萝卜温度计是不能随便学习的”,再说有时找一些中国特色软件，还是百度给力，所以能同时使用两个搜索引擎就最好了。我在网上搜索很多相关插件，均不让我满意。不过在<a href="http://chensd.com/2011-01/chrome-plugins-china-search-engine.html" target="_blank" rel="noopener">这里</a>看到一有道搜索插件倒还不错，若能改为百度搜索就更棒了。 于是自己动手，丰衣足食。在介绍制作方法前，先卖弄下自己制作的插件吧。插件功能与<a href="http://chensd.com/2011-01/chrome-plugins-china-search-engine.html" target="_blank" rel="noopener">这里</a>介绍的有道插件一样，只不过换个搜索引擎罢了。那就不要脸的把原插件的作用抄过来： 1、在不改变默认搜索引擎的情况下，在右键中增加一个搜索引擎选项； 2、只有在选中文字的情况下才增加这个选项； 来关键的了，也不多说，自己看图就明白： 将下载的crx改后缀zip或rar，然后解压。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search01.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search01.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search02.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search02.png" alt=""></a> 之后修改文件，照我的图自己举一反三吧。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search03.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search03.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search04.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search04.png" alt=""></a> 按照原图片规格替换成自己的图片。 <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search05.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search05.png" alt=""></a> 接下来开始打包，看图： <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search06.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search06.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search07.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search07.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search08.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search08.png" alt=""></a> 打包成功后的crx文件： <img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search09.png" alt=""> 最后安装吧： <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search10.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search10.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search11.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search11.png" alt=""></a> <a href="http://img.yxsy.org/BlogImages/Chrome_Baidu_search12.png" target="_blank" rel="noopener"><img src="http://img.yxsy.org/BlogImages/Chrome_Baidu_search12.png" alt=""></a> 怎么样，成功了吧，大家也不妨试试，由于这只是个搜索引擎，很容易替换，至于复杂的程序，那就要看你的本事了，不过做个简单修改汉化还是挺方便的。 最后献出我做的百度插件吧。 <img src="http://i3.6.cn/cvbnm/51/38/43/2251c536e6a3a03e31d142674a9bfa84.jpg" alt=""> <a href="http://www.box.net/shared/bd7q6nm60ir1s5fnzs1o" target="_blank" rel="noopener">Box.net</a></p>
+
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2011/07/11/make-crx-chrome-apps/" data-id="cjhdn25i50026sobtec8jh9ow" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
 
+    <div>
+      
+    </div>
+  
+
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+  </div>  
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</section>
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/分享推荐/">分享推荐</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程技巧/">教程技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程开发/">编程开发</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emlog/">Emlog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原创软件/">原创软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机/">手机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推理/">推理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/敬佩/">敬佩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文学/">文学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/评论/">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信工程/">通信工程</a></li></ul>
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sandeepin" />
+          <p class="site-author-name" itemprop="name">Sandeepin</p>
+          <p class="site-description motion-element" itemprop="description">异想博客</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/EZLippi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ouyanglip" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lippi-ouyang" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 15px;">C#</a> <a href="/tags/Chrome/" style="font-size: 17.5px;">Chrome</a> <a href="/tags/C语言/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Emlog/" style="font-size: 15px;">Emlog</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/原创软件/" style="font-size: 17.5px;">原创软件</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/推理/" style="font-size: 10px;">推理</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/敬佩/" style="font-size: 10px;">敬佩</a> <a href="/tags/文学/" style="font-size: 10px;">文学</a> <a href="/tags/硬件/" style="font-size: 15px;">硬件</a> <a href="/tags/纪念/" style="font-size: 17.5px;">纪念</a> <a href="/tags/评论/" style="font-size: 12.5px;">评论</a> <a href="/tags/通信工程/" style="font-size: 10px;">通信工程</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/03/26/windows-hadoop-spark-hbase/">Windows下安装Hadoop、Spark和HBase</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/26/kafka-install/">Kafka安装教程</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/mitinglunchu/">西泽保彦《谜亭论处》</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/20/bushiheliaolidishaonv/">白井智之《不适合料理的少女》</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/29/cpp-winsock2-tcp/">C++封装的基于WinSock2的TCP服务端、客户端</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy;  2008 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sandeepin</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>| Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
-  </div>
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
 </body>
 </html>
