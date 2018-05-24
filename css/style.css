@@ -180,7 +180,7 @@ em {
 }
 /* layout */
 body {
-  font-family: "Source Code Pro", Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Consolas, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
@@ -252,7 +252,7 @@ body {
   line-height: 26px;
 }
 #logo {
-  font: bold 42px/1.2 "宋体";
+  font: bold 42px/1.2 "Microsoft YaHei";
   white-space: nowrap;
   color: #fff;
   text-shadow: 1px 3px 6px #113f6e;
